@@ -4,8 +4,8 @@ import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react"
 export default function Changelog() {
   const changelogEntries = [
     {
-      version: "v2.1.0",
-      date: "2025-01-15",
+      version: "v1.5.0",
+      date: "2025-10-19",
       type: "feature",
       title: "Enhanced User Experience",
       changes: [
@@ -17,8 +17,8 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v2.0.0",
-      date: "2025-01-10",
+      version: "v1.4.0",
+      date: "2025-09-10",
       type: "major",
       title: "Complete UI Redesign",
       changes: [
@@ -30,8 +30,8 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.5.2",
-      date: "2025-01-05",
+      version: "v1.3.0",
+      date: "2025-09-01",
       type: "bugfix",
       title: "Bug Fixes and Improvements",
       changes: [
@@ -43,7 +43,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.5.0",
+      version: "v1.0.0",
       date: "2024-12-20",
       type: "feature",
       title: "Advanced Analytics",
@@ -56,7 +56,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.4.0",
+      version: "v0.5.0",
       date: "2024-12-10",
       type: "feature",
       title: "Performance Enhancements",
@@ -69,7 +69,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.3.0",
+      version: "v0.0.1",
       date: "2024-11-25",
       type: "feature",
       title: "Core Features Launch",
