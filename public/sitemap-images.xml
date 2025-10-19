@@ -1,45 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
-  <!-- 主页图片资源 -->
+
+  <!-- Homepage with favicon and app icons -->
   <url>
-    <loc>https://yt-playlist-len-calc.vercel.app/</loc>
+    <loc>https://ytplaylistlength.pro/</loc>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/android-chrome-192x192.png</image:loc>
-      <image:title>YouTube Playlist Length Calculator - App Icon 192x192</image:title>
-      <image:caption>YouTube播放列表时长计算器应用图标</image:caption>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator Favicon</image:title>
+      <image:caption>Official favicon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/android-chrome-512x512.png</image:loc>
-      <image:title>YouTube Playlist Length Calculator - App Icon 512x512</image:title>
-      <image:caption>YouTube播放列表时长计算器高清应用图标</image:caption>
+      <image:loc>https://ytplaylistlength.pro/android-chrome-192x192.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator App Icon 192x192</image:title>
+      <image:caption>Android Chrome app icon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/apple-touch-icon.png</image:loc>
-      <image:title>YouTube Playlist Length Calculator - Apple Touch Icon</image:title>
-      <image:caption>YouTube播放列表时长计算器苹果设备图标</image:caption>
+      <image:loc>https://ytplaylistlength.pro/android-chrome-512x512.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator App Icon 512x512</image:title>
+      <image:caption>High resolution Android Chrome app icon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/favicon-16x16.png</image:loc>
-      <image:title>YouTube Playlist Length Calculator - Favicon 16x16</image:title>
-      <image:caption>YouTube播放列表时长计算器网站图标16x16</image:caption>
+      <image:loc>https://ytplaylistlength.pro/apple-touch-icon.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Apple Touch Icon</image:title>
+      <image:caption>Apple touch icon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/favicon-32x32.png</image:loc>
-      <image:title>YouTube Playlist Length Calculator - Favicon 32x32</image:title>
-      <image:caption>YouTube播放列表时长计算器网站图标32x32</image:caption>
+      <image:loc>https://ytplaylistlength.pro/favicon-16x16.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Favicon 16x16</image:title>
+      <image:caption>Small favicon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/next.svg</image:loc>
-      <image:title>Next.js Logo</image:title>
-      <image:caption>Next.js框架标志</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://yt-playlist-len-calc.vercel.app/vercel.svg</image:loc>
-      <image:title>Vercel Logo</image:title>
-      <image:caption>Vercel部署平台标志</image:caption>
+      <image:loc>https://ytplaylistlength.pro/favicon-32x32.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Favicon 32x32</image:title>
+      <image:caption>Medium favicon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
   </url>
-  
+
+  <!-- About Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/about</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator About Page</image:title>
+      <image:caption>About page for YouTube Playlist Length Calculator tool</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/contact</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator Contact</image:title>
+      <image:caption>Contact page for YouTube Playlist Length Calculator support</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Changelog Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/changelog</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator Updates</image:title>
+      <image:caption>Changelog and updates for YouTube Playlist Length Calculator</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Privacy Policy Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/privacy</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator Privacy Policy</image:title>
+      <image:caption>Privacy policy for YouTube Playlist Length Calculator</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Terms of Service Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/terms</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Length Calculator Terms</image:title>
+      <image:caption>Terms of service for YouTube Playlist Length Calculator</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

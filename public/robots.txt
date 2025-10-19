@@ -1,17 +1,20 @@
-# robots.txt for YouTube Playlist Length Calculator
-# https://yt-playlist-len-calc.vercel.app/
+# Robots.txt for YouTube Playlist Length Calculator
+# https://ytplaylistlength.pro
 
 User-agent: *
 Allow: /
 
-# Disallow crawling of API routes and internal files
+# Allow all search engines to crawl the site
 Disallow: /api/
 Disallow: /_next/
-Disallow: /favicon.ico
+Disallow: /admin/
 
 # Sitemap locations
-Sitemap: https://yt-playlist-len-calc.vercel.app/sitemap.xml
-Sitemap: https://yt-playlist-len-calc.vercel.app/sitemap-images.xml
+Sitemap: https://ytplaylistlength.pro/sitemap.xml
+Sitemap: https://ytplaylistlength.pro/sitemap-images.xml
 
-# Crawl-delay for respectful crawling
+# Crawl delay (optional - helps prevent server overload)
 Crawl-delay: 1
+
+# Host directive (helps with canonical domain)
+Host: https://ytplaylistlength.pro
