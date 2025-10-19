@@ -34,14 +34,14 @@ export default function PrivacyPage() {
           <div className="max-w-4xl mx-auto">
             
             {/* Last Updated */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-6 mb-8 shadow-lg">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-6 mb-8 shadow-lg">
               <p className="text-muted-foreground">
                 <strong>Last updated:</strong> December 2024
               </p>
             </div>
 
             {/* Introduction */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg shadow-md">
                   <Shield className="h-8 w-8 text-white" />
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Information We Collect */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg shadow-md">
                   <Database className="h-8 w-8 text-white" />
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* How We Use Information */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg shadow-md">
                   <Eye className="h-8 w-8 text-white" />
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Data Protection */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-green-500 to-blue-500 p-2 rounded-lg shadow-md">
                   <Lock className="h-8 w-8 text-white" />
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Information Sharing */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg shadow-md">
                   <UserCheck className="h-8 w-8 text-white" />
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Your Rights */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-lg shadow-md">
                   <AlertTriangle className="h-8 w-8 text-white" />
@@ -177,7 +177,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Cookies */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Cookies and Tracking</h2>
               <div className="space-y-3 text-muted-foreground">
                 <p>
@@ -192,7 +192,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Contact */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Contact Us</h2>
               <div className="text-muted-foreground">
                 <p className="mb-4">

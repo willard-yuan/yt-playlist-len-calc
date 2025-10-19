@@ -19,7 +19,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md">
       {/* Star Decorations for Navbar */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-2 left-16 text-purple-400/60 animate-pulse">

@@ -40,7 +40,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               
               {/* Contact Form */}
-              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 shadow-lg">
                 <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                   Send us a Message
                 </h2>

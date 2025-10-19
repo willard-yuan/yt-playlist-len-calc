@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- 主页图片资源 -->
+  <url>
+    <loc>https://yt-playlist-len-calc.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/android-chrome-192x192.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator - App Icon 192x192</image:title>
+      <image:caption>YouTube播放列表时长计算器应用图标</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/android-chrome-512x512.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator - App Icon 512x512</image:title>
+      <image:caption>YouTube播放列表时长计算器高清应用图标</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/apple-touch-icon.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator - Apple Touch Icon</image:title>
+      <image:caption>YouTube播放列表时长计算器苹果设备图标</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/favicon-16x16.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator - Favicon 16x16</image:title>
+      <image:caption>YouTube播放列表时长计算器网站图标16x16</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/favicon-32x32.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator - Favicon 32x32</image:title>
+      <image:caption>YouTube播放列表时长计算器网站图标32x32</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/next.svg</image:loc>
+      <image:title>Next.js Logo</image:title>
+      <image:caption>Next.js框架标志</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yt-playlist-len-calc.vercel.app/vercel.svg</image:loc>
+      <image:title>Vercel Logo</image:title>
+      <image:caption>Vercel部署平台标志</image:caption>
+    </image:image>
+  </url>
+  
+</urlset>

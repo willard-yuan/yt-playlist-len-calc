@@ -149,7 +149,7 @@ export default function Changelog() {
             {changelogEntries.map((entry, index) => (
               <div
                 key={entry.version}
-                className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50"
+                className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 {/* Version Badge */}
                 <div className="flex items-center justify-between mb-6">

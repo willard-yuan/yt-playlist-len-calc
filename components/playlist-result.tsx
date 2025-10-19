@@ -116,7 +116,7 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
                     {/* Main Statistics Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         {/* Playlist Creator */}
-                        <Card className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+                        <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-lg">
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <User className="h-4 w-4" />
@@ -129,10 +129,10 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
                                     {playlistStats.uniqueChannels} unique channels
                                 </p>
                             </div>
-                        </Card>
+                        </div>
 
                         {/* Total Duration */}
-                        <Card className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-900">
+                        <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-900 rounded-lg">
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Clock className="h-4 w-4" />
@@ -145,10 +145,10 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
                                     ≈ {playlistStats.watchingHours.toFixed(1)} hours
                                 </p>
                             </div>
-                        </Card>
+                        </div>
 
                         {/* Playback Duration */}
-                        <Card className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-900">
+                        <div className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-900 rounded-lg">
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Zap className="h-4 w-4" />
@@ -161,10 +161,10 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
                                     Save {calculateTotalDuration(playlistStats.totalSeconds - (playlistStats.totalSeconds / parseFloat(speed)), format)} {videoFormat.toLowerCase()}
                                 </p>
                             </div>
-                        </Card>
+                        </div>
 
                         {/* Content Freshness */}
-                        <Card className="p-4 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900 dark:to-violet-900">
+                        <div className="p-4 bg-gradient-to-br from-purple-50 to-violet-100 dark:from-purple-900 dark:to-violet-900 rounded-lg">
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                                     <Activity className="h-4 w-4" />
@@ -177,7 +177,7 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
                                     {playlistStats.oldVideos} older than 2 years
                                 </p>
                             </div>
-                        </Card>
+                        </div>
                     </div>
 
                     {/* Content Distribution */}

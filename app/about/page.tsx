@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
+              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
                 <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-lg w-fit mb-6 shadow-lg">
                   <Target className="h-12 w-12 text-white group-hover:scale-110 transition-transform" />
                 </div>
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
+              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-3 rounded-lg w-fit mb-6 shadow-lg">
                   <Lightbulb className="h-12 w-12 text-white group-hover:scale-110 transition-transform" />
                 </div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
+              <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 group shadow-lg hover:shadow-xl">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-lg w-fit mb-6 shadow-lg">
                   <Users className="h-12 w-12 text-white group-hover:scale-110 transition-transform" />
                 </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center group">
-              <div className="bg-gradient-to-br from-card/60 to-muted/40 backdrop-blur-sm border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300 shadow-md">
+              <div className="bg-gradient-to-br from-card/60 to-muted/40 backdrop-blur-sm rounded-xl p-6 hover:shadow-lg transition-all duration-300 shadow-md">
                 <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg w-fit mx-auto mb-4 shadow-md">
                   <Play className="h-10 w-10 text-white group-hover:scale-110 transition-transform" />
                 </div>

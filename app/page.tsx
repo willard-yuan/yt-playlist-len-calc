@@ -116,17 +116,17 @@ export default function Home() {
               Why Use the YouTube Playlist Length Calculator?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
+              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
                 <Clock className="h-12 w-12 text-purple-500 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-semibold mb-3 text-foreground">Time Management</h3>
                 <p className="text-muted-foreground">Plan your viewing schedule effectively by knowing exactly how long your playlists are.</p>
               </div>
-              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
+              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
                 <Users className="h-12 w-12 text-purple-500 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-semibold mb-3 text-foreground">Content Planning</h3>
                 <p className="text-muted-foreground">Perfect for educators, content creators, and anyone organizing video content.</p>
               </div>
-              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
+              <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300 group shadow-lg">
                 <Zap className="h-12 w-12 text-purple-500 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-semibold mb-3 text-foreground">Instant Results</h3>
                 <p className="text-muted-foreground">Get accurate playlist duration calculations in seconds, not minutes.</p>
@@ -164,7 +164,7 @@ export default function Home() {
             </div>
 
             {/* Mathematical Formula Section */}
-            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm border border-purple-200 dark:border-purple-500/30 rounded-2xl p-8 shadow-xl">
+            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Mathematical Formula</h3>
               <p className="text-muted-foreground mb-8 text-center">
                 The Youtube Playlist Length works by using simple math to figure out how long it will take to finish your audio or video at a certain speed. Here's how it does that:
@@ -173,33 +173,33 @@ export default function Home() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                 {/* Formulas */}
                 <div className="space-y-6">
-                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                     <h4 className="text-lg font-semibold text-purple-500 dark:text-purple-400 mb-3">Total Length (in seconds):</h4>
                     <p className="text-muted-foreground mb-3">We first convert the total time of your audiobook or video into seconds. The formula is:</p>
-                    <div className="bg-gradient-to-r from-purple-100/50 to-pink-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-purple-600 dark:text-purple-300 text-center border border-purple-200 dark:border-purple-500/30">
+                    <div className="bg-gradient-to-r from-purple-100/50 to-pink-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-purple-600 dark:text-purple-300 text-center">
                       Total Length (seconds) = (Hours × 3600) + (Minutes × 60) + Seconds
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                     <h4 className="text-lg font-semibold text-purple-500 dark:text-purple-400 mb-3">Listening Time:</h4>
                     <p className="text-muted-foreground mb-3">To calculate the new time at your selected speed, we use this formula:</p>
-                    <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-blue-600 dark:text-purple-300 text-center border border-blue-200 dark:border-purple-500/30">
+                    <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-blue-600 dark:text-purple-300 text-center">
                       Listening Time (seconds) = Total Length (seconds) / Playback Speed
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+                  <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                     <h4 className="text-lg font-semibold text-purple-500 dark:text-purple-400 mb-3">Time Saved:</h4>
                     <p className="text-muted-foreground mb-3">If you choose a faster speed, you'll save time. The formula for time saved is:</p>
-                    <div className="bg-gradient-to-r from-pink-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-pink-600 dark:text-purple-300 text-center border border-pink-200 dark:border-purple-500/30">
+                    <div className="bg-gradient-to-r from-pink-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-pink-600 dark:text-purple-300 text-center">
                       Time Saved (seconds) = Total Length (seconds) − Listening Time (seconds)
                     </div>
                   </div>
                 </div>
 
                 {/* Example */}
-                <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+                <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                   <h4 className="text-xl font-semibold text-foreground mb-4">Example</h4>
                   <p className="text-muted-foreground mb-6">
                     Let's say your audiobook is 2 hours, 30 minutes, and 0 seconds long, and you choose to listen at 1.5x speed:
@@ -208,26 +208,26 @@ export default function Home() {
                   <div className="space-y-4">
                     <div>
                       <h5 className="text-purple-500 dark:text-purple-400 font-semibold mb-2">Total Length (seconds):</h5>
-                      <div className="bg-gradient-to-r from-purple-100/50 to-pink-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
+                      <div className="bg-gradient-to-r from-purple-100/50 to-pink-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-purple-600 dark:text-purple-300">
                         (2 × 3600) + (30 × 60) + 0 = 9000 seconds
                       </div>
                     </div>
 
                     <div>
                       <h5 className="text-blue-500 dark:text-purple-400 font-semibold mb-2">Listening Time (seconds):</h5>
-                      <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-blue-600 dark:text-purple-300 border border-blue-200 dark:border-purple-500/30">
+                      <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-blue-600 dark:text-purple-300">
                         9000 / 1.5 = 6000 seconds = 1 hour, 40 minutes, 0 seconds
                       </div>
                     </div>
 
                     <div>
                       <h5 className="text-pink-500 dark:text-purple-400 font-semibold mb-2">Time Saved (seconds):</h5>
-                      <div className="bg-gradient-to-r from-pink-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-pink-600 dark:text-purple-300 border border-pink-200 dark:border-purple-500/30">
+                      <div className="bg-gradient-to-r from-pink-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-3 font-mono text-sm text-pink-600 dark:text-purple-300">
                         9000 − 6000 = 3000 seconds = 50 minutes, 0 seconds
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-r from-purple-100/80 to-pink-100/80 dark:from-purple-500/20 dark:to-pink-500/20 border border-purple-300 dark:border-purple-500/30 rounded-lg p-4 mt-6 shadow-lg">
+                    <div className="bg-gradient-to-r from-purple-100/80 to-pink-100/80 dark:from-purple-500/20 dark:to-pink-500/20 rounded-lg p-4 mt-6 shadow-lg">
                       <p className="text-foreground font-semibold text-center">
                         So, by listening at 1.5x speed, you'll finish the audiobook in 1 hour and 40 minutes and save 50 minutes.
                       </p>
@@ -243,28 +243,28 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
               Benefits of Knowing Playlist Duration
             </h2>
-            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm border border-purple-200 dark:border-purple-500/30 rounded-2xl p-8 mb-8 shadow-xl">
+            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm rounded-2xl p-8 mb-8 shadow-xl">
               <p className="text-lg text-muted-foreground leading-relaxed mb-6 text-center">
                 Ever wanted to finish an audiobook or podcast faster? Or maybe slow down a video to catch all the details? 
                 The Youtube Playlist Length lets you do just that. With this tool, you can:
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 border border-border shadow-lg">
+              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 shadow-lg">
                 <Zap className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Save Time</h3>
                   <p className="text-muted-foreground">Speed up audio or video and see exactly how much time you'll save.</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 border border-border shadow-lg">
+              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 shadow-lg">
                 <Play className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Optimize Your Listening or Viewing Experience</h3>
                   <p className="text-muted-foreground">Adjust playback speed to suit your needs, whether you're learning something new or just enjoying content.</p>
                 </div>
               </div>
-              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 border border-border shadow-lg">
+              <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 shadow-lg">
                 <Clock className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Stay in Control</h3>
@@ -276,7 +276,7 @@ export default function Home() {
 
           {/* Simple Usage Section */}
           <div className="mb-20">
-            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm border border-purple-200 dark:border-purple-500/30 rounded-2xl p-8 text-center shadow-xl">
+            <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm rounded-2xl p-8 text-center shadow-xl">
               <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
                 Using the Youtube Playlist Length is super simple
               </h2>
@@ -302,7 +302,7 @@ export default function Home() {
               FAQs
             </h2>
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
@@ -311,7 +311,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
@@ -320,7 +320,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
@@ -329,7 +329,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
@@ -338,7 +338,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
@@ -347,7 +347,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm border border-border rounded-xl p-6 shadow-lg">
+              <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>

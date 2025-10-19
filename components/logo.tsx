@@ -64,46 +64,64 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
           </filter>
         </defs>
 
-        {/* Main YouTube Play Button Background */}
+        {/* Enhanced YouTube Play Button Background - Maximum Enlarged */}
         <circle
           cx="32"
           cy="32"
-          r="26"
+          r="32"
           fill="url(#youtubeGradient)"
           filter="url(#glow)"
         />
         
-        {/* Inner Ring */}
+        {/* Enhanced Inner Ring - Maximum Enlarged */}
         <circle
           cx="32"
           cy="32"
-          r="22"
+          r="28"
+          fill="none"
+          stroke="rgba(255,255,255,0.35)"
+          strokeWidth="1.5"
+        />
+        
+        {/* Additional Inner Ring for depth - Maximum Enlarged */}
+        <circle
+          cx="32"
+          cy="32"
+          r="24"
           fill="none"
           stroke="rgba(255,255,255,0.2)"
-          strokeWidth="0.5"
+          strokeWidth="1"
         />
 
-        {/* YouTube Play Triangle - Central Element */}
+        {/* Enhanced YouTube Play Triangle - Maximum Enlarged */}
         <g transform="translate(32, 32)">
+          {/* Shadow/Depth Triangle */}
           <polygon
-            points="-6,-8 -6,8 10,0"
+            points="-9,-12 -9,12 16,0"
+            fill="rgba(0,0,0,0.25)"
+            transform="translate(1.5,1.5)"
+          />
+          {/* Main Triangle - Maximum Enlarged */}
+          <polygon
+            points="-9,-12 -9,12 16,0"
             fill="url(#whiteGradient)"
-            filter="url(#innerShadow)"
+            filter="url(#glow)"
           />
         </g>
 
-        {/* Clock Ring - Outer Element */}
+        {/* Clock Ring - Maximum Enlarged and Enhanced */}
         <g transform="translate(32, 32)">
-          {/* Clock Face Background */}
+          {/* Outer Clock Ring - Maximum Enlarged */}
           <circle
             cx="0"
             cy="0"
-            r="20"
+            r="30"
             fill="none"
             stroke="url(#clockGradient)"
-            strokeWidth="2"
-            opacity="0.8"
-            strokeDasharray="4,2"
+            strokeWidth="4"
+            opacity="1"
+            strokeDasharray="8,3"
+            filter="url(#glow)"
           >
             <animateTransform
               attributeName="transform"
@@ -115,22 +133,39 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
               repeatCount="indefinite"/>
           </circle>
           
-          {/* Hour Markers */}
-          <g stroke="url(#clockGradient)" strokeWidth="1.5" opacity="0.9">
-            <line x1="0" y1="-18" x2="0" y2="-16" strokeLinecap="round" />
-            <line x1="12.7" y1="-12.7" x2="11.3" y2="-11.3" strokeLinecap="round" />
-            <line x1="18" y1="0" x2="16" y2="0" strokeLinecap="round" />
-            <line x1="12.7" y1="12.7" x2="11.3" y2="11.3" strokeLinecap="round" />
-            <line x1="0" y1="18" x2="0" y2="16" strokeLinecap="round" />
-            <line x1="-12.7" y1="12.7" x2="-11.3" y2="11.3" strokeLinecap="round" />
-            <line x1="-18" y1="0" x2="-16" y2="0" strokeLinecap="round" />
-            <line x1="-12.7" y1="-12.7" x2="-11.3" y2="-11.3" strokeLinecap="round" />
+          {/* Inner Clock Ring - Maximum Enlarged */}
+          <circle
+            cx="0"
+            cy="0"
+            r="26"
+            fill="none"
+            stroke="rgba(59, 130, 246, 0.4)"
+            strokeWidth="1.5"
+            opacity="0.8"
+          />
+          
+          {/* Enhanced Hour Markers - Adjusted for Maximum Clock Size */}
+          <g stroke="url(#clockGradient)" strokeWidth="3" opacity="1">
+            {/* 12 o'clock - Maximum Enhanced and Repositioned */}
+            <line x1="0" y1="-28" x2="0" y2="-22" strokeLinecap="round" strokeWidth="4" />
+            {/* 3 o'clock - Maximum Enhanced and Repositioned */}
+            <line x1="28" y1="0" x2="22" y2="0" strokeLinecap="round" strokeWidth="4" />
+            {/* 6 o'clock - Maximum Enhanced and Repositioned */}
+            <line x1="0" y1="28" x2="0" y2="22" strokeLinecap="round" strokeWidth="4" />
+            {/* 9 o'clock - Maximum Enhanced and Repositioned */}
+            <line x1="-28" y1="0" x2="-22" y2="0" strokeLinecap="round" strokeWidth="4" />
+            
+            {/* Other hour markers - Maximum Repositioned */}
+            <line x1="19.8" y1="-19.8" x2="17.3" y2="-17.3" strokeLinecap="round" strokeWidth="3" />
+            <line x1="19.8" y1="19.8" x2="17.3" y2="17.3" strokeLinecap="round" strokeWidth="3" />
+            <line x1="-19.8" y1="19.8" x2="-17.3" y2="17.3" strokeLinecap="round" strokeWidth="3" />
+            <line x1="-19.8" y1="-19.8" x2="-17.3" y2="-17.3" strokeLinecap="round" strokeWidth="3" />
           </g>
           
-          {/* Clock Hands - Animated */}
+          {/* Enhanced Clock Hands - Maximum Enlarged and Animated */}
           <g>
-            {/* Hour Hand */}
-            <line x1="0" y1="0" x2="0" y2="-8" stroke="url(#whiteGradient)" strokeWidth="2" strokeLinecap="round">
+            {/* Hour Hand - Maximum Enlarged */}
+            <line x1="0" y1="0" x2="0" y2="-14" stroke="url(#whiteGradient)" strokeWidth="4" strokeLinecap="round" filter="url(#glow)">
               <animateTransform
                 attributeName="transform"
                 attributeType="XML"
@@ -141,8 +176,8 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
                 repeatCount="indefinite"/>
             </line>
             
-            {/* Minute Hand */}
-            <line x1="0" y1="0" x2="0" y2="-12" stroke="url(#whiteGradient)" strokeWidth="1.5" strokeLinecap="round">
+            {/* Minute Hand - Maximum Enlarged */}
+            <line x1="0" y1="0" x2="0" y2="-22" stroke="url(#whiteGradient)" strokeWidth="3.5" strokeLinecap="round" filter="url(#glow)">
               <animateTransform
                 attributeName="transform"
                 attributeType="XML"
@@ -153,8 +188,8 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
                 repeatCount="indefinite"/>
             </line>
             
-            {/* Second Hand */}
-            <line x1="0" y1="0" x2="0" y2="-14" stroke="url(#accentGradient)" strokeWidth="1" strokeLinecap="round">
+            {/* Second Hand - Maximum Enhanced */}
+            <line x1="0" y1="0" x2="0" y2="-24" stroke="url(#accentGradient)" strokeWidth="2.5" strokeLinecap="round" filter="url(#glow)">
               <animateTransform
                 attributeName="transform"
                 attributeType="XML"
@@ -165,73 +200,11 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
                 repeatCount="indefinite"/>
             </line>
           </g>
-          
-          {/* Center Dot */}
-          <circle cx="0" cy="0" r="1.5" fill="url(#whiteGradient)" />
         </g>
 
-        {/* Duration Indicators - Corner Elements */}
-        <g opacity="0.8">
-          {/* Top Left - Hours */}
-          <g transform="translate(12, 12)">
-            <circle cx="0" cy="0" r="4" fill="url(#clockGradient)" opacity="0.9" />
-            <text x="0" y="1.5" textAnchor="middle" fontSize="3" fill="white" fontFamily="monospace" fontWeight="bold">H</text>
-          </g>
-          
-          {/* Top Right - Minutes */}
-          <g transform="translate(52, 12)">
-            <circle cx="0" cy="0" r="4" fill="url(#clockGradient)" opacity="0.9" />
-            <text x="0" y="1.5" textAnchor="middle" fontSize="3" fill="white" fontFamily="monospace" fontWeight="bold">M</text>
-          </g>
-          
-          {/* Bottom Left - Seconds */}
-          <g transform="translate(12, 52)">
-            <circle cx="0" cy="0" r="4" fill="url(#clockGradient)" opacity="0.9" />
-            <text x="0" y="1.5" textAnchor="middle" fontSize="3" fill="white" fontFamily="monospace" fontWeight="bold">S</text>
-          </g>
-          
-          {/* Bottom Right - Total */}
-          <g transform="translate(52, 52)">
-            <circle cx="0" cy="0" r="4" fill="url(#accentGradient)" opacity="0.9" />
-            <text x="0" y="1.5" textAnchor="middle" fontSize="2.5" fill="white" fontFamily="monospace" fontWeight="bold">∑</text>
-          </g>
-        </g>
 
-        {/* Playlist Progress Bars - Left Side */}
-        <g transform="translate(8, 28)" opacity="0.7">
-          <rect x="0" y="0" width="6" height="1.5" rx="0.75" fill="url(#youtubeGradient)">
-            <animate attributeName="width" values="6;8;6" dur="3s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="0" y="3" width="5" height="1.5" rx="0.75" fill="url(#youtubeGradient)" opacity="0.8">
-            <animate attributeName="width" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="0" y="6" width="4" height="1.5" rx="0.75" fill="url(#youtubeGradient)" opacity="0.6">
-            <animate attributeName="width" values="4;6;4" dur="2s" repeatCount="indefinite"/>
-          </rect>
-        </g>
 
-        {/* Playlist Progress Bars - Right Side */}
-        <g transform="translate(50, 28)" opacity="0.7">
-          <rect x="0" y="0" width="6" height="1.5" rx="0.75" fill="url(#clockGradient)">
-            <animate attributeName="width" values="6;8;6" dur="2.8s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="0" y="3" width="5" height="1.5" rx="0.75" fill="url(#clockGradient)" opacity="0.8">
-            <animate attributeName="width" values="5;7;5" dur="3.2s" repeatCount="indefinite"/>
-          </rect>
-          <rect x="0" y="6" width="4" height="1.5" rx="0.75" fill="url(#clockGradient)" opacity="0.6">
-            <animate attributeName="width" values="4;6;4" dur="2.3s" repeatCount="indefinite"/>
-          </rect>
-        </g>
 
-        {/* Connecting Data Flow Lines */}
-        <g stroke="rgba(255,255,255,0.4)" strokeWidth="0.5" fill="none" opacity="0.6">
-          <path d="M14,32 Q23,28 32,32" strokeDasharray="1,1">
-            <animate attributeName="stroke-dashoffset" values="0;2" dur="2s" repeatCount="indefinite"/>
-          </path>
-          <path d="M32,32 Q41,28 50,32" strokeDasharray="1,1">
-            <animate attributeName="stroke-dashoffset" values="0;2" dur="2s" repeatCount="indefinite"/>
-          </path>
-        </g>
       </svg>
     </div>
   );

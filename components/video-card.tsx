@@ -69,7 +69,7 @@ export default function VideoCard({ item, format, speed }: {
     const freshness = getContentFreshness();
 
     return (
-        <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-2 hover:border-purple-200 dark:hover:border-purple-800">
+        <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden hover:border-purple-200 dark:hover:border-purple-800">
             <div className="relative">
                 {/* Thumbnail */}
                 <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">

@@ -9,18 +9,21 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yt-playlist-length.vercel.app'),
-  title: "YouTube Playlist Duration",
-  description: "Effortlessly calculate the total duration of any YouTube playlist with advanced filter option and at different speeds. Simply paste the playlist URL and get the total time instantly.",
+  metadataBase: new URL('https://ytplaylistlength.pro'),
+  title: "Youtube Playlist Length Calculator – Easily Calculate The Total Length of Any Playlist",
+  description: "Calculate the total length/duration of your YouTube playlists easily! Enter your playlist URL to find out how long it takes to watch all the videos in one go.",
   generator: "Next.js",
-  applicationName: "Youtube Playlist Duration",
+  applicationName: "Youtube Playlist Length Calculator",
   keywords: [
-    "Youtube", "Youtube API Data", "Youtube Playlist Duration", "Youtube Playlist", "Youtube Length calculator", "Video Duration", "Playlist Analyzer", "Youtube Video Length", "Youtube Playlist Analyzer", "Youtube Playlist Length Calculator", "Youtube Video Duration Calculator", "Youtube Playlist Time", "Total Playlist Duration", "Youtube Time Tracker"],
+    "Youtube Playlist Length", "Youtube Playlist Duration", "Youtube Playlist Lenth calculator", "Youtube Playlist Analyzer"],
   authors: [{ name: 'Uttam Likhiya', url: 'https://puli.vercel.app' }],
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro',
+  },
   openGraph: {
-    title: "YouTube Playlist Duration",
-    description: "Effortlessly calculate the total duration of any YouTube playlist with advanced filter option and at different speeds. Simply paste the playlist URL and get the total time instantly.",
-    url: 'https://yt-playlist-length.vercel.app',
+    title: "Youtube Playlist Length Calculator – Easily Calculate The Total Length of Any Playlist",
+    description: "Calculate the total length/duration of your YouTube playlists easily! Enter your playlist URL to find out how long it takes to watch all the videos in one go.",
+    url: 'https://ytplaylistlength.pro',
     locale: 'en_IN',
     type: 'website',
   },
@@ -43,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: "YouTube Playlist Duration",
-    description: "Effortlessly calculate the total duration of any YouTube playlist with advanced filter option and at different speeds. Simply paste the playlist URL and get the total time instantly.",
+    title: "Youtube Playlist Length Calculator – Easily Calculate The Total Length of Any Playlist",
+    description: "Calculate the total length/duration of your YouTube playlists easily! Enter your playlist URL to find out how long it takes to watch all the videos in one go.",
     creator: 'Uttam Likhiya',
     creatorId: 'L1KH1YAUTTAM',
   },

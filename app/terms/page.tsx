@@ -34,14 +34,14 @@ export default function TermsPage() {
           <div className="max-w-4xl mx-auto">
             
             {/* Last Updated */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-6 mb-8 shadow-lg">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-6 mb-8 shadow-lg">
               <p className="text-muted-foreground">
                 <strong>Last updated:</strong> December 2024
               </p>
             </div>
 
             {/* Introduction */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg shadow-md">
                   <FileText className="h-8 w-8 text-white" />
@@ -56,7 +56,7 @@ export default function TermsPage() {
             </div>
 
             {/* Use License */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-2 rounded-lg shadow-md">
                   <Scale className="h-8 w-8 text-white" />
@@ -78,7 +78,7 @@ export default function TermsPage() {
             </div>
 
             {/* Service Description */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-yellow-500 to-orange-500 p-2 rounded-lg shadow-md">
                   <Zap className="h-8 w-8 text-white" />
@@ -100,7 +100,7 @@ export default function TermsPage() {
             </div>
 
             {/* User Responsibilities */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-green-500 to-blue-500 p-2 rounded-lg shadow-md">
                   <Users className="h-8 w-8 text-white" />
@@ -123,7 +123,7 @@ export default function TermsPage() {
             </div>
 
             {/* Disclaimer */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-orange-500 to-red-500 p-2 rounded-lg shadow-md">
                   <AlertCircle className="h-8 w-8 text-white" />
@@ -146,7 +146,7 @@ export default function TermsPage() {
             </div>
 
             {/* Limitations */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Limitations</h2>
               <div className="space-y-3 text-muted-foreground">
                 <p>
@@ -163,7 +163,7 @@ export default function TermsPage() {
             </div>
 
             {/* Privacy */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-2 rounded-lg shadow-md">
                   <Shield className="h-8 w-8 text-white" />
@@ -185,7 +185,7 @@ export default function TermsPage() {
             </div>
 
             {/* Governing Law */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Governing Law</h2>
               <div className="text-muted-foreground">
                 <p>
@@ -196,7 +196,7 @@ export default function TermsPage() {
             </div>
 
             {/* Changes to Terms */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Changes to Terms</h2>
               <div className="text-muted-foreground">
                 <p>
@@ -207,7 +207,7 @@ export default function TermsPage() {
             </div>
 
             {/* Contact */}
-            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gradient-to-br from-card/50 to-muted/30 backdrop-blur-sm rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Contact Information</h2>
               <div className="text-muted-foreground">
                 <p className="mb-4">
