@@ -299,8 +299,7 @@ export default function SearchBar() {
         toast({
           variant: "destructive",
           title: "Error",
-          description:
-            "Failed to fetch playlist. Please check your URL and try again.",
+          description: (error as Error).message,
         });
       }
     });
@@ -366,7 +365,7 @@ export default function SearchBar() {
                           <Input
                             type="url"
                             placeholder="https://youtube.com/playlist?list=..."
-                            className="h-12 sm:h-14 text-sm sm:text-base border-2 focus:border-blue-500 transition-colors pl-10 sm:pl-12"
+                            className="h-12 sm:h-14 text-sm sm:text-base border-2 focus:border-purple-500 transition-colors pl-10 sm:pl-12"
                             {...field}
                           />
                         </div>
@@ -381,7 +380,7 @@ export default function SearchBar() {
                   type="submit"
                   disabled={isPending}
                   size="lg"
-                  className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 w-full sm:w-auto"
+                  className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 w-full sm:w-auto"
                 >
                   {isPending ? (
                     <>
@@ -419,7 +418,7 @@ export default function SearchBar() {
 
                 <CollapsibleContent className="space-y-6 pt-4 sm:pt-6">
                   {/* Range Selection */}
-                  <Card className="p-3 sm:p-4 dark:bg-blue-950/20">
+                  <Card className="p-3 sm:p-4 dark:bg-purple-950/20">
                     <h4 className="font-semibold mb-3 text-sm sm:text-base">
                       Range Selection
                     </h4>
@@ -626,12 +625,12 @@ export default function SearchBar() {
                                     {
                                       id: "shorts",
                                       label: "Shorts (<5m)",
-                                      color: "bg-green-100 text-green-700",
+                                      color: "bg-purple-100 text-purple-700",
                                     },
                                     {
                                       id: "standard",
                                       label: "Standard (5-20m)",
-                                      color: "bg-blue-100 text-blue-700",
+                                      color: "bg-purple-100 text-purple-700",
                                     },
                                     {
                                       id: "long",

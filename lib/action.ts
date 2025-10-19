@@ -1,10 +1,14 @@
 "use server";
 import axios from "axios";
 import { chunk } from "./utils";
+import { HttpsProxyAgent } from "https-proxy-agent";
+
+const proxyUrl = process.env.PROXY_URL;
 
 const client = axios.create({
   baseURL: "https://www.googleapis.com/youtube/v3",
-  timeout: 60000
+  timeout: 120000,
+  httpsAgent: proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined,
 });
 
 export async function getPlaylist(url: string) {
@@ -53,10 +57,12 @@ export async function getPlaylist(url: string) {
 
     const { items, ...result } = res.data;
     return { items: allItems, ...result };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+    throw new Error(
+      `Failed to fetch playlist: ${error.response?.data?.error?.message || error.message}`
+    );
   }
-  return null;
 }
 
 export async function getPlaylistByParams(
@@ -113,8 +119,10 @@ export async function getPlaylistByParams(
 
     const { items, ...result } = res.data;
     return { items: allItems, ...result };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
+    throw new Error(
+      `Failed to fetch playlist by params: ${error.response?.data?.error?.message || error.message}`
+    );
   }
-  return null;
 }

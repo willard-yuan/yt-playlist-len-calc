@@ -2,20 +2,32 @@ import { PlaylistItemListResponse, videoFormat, videoSpeed } from '@/lib/types'
 import { Card, CardContent } from "@/components/ui/card"
 import Image from 'next/image'
 import { calculateTotalDuration, parseDuration } from '@/lib/utils'
-import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles } from 'lucide-react'
+import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles, Video } from 'lucide-react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
+import { useState } from 'react'
 
 export default function VideoCard({ item, format, speed }: { 
     item: PlaylistItemListResponse['items'][0] & { index: number }, 
     format: videoFormat, 
     speed: videoSpeed 
 }) {
+    const [imageError, setImageError] = useState(false)
+    const [imageLoading, setImageLoading] = useState(true)
+    const [retryCount, setRetryCount] = useState(0)
+    const maxRetries = 2
+    
     const videoTitle = item.snippet.title.length > 70 ? 
         item.snippet.title.substring(0, 70) + '...' : 
         item.snippet.title
     
-    const imageUrl = item?.snippet?.thumbnails?.medium?.url || item.videoThumbnail;
+    const thumbnails = item?.snippet?.thumbnails;
+    const imageUrl =
+      thumbnails?.medium?.url ||
+      thumbnails?.standard?.url ||
+      thumbnails?.high?.url ||
+      item.videoThumbnail ||
+      thumbnails?.default?.url;
     const videoLength = parseDuration(item.videoDuration)
     const videoFormat = format.charAt(0).toUpperCase() + format.slice(1)
     const originalLength = calculateTotalDuration(videoLength, format)
@@ -35,8 +47,8 @@ export default function VideoCard({ item, format, speed }: {
 
     // Determine video length category
     const getVideoCategory = (seconds: number) => {
-        if (seconds < 300) return { label: 'Quick', color: 'bg-green-500', textColor: 'text-green-700' };
-        if (seconds < 1200) return { label: 'Standard', color: 'bg-blue-500', textColor: 'text-blue-700' };
+        if (seconds < 300) return { label: 'Quick', color: 'bg-purple-500', textColor: 'text-purple-700' };
+        if (seconds < 1200) return { label: 'Standard', color: 'bg-purple-500', textColor: 'text-purple-700' };
         return { label: 'Deep Dive', color: 'bg-purple-500', textColor: 'text-purple-700' };
     };
 
@@ -48,26 +60,57 @@ export default function VideoCard({ item, format, speed }: {
         const publishedDate = new Date(item.contentDetails.videoPublishedAt);
         const monthsAgo = (now.getTime() - publishedDate.getTime()) / (1000 * 60 * 60 * 24 * 30);
         
-        if (monthsAgo <= 1) return { label: 'New', color: 'bg-green-100 text-green-700', icon: Sparkles };
-        if (monthsAgo <= 6) return { label: 'Recent', color: 'bg-blue-100 text-blue-700', icon: TrendingUp };
-        if (monthsAgo <= 24) return { label: 'Standard', color: 'bg-gray-100 text-gray-700', icon: Clock };
-        return { label: 'Classic', color: 'bg-amber-100 text-amber-700', icon: Timer };
+        if (monthsAgo <= 1) return { label: 'New', color: 'bg-purple-100 text-purple-700', icon: Sparkles };
+        if (monthsAgo <= 6) return { label: 'Recent', color: 'bg-purple-100 text-purple-700', icon: TrendingUp };
+        if (monthsAgo <= 24) return { label: 'Standard', color: 'bg-purple-100 text-purple-700', icon: Clock };
+        return { label: 'Classic', color: 'bg-purple-100 text-purple-700', icon: Timer };
     };
 
     const freshness = getContentFreshness();
 
     return (
-        <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-2 hover:border-blue-200 dark:hover:border-blue-800">
+        <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden border-2 hover:border-purple-200 dark:hover:border-purple-800">
             <div className="relative">
                 {/* Thumbnail */}
                 <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-                    <Image 
-                        src={imageUrl} 
-                        alt={item.snippet.title} 
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                    {imageUrl && !imageError ? (
+                        <>
+                            {imageLoading && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+                                </div>
+                            )}
+                            <img 
+                                src={imageUrl} 
+                                alt={item.snippet.title} 
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                onLoad={() => setImageLoading(false)}
+                                onError={() => {
+                                    if (retryCount < maxRetries) {
+                                        setRetryCount(prev => prev + 1)
+                                        // Retry after a short delay
+                                        setTimeout(() => {
+                                            setImageLoading(true)
+                                            setImageError(false)
+                                        }, 1000)
+                                    } else {
+                                        setImageError(true)
+                                        setImageLoading(false)
+                                    }
+                                }}
+                                style={{ display: imageLoading ? 'none' : 'block' }}
+                            />
+                        </>
+                    ) : (
+                        <div className="flex flex-col h-full items-center justify-center bg-gray-100 dark:bg-gray-800">
+                            <Video className="h-12 w-12 text-gray-400 mb-2" />
+                            {retryCount > 0 && (
+                                <p className="text-xs text-gray-500">
+                                    {retryCount < maxRetries ? `重试中... (${retryCount}/${maxRetries})` : '加载失败'}
+                                </p>
+                            )}
+                        </div>
+                    )}
                     
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -117,7 +160,7 @@ export default function VideoCard({ item, format, speed }: {
 
             <CardContent className="p-3 md:p-5 space-y-3 md:space-y-4">
                 {/* Title */}
-                <h4 className="font-semibold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h4 className="font-semibold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                     {videoTitle}
                 </h4>
 
@@ -157,13 +200,13 @@ export default function VideoCard({ item, format, speed }: {
 
                 {/* Speed Comparison */}
                 {speed !== '1' && (
-                    <div className="p-2 md:p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                    <div className="p-2 md:p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg">
                         <div className="flex items-center justify-between text-xs md:text-sm">
-                            <span className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                            <span className="flex items-center gap-2 text-purple-600 dark:text-purple-400">
                                 <TrendingUp className="h-3 w-3" />
                                 At {speed}x speed
                             </span>
-                            <span className="font-semibold text-blue-700 dark:text-blue-300">
+                            <span className="font-semibold text-purple-700 dark:text-purple-300">
                                 {playbackDuration} {videoFormat.toLowerCase()}
                             </span>
                         </div>
