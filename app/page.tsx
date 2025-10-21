@@ -2,6 +2,7 @@
 
 import SearchBar from "@/components/search-bar";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Star, Clock, CheckCircle, Play, Users, Zap, HelpCircle, ArrowRight } from "lucide-react";
 
 export default function Home() {
@@ -389,13 +390,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-gradient-to-r from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-muted-foreground">
-            <p>&copy; 2025 YouTube Playlist Length Calculator. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

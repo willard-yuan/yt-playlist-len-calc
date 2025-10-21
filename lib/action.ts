@@ -19,6 +19,11 @@ export async function getPlaylist(url: string) {
   let res;
   let index = 1; // Add a counter for the index
   try {
+    // First, get playlist details
+    const playlistRes = await client.get(
+      `/playlists?part=snippet&id=${playlistId}&key=${process.env.API_KEY}`
+    );
+    
     do {
       res = await client.get(
         `/playlistItems?part=snippet&part=contentDetails&maxResults=50&playlistId=${playlistId}&pageToken=${nextPageToken}&key=${process.env.API_KEY}`
@@ -39,7 +44,7 @@ export async function getPlaylist(url: string) {
     // Fetch the video details for each chunk
     for (const videoIds of videoIdChunks) {
       const videoRes = await client.get(
-        `/videos?part=snippet&part=contentDetails&maxResults=50&id=${videoIds.join(
+        `/videos?part=snippet&part=contentDetails&part=statistics&maxResults=50&id=${videoIds.join(
           ","
         )}&key=${process.env.API_KEY}`
       );
@@ -49,14 +54,25 @@ export async function getPlaylist(url: string) {
         );
         if (item) {
           item.videoTitle = video.snippet.title;
-          item.videoThumbnail = video.snippet.thumbnails.default.url;
+          item.videoDescription = video.snippet.description;
+          item.videoThumbnail = video.snippet.thumbnails.medium?.url || video.snippet.thumbnails.default?.url;
           item.videoDuration = video.contentDetails.duration;
+          item.videoChannelTitle = video.snippet.channelTitle;
+          item.videoPublishedAt = video.snippet.publishedAt;
+          item.videoViewCount = video.statistics?.viewCount || 0;
+          item.videoLikeCount = video.statistics?.likeCount || 0;
+          item.videoCommentCount = video.statistics?.commentCount || 0;
         }
       });
     }
 
     const { items, ...result } = res.data;
-    return { items: allItems, ...result };
+    const playlistInfo = playlistRes.data.items[0] || {};
+    return { 
+      items: allItems, 
+      playlistInfo: playlistInfo,
+      ...result 
+    };
   } catch (error: any) {
     console.error(error);
     throw new Error(
@@ -101,7 +117,7 @@ export async function getPlaylistByParams(
     // Fetch the video details for each chunk
     for (const videoIds of videoIdChunks) {
       const videoRes = await client.get(
-        `/videos?part=snippet&part=contentDetails&maxResults=50&id=${videoIds.join(
+        `/videos?part=snippet&part=contentDetails&part=statistics&maxResults=50&id=${videoIds.join(
           ","
         )}&key=${process.env.API_KEY}`
       );
@@ -111,8 +127,14 @@ export async function getPlaylistByParams(
         );
         if (item) {
           item.videoTitle = video.snippet.title;
-          item.videoThumbnail = video.snippet.thumbnails.default.url;
+          item.videoDescription = video.snippet.description;
+          item.videoThumbnail = video.snippet.thumbnails.medium?.url || video.snippet.thumbnails.default?.url;
           item.videoDuration = video.contentDetails.duration;
+          item.videoChannelTitle = video.snippet.channelTitle;
+          item.videoPublishedAt = video.snippet.publishedAt;
+          item.videoViewCount = video.statistics?.viewCount || 0;
+          item.videoLikeCount = video.statistics?.likeCount || 0;
+          item.videoCommentCount = video.statistics?.commentCount || 0;
         }
       });
     }

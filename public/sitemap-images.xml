@@ -87,4 +87,39 @@
     </image:image>
   </url>
 
+  <!-- YouTube Playlist Exporter Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/youtube-playlist-exporter</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Exporter Tool</image:title>
+      <image:caption>Export YouTube playlists to CSV, Excel, Text, and HTML bookmark formats</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Blog Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/YouTube_Playlist_Length_Calculator_1.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Main Interface</image:title>
+      <image:caption>Main interface of YouTube Playlist Length Calculator showing playlist analysis features</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Blog Post - How & Why I Created YouTube Playlist Calculator -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/how-why-created-youtube-playlist-calculator</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/YouTube_Playlist_Length_Calculator_1.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Main Interface</image:title>
+      <image:caption>Screenshot showing the main interface of YouTube Playlist Length Calculator with playlist analysis features</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/YouTube_Playlist_Length_Calculator_2.png</image:loc>
+      <image:title>YouTube Playlist Length Calculator Analysis Results</image:title>
+      <image:caption>Screenshot showing detailed analysis results and statistics for YouTube playlists</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

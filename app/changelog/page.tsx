@@ -1,8 +1,27 @@
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react";
 
 export default function Changelog() {
   const changelogEntries = [
+    {
+      version: "v1.5.5",
+      date: "2025-10-21",
+      type: "feature",
+      title: "YouTube Playlist Exporter & Blog Enhancement",
+      changes: [
+        "🎉 NEW: YouTube Playlist Exporter - Export playlists to CSV, Excel, Text, and HTML bookmark formats",
+        "Added comprehensive playlist data export including video titles, descriptions, durations, and metadata",
+        "Implemented smart URL history with dropdown interface for quick access to recent playlists",
+        "Added multiple export format support: CSV for data analysis, Excel for spreadsheets, Text for simple lists, HTML bookmarks for browsers",
+        "Enhanced playlist analysis with detailed video information including views, likes, comments, and upload dates",
+        "Added high-quality screenshots to blog articles for better visual storytelling",
+        "Implemented dynamic cover images for blog posts in listing page",
+        "Enhanced blog post layout with properly positioned images and captions",
+        "Improved SEO metadata for YouTube Playlist Exporter page",
+        "Optimized image loading and responsive design across all blog components"
+      ]
+    },
     {
       version: "v1.5.0",
       date: "2025-10-19",
@@ -204,13 +223,9 @@ export default function Changelog() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-20 border-t border-border bg-background/50 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-muted-foreground">
-              &copy; 2025 YouTube Playlist Length Calculator. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <div className="mt-20">
+          <Footer />
+        </div>
       </div>
     </div>
   );
