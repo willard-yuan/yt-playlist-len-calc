@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Menu, X, Play, Youtube, Star, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
@@ -15,6 +16,14 @@ import {
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const getLogoText = () => {
+    if (pathname === '/youtube-playlist-exporter') {
+      return 'YouTube Playlist Exporter'
+    }
+    return 'YouTube Playlist Length Calculator'
+  }
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -52,7 +61,7 @@ export default function Navbar() {
               </div>
             </div>
             <span className="font-bold text-lg bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-               YouTube Playlist Length Calculator
+               {getLogoText()}
              </span>
           </Link>
 

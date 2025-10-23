@@ -358,19 +358,11 @@ ${videos.map(video =>
         </div>
       </div>
 
-      <div className="relative pt-20 pb-16">
+      <div className="relative pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-600 rounded-full blur-lg opacity-75"></div>
-                <div className="relative bg-gradient-to-r from-red-600 to-purple-700 p-4 rounded-full">
-                  <Youtube className="h-12 w-12 text-white" />
-                </div>
-              </div>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+          <div className="text-center mb-20">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-8">
               YouTube Playlist Exporter
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

@@ -55,7 +55,7 @@ export default function BlogPage() {
               Our Blog
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Insights, tutorials, and stories about YouTube playlist management, web development, and digital productivity.
+              Insights, tutorials, and stories about YouTube Playlist Length Calculator, YouTube Playlist Exporter, and digital productivity.
             </p>
           </div>
         </div>

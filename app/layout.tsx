@@ -59,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning={true} className="overflow-x-hidden">
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-W1834E98M7"></script>
@@ -74,7 +74,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} relative`}>
+      <body className={`${inter.className} relative overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
