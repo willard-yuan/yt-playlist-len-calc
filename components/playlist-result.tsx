@@ -91,7 +91,7 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
     const longPercent = (playlistStats.longVideos / totalVideos) * 100;
 
     return (
-        <div className="space-y-8 mx-2">
+        <div id="playlist-analysis" className="space-y-8 mx-2">
             {/* Enhanced Summary Card */}
             <Card className="overflow-hidden shadow-lg">
                 <CardHeader className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-950/30 dark:via-indigo-950/30 dark:to-purple-950/30">

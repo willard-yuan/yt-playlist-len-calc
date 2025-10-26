@@ -5,7 +5,25 @@ import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react"
 export default function Changelog() {
   const changelogEntries = [
     {
-      version: "v1.5.5",
+      version: "v1.4.1",
+      date: "2025-10-26",
+      type: "feature",
+      title: "Enhanced Loading Experience & User Interface",
+      changes: [
+        "🎨 NEW: Progressive loading indicators with meaningful step-by-step messages",
+        "Added dynamic loading messages: 'Connecting to YouTube...', 'Fetching playlist data...', 'Analyzing video information...', 'Calculating durations...', 'Almost ready!'",
+        "Implemented skeleton loading components that preview the actual results layout",
+        "Enhanced submit button with animated progress bar and real-time loading feedback",
+        "Added elegant form loading states with subtle animations and visual feedback",
+        "Improved auto-scroll functionality with precise positioning to playlist analysis results",
+        "Added loading message component with animated spinner and bouncing dots",
+        "Implemented smart loading flow that transitions from messages to skeleton loading",
+        "Enhanced user experience with disabled form states and visual overlays during processing",
+        "Added comprehensive loading state management with proper cleanup and error handling"
+      ]
+    },
+    {
+      version: "v1.4.0",
       date: "2025-10-21",
       type: "feature",
       title: "YouTube Playlist Exporter & Blog Enhancement",
@@ -23,7 +41,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.5.0",
+      version: "v1.3.0",
       date: "2025-10-19",
       type: "feature",
       title: "Enhanced User Experience",
@@ -36,7 +54,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.4.0",
+      version: "v1.2.0",
       date: "2025-09-10",
       type: "major",
       title: "Complete UI Redesign",
@@ -49,7 +67,7 @@ export default function Changelog() {
       ]
     },
     {
-      version: "v1.3.0",
+      version: "v1.1.0",
       date: "2025-09-01",
       type: "bugfix",
       title: "Bug Fixes and Improvements",

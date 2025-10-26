@@ -17,6 +17,7 @@ import {
 import { getPlaylist, getPlaylistByParams } from "@/lib/action";
 import { PlaylistItemListResponse } from "@/lib/types";
 import PlaylistResult from "./playlist-result";
+import { PlaylistSkeleton, LoadingMessage } from "./skeleton-loader";
 import { Badge } from "@/components/ui/badge";
 import {
   Collapsible,
@@ -79,6 +80,7 @@ export default function SearchBar() {
   const [isAdvanced, setIsAdvanced] = useState<boolean>(false);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const [loadingStep, setLoadingStep] = useState<number>(0);
   const [playlist, setPlaylist] = useState<PlaylistItemListResponse | null>(
     null
   );
@@ -86,6 +88,14 @@ export default function SearchBar() {
     useState<PlaylistItemListResponse | null>(null);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const { toast } = useToast();
+
+  const loadingMessages = [
+    "Connecting to YouTube...",
+    "Fetching playlist data...",
+    "Analyzing video information...",
+    "Calculating durations...",
+    "Almost ready!"
+  ];
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -281,21 +291,51 @@ export default function SearchBar() {
       }
 
       try {
+        // Progressive loading steps
+        setLoadingStep(0);
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        setLoadingStep(1);
+        await new Promise(resolve => setTimeout(resolve, 400));
+        
+        setLoadingStep(2);
         const response = isAdvanced
           ? await getPlaylistByParams(data.url, data.start, data.end)
           : await getPlaylist(data.url);
 
+        setLoadingStep(3);
         setPlaylist(response);
+        await new Promise(resolve => setTimeout(resolve, 300));
 
+        setLoadingStep(4);
         // Apply filters
         const filtered = applyFilters(response, data);
         setFilteredPlaylist(filtered);
+        await new Promise(resolve => setTimeout(resolve, 200));
 
         toast({
           title: "Success!",
           description: `Loaded ${response.items.length} videos, showing ${filtered.items.length} after filters`,
         });
+
+        setTimeout(() => {
+          const element = document.getElementById("playlist-analysis");
+          if (element) {
+            const elementRect = element.getBoundingClientRect();
+            const absoluteElementTop = elementRect.top + window.pageYOffset;
+            const offset = 80; // 导航栏高度 + 一些间距
+            window.scrollTo({
+              top: absoluteElementTop - offset,
+              behavior: "smooth"
+            });
+          }
+        }, 100);
+        
+        // Reset loading step
+        setLoadingStep(0);
       } catch (error) {
+        // Reset loading step on error
+        setLoadingStep(0);
         toast({
           variant: "destructive",
           title: "Error",
@@ -345,8 +385,13 @@ export default function SearchBar() {
   return (
     <div className="space-y-8 max-w-6xl mx-auto py-4">
       {/* Enhanced Search Form */}
-      <Card className="overflow-hidden shadow-lg">
-        <CardContent className="p-4 sm:p-6">
+      <Card className={`overflow-hidden shadow-lg transition-all duration-300 ${
+        isPending ? 'opacity-75 pointer-events-none' : ''
+      }`}>
+        <CardContent className="p-4 sm:p-6 relative">
+          {isPending && (
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 to-blue-50/50 z-10 pointer-events-none" />
+          )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Main Search */}
@@ -365,7 +410,10 @@ export default function SearchBar() {
                           <Input
                             type="url"
                             placeholder="https://youtube.com/playlist?list=..."
-                            className="h-12 sm:h-14 text-sm sm:text-base border-2 focus:border-purple-500 transition-colors pl-10 sm:pl-12"
+                            className={`h-12 sm:h-14 text-sm sm:text-base border-2 focus:border-purple-500 transition-all duration-300 pl-10 sm:pl-12 ${
+                              isPending ? 'animate-pulse border-purple-300' : ''
+                            }`}
+                            disabled={isPending}
                             {...field}
                           />
                         </div>
@@ -380,12 +428,23 @@ export default function SearchBar() {
                   type="submit"
                   disabled={isPending}
                   size="lg"
-                  className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 w-full sm:w-auto"
+                  className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 w-full sm:w-auto relative overflow-hidden"
                 >
                   {isPending ? (
                     <>
-                      <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin mr-2" />
-                      Analyzing...
+                      <div className="flex items-center">
+                        <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin mr-2" />
+                        <span className="transition-all duration-300">
+                          {loadingMessages[loadingStep] || "Processing..."}
+                        </span>
+                      </div>
+                      {/* Progress bar */}
+                      <div className="absolute bottom-0 left-0 h-1 bg-purple-300/30 w-full">
+                        <div 
+                          className="h-full bg-purple-200 transition-all duration-500 ease-out"
+                          style={{ width: `${((loadingStep + 1) / loadingMessages.length) * 100}%` }}
+                        />
+                      </div>
                     </>
                   ) : (
                     <>
@@ -394,6 +453,22 @@ export default function SearchBar() {
                     </>
                   )}
                 </Button>
+              </div>
+
+              {/* Playlist Example Button */}
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    form.setValue("url", "https://www.youtube.com/playlist?list=PLK6HsuHeltDnKkWgAQMmck7x5ghgugu78");
+                  }}
+                  className="group relative inline-flex items-center gap-3 px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-emerald-400/20"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-teal-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <Video className="relative h-4 w-4 text-emerald-100" />
+                  <span className="relative">Try with an example playlist</span>
+                  <div className="relative h-1.5 w-1.5 bg-emerald-200 rounded-full animate-pulse"></div>
+                </button>
               </div>
 
               {/* Advanced Options Toggle */}
@@ -921,7 +996,14 @@ export default function SearchBar() {
         </CardContent>
       </Card>
       {/* Results */}
-      {filteredPlaylist && <PlaylistResult playlist={filteredPlaylist} />}
+      {isPending && loadingStep < 3 && (
+        <LoadingMessage 
+          step={loadingStep} 
+          message={loadingMessages[loadingStep] || "Processing..."} 
+        />
+      )}
+      {isPending && loadingStep >= 3 && <PlaylistSkeleton />}
+      {!isPending && filteredPlaylist && <PlaylistResult playlist={filteredPlaylist} />}
     </div>
   );
 }
