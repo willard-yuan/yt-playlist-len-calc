@@ -73,6 +73,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="6ca316a7-d64d-405a-951e-73b43ae66a89"></script>
       </head>
       <body className={`${inter.className} relative overflow-x-hidden`}>
         <ThemeProvider
