@@ -61,7 +61,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto text-center">
             {/* Main Title */}
             <div className="space-y-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent pb-2">
                 Youtube Playlist
                 <br />
                 Length Calculator
@@ -101,7 +101,7 @@ export default function Home() {
           {/* Search Bar with Enhanced Design */}
           <div id="calculate-section" className="bg-gradient-to-r from-card/80 to-muted/50 dark:from-gray-900/80 dark:to-gray-800/80 backdrop-blur-sm border border-border rounded-2xl p-8 mb-16 shadow-2xl">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent mb-4">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent mb-4 pb-1">
                 Calculate Your Playlist Length
               </h2>
               <p className="text-muted-foreground text-lg">
@@ -113,7 +113,7 @@ export default function Home() {
 
           {/* Why Use Section */}
           <div className="mb-20">
-            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent pb-1">
               Why Use the YouTube Playlist Length Calculator?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

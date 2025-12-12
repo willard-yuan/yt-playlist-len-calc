@@ -5,6 +5,18 @@ import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react"
 export default function Changelog() {
   const changelogEntries = [
     {
+      version: "v1.4.2",
+      date: "2025-12-12",
+      type: "feature",
+      title: "New Tools Page & UI Improvements",
+      changes: [
+        "✨ NEW: Added 'Tools You May Also Like' page featuring curated developer tools",
+        "Improved navigation structure by moving 'About Us' to footer",
+        "Enhanced UI consistency for buttons and tool cards with refined styling",
+        "Fixed text clipping issues in hero section gradients across all pages"
+      ]
+    },
+    {
       version: "v1.4.1",
       date: "2025-10-26",
       type: "feature",
@@ -173,7 +185,7 @@ export default function Changelog() {
             <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mb-6">
               <Calendar className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent pb-2">
               Changelog
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

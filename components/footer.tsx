@@ -3,6 +3,7 @@ import { Star } from "lucide-react"
 
 export default function Footer() {
   const footerLinks = [
+    { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms & Conditions", href: "/terms" },

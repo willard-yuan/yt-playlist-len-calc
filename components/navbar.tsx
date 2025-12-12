@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
-import { Menu, X, Play, Youtube, Star, ChevronDown } from "lucide-react"
+import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
 import Logo from "@/components/logo"
@@ -22,13 +22,15 @@ export default function Navbar() {
     if (pathname === '/youtube-playlist-exporter') {
       return 'YouTube Playlist Exporter'
     }
+    if (pathname === '/tools-you-may-also-like') {
+      return 'Tools You May Also Like'
+    }
     return 'YouTube Playlist Length Calculator'
   }
 
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Blog", href: "/blog" },
-    { name: "About Us", href: "/about" },
     { name: "Changelog", href: "/changelog" },
   ]
 
@@ -92,6 +94,12 @@ export default function Navbar() {
                     <span>YouTube Playlist Exporter</span>
                   </Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/tools-you-may-also-like" className="flex items-center space-x-2">
+                    <Wrench className="h-4 w-4" />
+                    <span>Tools You May Also Like</span>
+                  </Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             
@@ -149,6 +157,14 @@ export default function Navbar() {
                 >
                   <Youtube className="h-4 w-4" />
                   <span>YouTube Playlist Exporter</span>
+                </Link>
+                <Link
+                  href="/tools-you-may-also-like"
+                  className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Wrench className="h-4 w-4" />
+                  <span>Tools You May Also Like</span>
                 </Link>
               </div>
               

@@ -362,7 +362,7 @@ ${videos.map(video =>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-20">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 bg-clip-text text-transparent mb-8 pb-2">
               YouTube Playlist Exporter
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

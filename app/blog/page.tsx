@@ -51,7 +51,7 @@ export default function BlogPage() {
         {/* Blog Header */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent pb-2">
               Our Blog
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
