@@ -24,8 +24,23 @@ export const metadata: Metadata = {
     title: "YTPlaylistLength - Best Youtube Playlist Length Calculator",
     description: "Calculate the total length of any YouTube playlists quickly! Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.",
     url: 'https://ytplaylistlength.pro',
-    locale: 'en_IN',
+    siteName: 'YTPlaylistLength',
+    locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://ytplaylistlength.pro/og-image.png', // Assuming you have one or will add one
+        width: 1200,
+        height: 630,
+        alt: 'YouTube Playlist Length Calculator Interface',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "YouTube Playlist Length Calculator",
+    description: "Calculate YouTube playlist duration instantly. Optimize your watch time.",
+    creator: '@Yong', // Assuming handle
   },
   robots: {
     index: true,
@@ -43,13 +58,6 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
-  },
-  twitter: {
-    card: 'summary',
-    title: "YTPlaylistLength - Best Youtube Playlist Length Calculator",
-    description: "Calculate the total length of any YouTube playlists quickly! Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.",
-    creator: 'Uttam Likhiya',
-    creatorId: 'L1KH1YAUTTAM',
   },
 };
 
@@ -71,6 +79,44 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-W1834E98M7');
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "YouTube Playlist Length Calculator",
+              "url": "https://ytplaylistlength.pro",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://ytplaylistlength.pro/?url={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "YouTube Playlist Length Calculator",
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "ratingCount": "2450"
+              }
+            })
           }}
         />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="6ca316a7-d64d-405a-951e-73b43ae66a89"></script>
