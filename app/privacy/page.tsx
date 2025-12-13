@@ -1,8 +1,22 @@
+import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Shield, Eye, Lock, Database, UserCheck, AlertTriangle } from "lucide-react";
+import { Shield, Lock, Eye, Database, UserCheck, AlertTriangle } from "lucide-react";
 
-export default function PrivacyPage() {
+export const metadata: Metadata = {
+  title: "Privacy Policy - YouTube Playlist Length Calculator",
+  description: "Read our Privacy Policy to understand how we handle your data. Your privacy is our priority.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/privacy',
+  },
+  openGraph: {
+    title: "Privacy Policy - YouTube Playlist Length Calculator",
+    description: "Read our Privacy Policy to understand how we handle your data.",
+    url: 'https://ytplaylistlength.pro/privacy',
+  }
+};
+
+export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 text-foreground">
       <Navbar />

@@ -1,9 +1,23 @@
+import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Mail, MessageSquare, Phone, MapPin, Send, Github, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+export const metadata: Metadata = {
+  title: "Contact Us - YouTube Playlist Length Calculator Support",
+  description: "Have questions, suggestions, or feedback? Contact the YouTube Playlist Length Calculator team. We are here to help.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/contact',
+  },
+  openGraph: {
+    title: "Contact Us - YouTube Playlist Length Calculator Support",
+    description: "Have questions, suggestions, or feedback? Contact the YouTube Playlist Length Calculator team.",
+    url: 'https://ytplaylistlength.pro/contact',
+  }
+};
 
 // Force TypeScript to recognize the Textarea component
 

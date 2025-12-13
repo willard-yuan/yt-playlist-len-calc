@@ -1,5 +1,4 @@
-"use client"
-
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
@@ -7,6 +6,19 @@ import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowRight, Star } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+
+export const metadata: Metadata = {
+  title: "Blog - YouTube Playlist Length Calculator Insights",
+  description: "Read articles about YouTube tips, playlist management, and development insights from the creator of YouTube Playlist Length Calculator.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/blog',
+  },
+  openGraph: {
+    title: "Blog - YouTube Playlist Length Calculator Insights",
+    description: "Read articles about YouTube tips, playlist management, and development insights.",
+    url: 'https://ytplaylistlength.pro/blog',
+  }
+};
 
 export default function BlogPage() {
   const blogPosts = [

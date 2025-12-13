@@ -1,6 +1,20 @@
+import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Changelog - YouTube Playlist Length Calculator Updates",
+  description: "See the latest features, updates, and improvements to our YouTube Playlist Calculator. We are constantly improving.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/changelog',
+  },
+  openGraph: {
+    title: "Changelog - YouTube Playlist Length Calculator Updates",
+    description: "See the latest features, updates, and improvements to our YouTube Playlist Calculator.",
+    url: 'https://ytplaylistlength.pro/changelog',
+  }
+};
 
 export default function Changelog() {
   const changelogEntries = [

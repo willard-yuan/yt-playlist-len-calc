@@ -1,6 +1,20 @@
+import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { FileText, Scale, AlertCircle, Users, Zap, Shield } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Terms of Service - YouTube Playlist Length Calculator",
+  description: "Read the Terms of Service for using the YouTube Playlist Length Calculator. Understand your rights and responsibilities.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/terms',
+  },
+  openGraph: {
+    title: "Terms of Service - YouTube Playlist Length Calculator",
+    description: "Read the Terms of Service for using the YouTube Playlist Length Calculator.",
+    url: 'https://ytplaylistlength.pro/terms',
+  }
+};
 
 export default function TermsPage() {
   return (

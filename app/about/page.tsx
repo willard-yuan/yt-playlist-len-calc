@@ -1,6 +1,20 @@
+import { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Play, Clock, BarChart3, Zap, Users, Target, Lightbulb } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Us - YouTube Playlist Length Calculator",
+  description: "Learn about the mission and team behind the best YouTube Playlist Duration Calculator. We help you optimize your watch time.",
+  alternates: {
+    canonical: 'https://ytplaylistlength.pro/about',
+  },
+  openGraph: {
+    title: "About Us - YouTube Playlist Length Calculator",
+    description: "Learn about the mission and team behind the best YouTube Playlist Duration Calculator.",
+    url: 'https://ytplaylistlength.pro/about',
+  }
+};
 
 export default function AboutPage() {
   return (
