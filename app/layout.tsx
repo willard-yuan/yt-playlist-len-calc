@@ -17,9 +17,6 @@ export const metadata: Metadata = {
   keywords: [
     "Youtube Playlist Length", "Youtube Playlist Duration", "Youtube Playlist Lenth calculator"],
   authors: [{ name: 'Uttam Likhiya', url: 'https://puli.vercel.app' }],
-  alternates: {
-    canonical: 'https://ytplaylistlength.pro',
-  },
   openGraph: {
     title: "YTPlaylistLength - Best Youtube Playlist Length Calculator",
     description: "Calculate the total length of any YouTube playlists quickly! Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.",
