@@ -126,6 +126,7 @@ export default function Navbar() {
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-foreground hover:bg-muted"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
