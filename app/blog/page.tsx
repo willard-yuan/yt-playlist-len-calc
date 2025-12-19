@@ -39,6 +39,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-purple-50/10 dark:to-purple-950/20 text-foreground">
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-20">
@@ -163,12 +164,14 @@ export default function BlogPage() {
             </div>
             <h3 className="text-xl font-semibold mb-2">More Articles Coming Soon!</h3>
             <p className="text-muted-foreground">
-              We're working on more insightful articles about YouTube playlist management and web development.
+              We&apos;re working on more insightful articles about YouTube playlist management and web development.
             </p>
+
           </div>
         </div>
       </div>
 
+      </main>
       {/* Footer */}
       <Footer />
     </div>

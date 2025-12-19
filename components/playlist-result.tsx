@@ -75,7 +75,7 @@ export default function PlaylistResult({ playlist }: { playlist: PlaylistItemLis
             recentVideos,
             oldVideos
         };
-    }, [playlist.items]);
+    }, [playlist]);
 
     const videoFormat = format.charAt(0).toUpperCase() + format.slice(1)
     const totalLength = calculateTotalDuration(playlistStats.totalSeconds, format) + ' ' + videoFormat

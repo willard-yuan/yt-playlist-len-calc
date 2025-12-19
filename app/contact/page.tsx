@@ -25,6 +25,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 text-foreground">
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-20">
@@ -42,7 +43,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Have questions, suggestions, or feedback? We'd love to hear from you!
+              Have questions, suggestions, or feedback? We&apos;d love to hear from you!
             </p>
           </div>
         </div>
@@ -136,7 +137,7 @@ export default function ContactPage() {
                     Get in Touch
                   </h2>
                   <p className="text-muted-foreground text-lg leading-relaxed">
-                    We're here to help and answer any questions you might have. 
+                    We&apos;re here to help and answer any questions you might have. 
                     We look forward to hearing from you!
                   </p>
                 </div>
@@ -149,7 +150,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-lg font-semibold mb-1 text-foreground">Email</h3>
                       <p className="text-muted-foreground">support@ytplaylistcalc.com</p>
-                      <p className="text-muted-foreground text-sm mt-1">We'll respond within 24 hours</p>
+                      <p className="text-muted-foreground text-sm mt-1">We&apos;ll respond within 24 hours</p>
                     </div>
                   </div>
 
@@ -195,7 +196,7 @@ export default function ContactPage() {
                     
                     <div>
                       <h4 className="font-semibold text-foreground mb-2">Do you store my data?</h4>
-                      <p className="text-muted-foreground text-sm">We don't store any personal data or playlist information.</p>
+                      <p className="text-muted-foreground text-sm">We don&apos;t store any personal data or playlist information.</p>
                     </div>
                   </div>
                 </div>
@@ -205,6 +206,7 @@ export default function ContactPage() {
         </div>
       </div>
 
+      </main>
       {/* Footer */}
       <Footer />
     </div>

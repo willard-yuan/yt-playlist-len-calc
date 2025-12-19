@@ -23,6 +23,7 @@ export default function HomeClient() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-purple-50/10 dark:to-purple-950/20 text-foreground">
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-20">
@@ -168,7 +169,7 @@ export default function HomeClient() {
             <div className="bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-pink-900/30 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Mathematical Formula</h3>
               <p className="text-muted-foreground mb-8 text-center">
-                The Youtube Playlist Length works by using simple math to figure out how long it will take to finish your audio or video at a certain speed. Here's how it does that:
+                The Youtube Playlist Length works by using simple math to figure out how long it will take to finish your audio or video at a certain speed. Here&apos;s how it does that:
               </p>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -192,7 +193,7 @@ export default function HomeClient() {
 
                   <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                     <h4 className="text-lg font-semibold text-purple-500 dark:text-purple-400 mb-3">Time Saved:</h4>
-                    <p className="text-muted-foreground mb-3">If you choose a faster speed, you'll save time. The formula for time saved is:</p>
+                    <p className="text-muted-foreground mb-3">If you choose a faster speed, you&apos;ll save time. The formula for time saved is:</p>
                     <div className="bg-gradient-to-r from-pink-100/50 to-purple-100/50 dark:from-black/30 dark:to-gray-900/30 rounded-lg p-4 font-mono text-pink-600 dark:text-purple-300 text-center">
                       Time Saved (seconds) = Total Length (seconds) − Listening Time (seconds)
                     </div>
@@ -203,7 +204,8 @@ export default function HomeClient() {
                 <div className="bg-gradient-to-br from-card/80 to-muted/30 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                   <h4 className="text-xl font-semibold text-foreground mb-4">Example</h4>
                   <p className="text-muted-foreground mb-6">
-                    Let's say your audiobook is 2 hours, 30 minutes, and 0 seconds long, and you choose to listen at 1.5x speed:
+                    Let&apos;s say your audiobook is 2 hours, 30 minutes, and 0 seconds long, and you choose to listen at 1.5x speed:
+
                   </p>
 
                   <div className="space-y-4">
@@ -230,7 +232,7 @@ export default function HomeClient() {
 
                     <div className="bg-gradient-to-r from-purple-100/80 to-pink-100/80 dark:from-purple-500/20 dark:to-pink-500/20 rounded-lg p-4 mt-6 shadow-lg">
                       <p className="text-foreground font-semibold text-center">
-                        So, by listening at 1.5x speed, you'll finish the audiobook in 1 hour and 40 minutes and save 50 minutes.
+                        So, by listening at 1.5x speed, you&apos;ll finish the audiobook in 1 hour and 40 minutes and save 50 minutes.
                       </p>
                     </div>
                   </div>
@@ -255,14 +257,14 @@ export default function HomeClient() {
                 <Zap className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Save Time</h3>
-                  <p className="text-muted-foreground">Speed up audio or video and see exactly how much time you'll save.</p>
+                  <p className="text-muted-foreground">Speed up audio or video and see exactly how much time you&apos;ll save.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 shadow-lg">
                 <Play className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Optimize Your Listening or Viewing Experience</h3>
-                  <p className="text-muted-foreground">Adjust playback speed to suit your needs, whether you're learning something new or just enjoying content.</p>
+                  <p className="text-muted-foreground">Adjust playback speed to suit your needs, whether you&apos;re learning something new or just enjoying content.</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 rounded-xl p-6 shadow-lg">
@@ -283,8 +285,9 @@ export default function HomeClient() {
               </h2>
               <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
                 No registration required, no downloads needed. Just paste your playlist URL and get instant results. 
-                It's that easy!
+                It&apos;s that easy!
               </p>
+
               <div className="flex justify-center">
                 <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-full px-8 py-3 flex items-center space-x-2 shadow-lg hover:shadow-xl transition-shadow">
                   <Play className="h-5 w-5 text-white" />
@@ -335,9 +338,10 @@ export default function HomeClient() {
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">Is there a limit to the number of videos in a playlist?</h3>
-                    <p className="text-muted-foreground">There's no limit imposed by our tool. We can calculate playlists with thousands of videos. However, very large playlists (1000+ videos) may take a few extra seconds to process as we fetch data for each video to ensure accuracy.</p>
+                    <p className="text-muted-foreground">There&apos;s no limit imposed by our tool. We can calculate playlists with thousands of videos. However, very large playlists (1000+ videos) may take a few extra seconds to process as we fetch data for each video to ensure accuracy.</p>
                   </div>
                 </div>
+
               </div>
               <div className="bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/50 dark:to-gray-800/30 backdrop-blur-sm rounded-xl p-6 shadow-lg">
                 <div className="flex items-start space-x-4">
@@ -353,7 +357,7 @@ export default function HomeClient() {
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">Is my data safe when using the tool?</h3>
-                    <p className="text-muted-foreground">Absolutely! We only process the playlist URL you provide and don't store any personal information. All calculations are performed in real-time, and we don't save your playlist data or viewing history. Your privacy is our priority.</p>
+                    <p className="text-muted-foreground">Absolutely! We only process the playlist URL you provide and don&apos;t store any personal information. All calculations are performed in real-time, and we don&apos;t save your playlist data or viewing history. Your privacy is our priority.</p>
                   </div>
                 </div>
               </div>
@@ -380,15 +384,17 @@ export default function HomeClient() {
                   <HelpCircle className="h-6 w-6 text-purple-500 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">Who can benefit from using this tool?</h3>
-                    <p className="text-muted-foreground">This tool is perfect for students planning study sessions, educators organizing course content, content creators managing video series, researchers analyzing video content, and anyone who wants to know how much time they'll need to watch a YouTube playlist before starting.</p>
+                    <p className="text-muted-foreground">This tool is perfect for students planning study sessions, educators organizing course content, content creators managing video series, researchers analyzing video content, and anyone who wants to know how much time they&apos;ll need to watch a YouTube playlist before starting.</p>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      </main>
       {/* Footer */}
       <Footer />
       <script

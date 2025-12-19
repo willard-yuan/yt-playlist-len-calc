@@ -358,7 +358,7 @@ ${videos.map(video =>
         </div>
       </div>
 
-      <div className="relative pt-32 pb-16">
+      <main className="relative pt-32 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-20">
@@ -636,7 +636,7 @@ ${videos.map(video =>
             </Card>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

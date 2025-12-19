@@ -20,6 +20,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 text-foreground">
       <Navbar />
+      <main>
       
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-20">
@@ -223,6 +224,7 @@ export default function PrivacyPolicy() {
         </div>
       </div>
 
+      </main>
       {/* Footer */}
       <Footer />
     </div>

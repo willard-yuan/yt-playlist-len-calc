@@ -37,12 +37,12 @@ export default function Footer() {
           </div>
 
           {/* Footer Links */}
-          <div className="flex flex-wrap justify-center md:justify-end space-x-6">
+          <div className="flex flex-wrap justify-center md:justify-end space-x-2">
             {footerLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm py-4 px-2"
               >
                 {link.name}
               </Link>

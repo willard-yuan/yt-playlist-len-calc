@@ -175,6 +175,7 @@ export default function Changelog() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900">
       <Navbar />
+      <main>
       
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -265,11 +266,12 @@ export default function Changelog() {
             </p>
           </div>
         </div>
+      </div>
+      </main>
 
-        {/* Footer */}
-        <div className="mt-20">
-          <Footer />
-        </div>
+      {/* Footer */}
+      <div className="mt-20">
+        <Footer />
       </div>
     </div>
   );

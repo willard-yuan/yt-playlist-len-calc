@@ -34,6 +34,7 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-purple-50/10 dark:to-purple-950/20 text-foreground">
       <Navbar />
+      <main>
       
       {/* Article Header */}
       <article className="pt-20">
@@ -107,7 +108,7 @@ export default function BlogPost() {
             <div className="text-base leading-relaxed space-y-6">
               
               <p className="text-xl font-medium text-foreground leading-relaxed">
-                Have you ever wondered how long it would take to watch an entire YouTube playlist? Whether it's a coding tutorial series, a music compilation, or an educational course, knowing the total duration can help you plan your time better.
+                Have you ever wondered how long it would take to watch an entire YouTube playlist? Whether it&apos;s a coding tutorial series, a music compilation, or an educational course, knowing the total duration can help you plan your time better.
               </p>
 
               <p>
@@ -117,11 +118,11 @@ export default function BlogPost() {
               <h2 className="text-3xl font-bold text-foreground mt-12 mb-6">The Problem That Started It All</h2>
 
               <p>
-                As a developer and content consumer, I frequently found myself browsing YouTube playlists for learning new technologies, discovering music, or following tutorial series. The frustrating part? YouTube doesn't display the total duration of a playlist prominently.
+                As a developer and content consumer, I frequently found myself browsing YouTube playlists for learning new technologies, discovering music, or following tutorial series. The frustrating part? YouTube doesn&apos;t display the total duration of a playlist prominently.
               </p>
 
               <p>
-                Sure, you can manually add up individual video durations, but who has time for that when you're dealing with playlists containing 50, 100, or even 500+ videos? I needed a solution that was:
+                Sure, you can manually add up individual video durations, but who has time for that when you&apos;re dealing with playlists containing 50, 100, or even 500+ videos? I needed a solution that was:
               </p>
 
               <ul className="space-y-2">
@@ -146,7 +147,7 @@ export default function BlogPost() {
               <h2 className="text-3xl font-bold text-foreground mt-12 mb-6">The Technical Journey</h2>
 
               <p>
-                Building this tool involved several technical challenges and decisions. Here's how I approached each one:
+                Building this tool involved several technical challenges and decisions. Here&apos;s how I approached each one:
               </p>
 
               <h3 className="text-2xl font-semibold text-foreground mt-8 mb-4">1. Choosing the Right Technology Stack</h3>
@@ -183,7 +184,7 @@ export default function BlogPost() {
               <h3 className="text-2xl font-semibold text-foreground mt-8 mb-4">2. Handling YouTube API Limitations</h3>
 
               <p>
-                One of the biggest challenges was working within YouTube's API quota limits while ensuring the tool remained fast and reliable. I implemented several optimization strategies:
+                One of the biggest challenges was working within YouTube&apos;s API quota limits while ensuring the tool remained fast and reliable. I implemented several optimization strategies:
               </p>
 
               <ul className="space-y-2">
@@ -299,13 +300,14 @@ export default function BlogPost() {
               <hr className="my-12 border-border" />
 
               <p className="text-sm text-muted-foreground italic">
-                Have questions about the YouTube Playlist Length Calculator or want to share your experience? Feel free to <Link href="/contact" className="text-purple-600 dark:text-purple-400 hover:underline">reach out</Link> — I'd love to hear from you!
+                Have questions about the YouTube Playlist Length Calculator or want to share your experience? Feel free to <Link href="/contact" className="text-purple-600 dark:text-purple-400 hover:underline">reach out</Link> — I&apos;d love to hear from you!
               </p>
 
             </div>
           </div>
         </div>
       </article>
+      </main>
 
       {/* Footer */}
       <div className="mt-20">
