@@ -4,7 +4,6 @@ import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowRight, Star } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
@@ -37,37 +36,28 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-purple-50/10 dark:to-purple-950/20 text-foreground">
+    <div className="min-h-screen bg-background text-foreground selection:bg-purple-500/30 selection:text-purple-900 dark:selection:text-purple-100">
       <Navbar />
-      <main>
       
       {/* Hero Section */}
-      <div className="relative overflow-hidden pt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          {/* Gradient Orbs */}
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/30 to-pink-500/20 dark:from-purple-500/20 dark:to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-l from-blue-500/20 to-purple-500/30 dark:from-blue-500/10 dark:to-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-          
-          {/* Star Decorations */}
-          <div className="absolute top-32 left-20 text-purple-500 dark:text-purple-400 animate-pulse">
-            <Star className="h-6 w-6 fill-current" />
-          </div>
-          <div className="absolute top-48 right-32 text-purple-500 dark:text-purple-400 animate-pulse delay-500">
-            <Star className="h-4 w-4 fill-current" />
+      <div className="relative overflow-hidden pt-24 pb-20 lg:pt-32 lg:pb-28">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl mx-auto opacity-30 dark:opacity-20 pointer-events-none">
+            <div className="absolute top-20 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-pink-500/20 rounded-full blur-[100px] animate-pulse delay-1000" />
           </div>
         </div>
 
-        {/* Blog Header */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent pb-2">
-              Our Blog
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] pb-4">
+              Our
+              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent ml-4">
+                Blog
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light mt-6">
               Insights, tutorials, and stories about YouTube Playlist Length Calculator, YouTube Playlist Exporter, and digital productivity.
             </p>
           </div>
@@ -75,37 +65,42 @@ export default function BlogPage() {
       </div>
 
       {/* Blog Posts Section */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid gap-8 md:gap-12">
-          {blogPosts.map((post) => (
-            <Card key={post.id} className="group overflow-hidden bg-gradient-to-br from-card/50 to-muted/20 dark:from-gray-900/30 dark:to-gray-800/20 backdrop-blur-sm border-border hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-              <div className="md:flex">
-                {/* Cover Image */}
-                <div className="md:w-1/3 relative overflow-hidden">
-                  <div className="aspect-video md:aspect-square relative">
+      <main className="relative px-4 sm:px-6 lg:px-8 pb-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid gap-12">
+            {blogPosts.map((post) => (
+              <div 
+                key={post.id} 
+                className="group relative bg-secondary/30 hover:bg-secondary/50 backdrop-blur-sm rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="md:flex items-stretch">
+                  {/* Cover Image */}
+                  <div className="md:w-2/5 relative overflow-hidden min-h-[250px] md:min-h-0">
                     <Image
                       src={post.coverImage}
                       alt={`Cover image for ${post.title}`}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/10 opacity-60" />
+                    
+                    {post.featured && (
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0 px-3 py-1 text-xs font-semibold shadow-lg">
+                          Featured
+                        </Badge>
+                      </div>
+                    )}
                   </div>
-                  {post.featured && (
-                    <Badge className="absolute top-4 left-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-                      Featured
-                    </Badge>
-                  )}
-                </div>
 
-                {/* Content */}
-                <div className="md:w-2/3 p-6 md:p-8">
-                  <CardHeader className="p-0 mb-4">
-                    <div className="flex items-center gap-4 mb-3">
-                      <Badge variant="secondary" className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">
+                  {/* Content */}
+                  <div className="md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Badge variant="secondary" className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-0 px-3 py-1">
                         {post.category}
                       </Badge>
                       <div className="flex items-center text-sm text-muted-foreground gap-4">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1.5">
                           <Calendar className="h-4 w-4" />
                           {new Date(post.publishDate).toLocaleDateString('en-US', { 
                             year: 'numeric', 
@@ -113,66 +108,59 @@ export default function BlogPage() {
                             day: 'numeric' 
                           })}
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1.5">
                           <Clock className="h-4 w-4" />
                           {post.readTime}
                         </div>
                       </div>
                     </div>
-                    <CardTitle className="text-2xl md:text-3xl font-bold leading-tight">
-                      <Link 
-                        href={`/blog/${post.slug}`}
-                        className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer"
-                      >
+                    
+                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                      <Link href={`/blog/${post.slug}`} className="focus:outline-none">
+                        <span className="absolute inset-0 md:w-2/5" aria-hidden="true" />
                         {post.title}
                       </Link>
-                    </CardTitle>
-                  </CardHeader>
-                  
-                  <CardContent className="p-0">
-                    <CardDescription className="text-base leading-relaxed mb-6">
+                    </h2>
+                    
+                    <p className="text-muted-foreground text-lg leading-relaxed mb-6 line-clamp-3">
                       {post.excerpt}
-                    </CardDescription>
+                    </p>
                     
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {post.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+                    <div className="mt-auto flex items-center justify-between">
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="text-xs font-medium text-muted-foreground bg-background/50 px-2.5 py-1 rounded-full border border-border/50">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                        Read Article
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
                     </div>
-                    
-                    <Link 
-                      href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors group"
-                    >
-                      Read Full Article
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </CardContent>
+                  </div>
                 </div>
               </div>
-            </Card>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Empty State for Future Posts */}
-        <div className="text-center py-16">
-          <div className="max-w-md mx-auto">
-            <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
-              <Star className="h-8 w-8 text-white" />
+          {/* Empty State for Future Posts */}
+          <div className="text-center py-24">
+            <div className="max-w-md mx-auto">
+              <div className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-3xl flex items-center justify-center rotate-3 hover:rotate-6 transition-transform duration-300">
+                <Star className="h-10 w-10 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4">More Articles Coming Soon!</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                We&apos;re working on more insightful articles about YouTube playlist management and web development.
+              </p>
             </div>
-            <h3 className="text-xl font-semibold mb-2">More Articles Coming Soon!</h3>
-            <p className="text-muted-foreground">
-              We&apos;re working on more insightful articles about YouTube playlist management and web development.
-            </p>
-
           </div>
         </div>
-      </div>
-
       </main>
-      {/* Footer */}
+      
       <Footer />
     </div>
   );

@@ -2,15 +2,18 @@ import { PlaylistItemListResponse, videoFormat, videoSpeed } from '@/lib/types'
 import { Card, CardContent } from "@/components/ui/card"
 import Image from 'next/image'
 import { calculateTotalDuration, parseDuration } from '@/lib/utils'
-import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles, Video } from 'lucide-react'
+import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles, Video, CheckCircle, Circle } from 'lucide-react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
 import { useState } from 'react'
+import { cn } from '@/lib/utils'
 
-export default function VideoCard({ item, format, speed }: { 
+export default function VideoCard({ item, format, speed, isCompleted, onToggleCompleted }: { 
     item: PlaylistItemListResponse['items'][0] & { index: number }, 
     format: videoFormat, 
-    speed: videoSpeed 
+    speed: videoSpeed,
+    isCompleted: boolean,
+    onToggleCompleted: () => void
 }) {
     const [imageError, setImageError] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -69,10 +72,16 @@ export default function VideoCard({ item, format, speed }: {
     const freshness = getContentFreshness();
 
     return (
-        <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden hover:border-purple-200 dark:hover:border-purple-800">
+        <Card className={cn(
+            "group hover:shadow-xl transition-all duration-300 overflow-hidden hover:border-purple-200 dark:hover:border-purple-800 flex flex-col",
+            isCompleted && "opacity-75 bg-secondary/10 border-green-500/20 dark:border-green-500/20"
+        )}>
             <div className="relative">
                 {/* Thumbnail */}
-                <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+                <div className={cn(
+                    "relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 transition-all duration-300",
+                    isCompleted && "grayscale-[0.3]"
+                )}>
                     {imageUrl && !imageError ? (
                         <>
                             {imageLoading && (
@@ -106,7 +115,7 @@ export default function VideoCard({ item, format, speed }: {
                             <Video className="h-12 w-12 text-gray-400 mb-2" />
                             {retryCount > 0 && (
                                 <p className="text-xs text-gray-500">
-                                    {retryCount < maxRetries ? `重试中... (${retryCount}/${maxRetries})` : '加载失败'}
+                                    {retryCount < maxRetries ? `Retrying... (${retryCount}/${maxRetries})` : 'Load Failed'}
                                 </p>
                             )}
                         </div>
@@ -118,9 +127,12 @@ export default function VideoCard({ item, format, speed }: {
                     {/* Video Number Badge */}
                     <Badge 
                         variant="secondary" 
-                        className="absolute top-2 left-2 md:top-3 md:left-3 bg-black/90 text-white border-none font-bold px-2 py-1 md:px-3 text-xs"
+                        className={cn(
+                            "absolute top-2 left-2 md:top-3 md:left-3 bg-black/90 text-white border-none font-bold px-2 py-1 md:px-3 text-xs",
+                            isCompleted && "bg-green-600"
+                        )}
                     >
-                        #{item.index}
+                        #{item.index} {isCompleted && <CheckCircle className="ml-1 h-3 w-3 inline" />}
                     </Badge>
                     
                     {/* Category Badge - Hidden on mobile */}
@@ -158,9 +170,12 @@ export default function VideoCard({ item, format, speed }: {
                 </div>
             </div>
 
-            <CardContent className="p-3 md:p-5 space-y-3 md:space-y-4">
+            <CardContent className="p-3 md:p-5 space-y-3 md:space-y-4 flex-1 flex flex-col">
                 {/* Title */}
-                <h4 className="font-semibold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                <h4 className={cn(
+                    "font-semibold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors",
+                    isCompleted && "text-muted-foreground line-through decoration-green-500/50"
+                )}>
                     {videoTitle}
                 </h4>
 
@@ -176,7 +191,7 @@ export default function VideoCard({ item, format, speed }: {
                 </div>
 
                 {/* Video Metadata Grid - Responsive */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 text-xs flex-1">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <Calendar className="h-3 w-3" />
                         <span className="sm:hidden">Pub {publishDate}</span>
@@ -221,24 +236,46 @@ export default function VideoCard({ item, format, speed }: {
                     </span>
                 </div>
 
-                {/* Watch Button - Larger touch target on mobile */}
-                <Button
-                    asChild
-                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white h-9 md:h-8"
-                    size="sm"
-                >
-                    <a
-                        href={`https://youtube.com/watch?v=${item.contentDetails.videoId}&list=${item.snippet.playlistId}&index=${item.snippet.position + 1}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 text-sm"
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-2 mt-auto pt-2">
+                    <Button
+                        variant={isCompleted ? "secondary" : "outline"}
+                        size="sm"
+                        className={cn(
+                            "w-full gap-1.5 h-9 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700",
+                            isCompleted 
+                                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                                : "text-muted-foreground hover:text-green-600 dark:hover:text-green-400"
+                        )}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onToggleCompleted();
+                        }}
                     >
-                        <Play className="h-3 w-3" />
-                        <span className="sm:hidden">Watch</span>
-                        <span className="hidden sm:inline">Watch on YouTube</span>
-                        <ExternalLink className="h-3 w-3" />
-                    </a>
-                </Button>
+                        {isCompleted ? <CheckCircle className="h-3.5 w-3.5" /> : <Circle className="h-3.5 w-3.5" />}
+                        <span className="text-xs font-medium">{isCompleted ? "Completed" : "Mark Watched"}</span>
+                    </Button>
+
+                    <Button
+                        asChild
+                        className={cn(
+                            "w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white h-9",
+                            isCompleted && "opacity-80 saturate-50"
+                        )}
+                        size="sm"
+                    >
+                        <a
+                            href={`https://youtube.com/watch?v=${item.contentDetails.videoId}&list=${item.snippet.playlistId}&index=${item.snippet.position + 1}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 text-sm"
+                        >
+                            <Play className="h-3 w-3" />
+                            <span>Watch on YouTube</span>
+                            <ExternalLink className="h-3 w-3" />
+                        </a>
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     )

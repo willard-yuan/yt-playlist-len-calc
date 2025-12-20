@@ -28,12 +28,6 @@ export default function Navbar() {
     return 'YouTube Playlist Length Calculator'
   }
 
-  const menuItems = [
-    { name: "Home", href: "/" },
-    { name: "Blog", href: "/blog" },
-    { name: "Changelog", href: "/changelog" },
-  ]
-
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md">
       {/* Star Decorations for Navbar */}
@@ -77,6 +71,15 @@ export default function Navbar() {
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
+
+            {/* FAQs */}
+            <Link
+              href="/#faq"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+            >
+              FAQs
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
             
             {/* Other Tools Dropdown */}
             <DropdownMenu>
@@ -102,18 +105,24 @@ export default function Navbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            
-            {/* Other menu items */}
-            {menuItems.slice(1).map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
-              >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
+
+            {/* Blog */}
+            <Link
+              href="/blog"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+            >
+              Blog
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+
+            {/* Changelog */}
+            <Link
+              href="/changelog"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+            >
+              Changelog
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
             
             <ModeToggle />
           </div>
@@ -145,6 +154,24 @@ export default function Navbar() {
               >
                 Home
               </Link>
+
+              {/* FAQs */}
+              <Link
+                href="/#faq"
+                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                FAQs
+              </Link>
+
+              {/* Blog */}
+              <Link
+                href="/blog"
+                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+              </Link>
               
               {/* Other Tools Section for Mobile */}
               <div className="border-t border-border pt-2 mt-2">
@@ -169,17 +196,14 @@ export default function Navbar() {
                 </Link>
               </div>
               
-              {/* Other menu items */}
-              {menuItems.slice(1).map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {/* Changelog */}
+              <Link
+                href="/changelog"
+                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Changelog
+              </Link>
             </div>
           </div>
         )}

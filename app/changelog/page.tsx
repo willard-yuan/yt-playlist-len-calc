@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Star, Zap, Bug, Plus, ArrowUp, Sparkles } from "lucide-react";
@@ -19,12 +20,26 @@ export const metadata: Metadata = {
 export default function Changelog() {
   const changelogEntries = [
     {
+      version: "v1.4.3",
+      date: "2025-12-20",
+      type: "feature",
+      title: "UI Optimization & Performance Improvements",
+      changes: [
+        <span key="faq">✨ NEW: Added <Link href="/#faq" className="text-purple-600 hover:underline">FAQs section</Link> to navigation bar with smooth scrolling support</span>,
+        "Optimized 'Active Planning' and 'Playlist Analysis' sections with wider responsive layout",
+        "Fixed 'Watch on YouTube' button text overflow on mobile devices",
+        <span key="nav">Reorganized navigation menu for better accessibility: <Link href="/" className="text-purple-600 hover:underline">Home</Link> {"->"} <Link href="/#faq" className="text-purple-600 hover:underline">FAQs</Link> {"->"} <Link href="/blog" className="text-purple-600 hover:underline">Blog</Link> {"->"} Other Tools {"->"} Changelog</span>,
+        "Resolved hydration warnings and optimized font loading performance",
+        "Fixed missing grid background asset to eliminate 404 errors"
+      ]
+    },
+    {
       version: "v1.4.2",
       date: "2025-12-12",
       type: "feature",
       title: "New Tools Page & UI Improvements",
       changes: [
-        "✨ NEW: Added 'Tools You May Also Like' page featuring curated developer tools",
+        <span key="tools">✨ NEW: Added <Link href="/tools-you-may-also-like" className="text-purple-600 hover:underline">Tools You May Also Like</Link> page featuring curated developer tools</span>,
         "Improved navigation structure by moving 'About Us' to footer",
         "Enhanced UI consistency for buttons and tool cards with refined styling",
         "Fixed text clipping issues in hero section gradients across all pages"
@@ -54,7 +69,7 @@ export default function Changelog() {
       type: "feature",
       title: "YouTube Playlist Exporter & Blog Enhancement",
       changes: [
-        "🎉 NEW: YouTube Playlist Exporter - Export playlists to CSV, Excel, Text, and HTML bookmark formats",
+        <span key="exporter">🎉 NEW: <Link href="/youtube-playlist-exporter" className="text-purple-600 hover:underline">YouTube Playlist Exporter</Link> - Export playlists to CSV, Excel, Text, and HTML bookmark formats</span>,
         "Added comprehensive playlist data export including video titles, descriptions, durations, and metadata",
         "Implemented smart URL history with dropdown interface for quick access to recent playlists",
         "Added multiple export format support: CSV for data analysis, Excel for spreadsheets, Text for simple lists, HTML bookmarks for browsers",
@@ -162,117 +177,109 @@ export default function Changelog() {
   const getTypeColor = (type: string) => {
     switch (type) {
       case "major":
-        return "from-yellow-500 to-orange-500";
+        return "from-yellow-500/20 to-orange-500/20 text-yellow-600 dark:text-yellow-400";
       case "feature":
-        return "from-green-500 to-emerald-500";
+        return "from-green-500/20 to-emerald-500/20 text-green-600 dark:text-green-400";
       case "bugfix":
-        return "from-red-500 to-pink-500";
+        return "from-red-500/20 to-pink-500/20 text-red-600 dark:text-red-400";
       default:
-        return "from-blue-500 to-purple-500";
+        return "from-blue-500/20 to-purple-500/20 text-blue-600 dark:text-blue-400";
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-900">
+    <div className="min-h-screen bg-background text-foreground selection:bg-purple-500/30 selection:text-purple-900 dark:selection:text-purple-100">
       <Navbar />
-      <main>
       
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-purple-300/30 animate-pulse">
-          <Star className="h-6 w-6 fill-current" />
+      {/* Hero Section */}
+      <div className="relative overflow-hidden pt-24 pb-20 lg:pt-32 lg:pb-28">
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl mx-auto opacity-30 dark:opacity-20 pointer-events-none">
+            <div className="absolute top-20 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-blue-500/20 rounded-full blur-[100px] animate-pulse delay-1000" />
+          </div>
         </div>
-        <div className="absolute top-40 right-20 text-pink-300/30 animate-pulse delay-1000">
-          <Sparkles className="h-8 w-8 fill-current" />
-        </div>
-        <div className="absolute bottom-40 left-20 text-purple-300/30 animate-pulse delay-2000">
-          <Zap className="h-7 w-7 fill-current" />
-        </div>
-        <div className="absolute bottom-20 right-10 text-pink-300/30 animate-pulse delay-500">
-          <Star className="h-5 w-5 fill-current" />
-        </div>
-      </div>
 
-      <div className="relative pt-24 pb-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mb-6">
-              <Calendar className="h-8 w-8 text-white" />
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center p-4 bg-secondary/50 backdrop-blur-sm rounded-3xl mb-8 shadow-sm">
+              <Calendar className="h-8 w-8 text-purple-600 dark:text-purple-400" />
             </div>
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent pb-2">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] pb-4">
               Changelog
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light mt-6">
               Track all the improvements, new features, and bug fixes we've made to enhance your YouTube playlist analysis experience.
             </p>
           </div>
+        </div>
+      </div>
 
+      <main className="relative px-4 sm:px-6 lg:px-8 pb-32">
+        <div className="max-w-4xl mx-auto">
           {/* Changelog Entries */}
-          <div className="space-y-8">
-            {changelogEntries.map((entry, index) => (
+          <div className="space-y-12">
+            {changelogEntries.map((entry) => (
               <div
                 key={entry.version}
-                className="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="group relative bg-secondary/30 hover:bg-secondary/50 backdrop-blur-sm rounded-3xl p-8 md:p-10 transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Version Badge */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                   <div className="flex items-center space-x-4">
-                    <div className={`inline-flex items-center justify-center p-2 bg-gradient-to-r ${getTypeColor(entry.type)} rounded-lg`}>
+                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-br ${getTypeColor(entry.type)} rounded-2xl`}>
                       {getTypeIcon(entry.type)}
                     </div>
                     <div>
-                      <h2 className="text-2xl font-bold text-foreground">{entry.version}</h2>
-                      <p className="text-sm text-muted-foreground flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        {entry.date}
+                      <h2 className="text-3xl font-bold tracking-tight">{entry.version}</h2>
+                      <p className="text-muted-foreground flex items-center mt-1">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        {new Date(entry.date).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
                       </p>
                     </div>
                   </div>
-                  <div className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getTypeColor(entry.type)} text-white`}>
-                    {entry.type.toUpperCase()}
+                  <div className={`self-start sm:self-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r ${getTypeColor(entry.type)}`}>
+                    {entry.type}
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-semibold text-foreground mb-4">{entry.title}</h3>
+                <h3 className="text-2xl font-bold mb-6">{entry.title}</h3>
 
                 {/* Changes List */}
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {entry.changes.map((change, changeIndex) => (
-                    <li key={changeIndex} className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 mt-1">
-                        <ArrowUp className="h-4 w-4 text-green-500 transform rotate-45" />
+                    <li key={changeIndex} className="flex items-start space-x-3 text-lg text-muted-foreground leading-relaxed">
+                      <div className="flex-shrink-0 mt-1.5">
+                        <ArrowUp className="h-5 w-5 text-green-500 transform rotate-45" />
                       </div>
-                      <span className="text-muted-foreground">{change}</span>
+                      <span>{change}</span>
                     </li>
                   ))}
                 </ul>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse"></div>
-                </div>
               </div>
             ))}
           </div>
 
           {/* Footer Message */}
-          <div className="text-center mt-16 p-8 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl">
-            <Sparkles className="h-8 w-8 text-purple-600 dark:text-purple-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-foreground mb-2">Stay Updated</h3>
-            <p className="text-muted-foreground">
+          <div className="text-center mt-24 p-12 bg-secondary/30 backdrop-blur-sm rounded-3xl">
+            <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl flex items-center justify-center">
+              <Sparkles className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+            <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
               We're constantly working to improve your experience. Check back regularly for the latest updates and features!
             </p>
           </div>
         </div>
-      </div>
       </main>
 
-      {/* Footer */}
-      <div className="mt-20">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

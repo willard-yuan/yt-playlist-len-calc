@@ -15,17 +15,14 @@ import {
   FormMessage,
 } from "./ui/form";
 import { getPlaylist, getPlaylistByParams } from "@/lib/action";
-import { PlaylistItemListResponse } from "@/lib/types";
+import { PlaylistItemListResponse, videoFormat } from "@/lib/types";
 import PlaylistResult from "./playlist-result";
 import { PlaylistSkeleton, LoadingMessage } from "./skeleton-loader";
 import { Badge } from "@/components/ui/badge";
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
 } from "./ui/collapsible";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Select,
   SelectContent,
@@ -36,20 +33,21 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import {
-  Calculator,
-  Loader2,
-  Filter,
-  Info,
-  User,
-  Hash,
-  Search,
-  SlidersHorizontal,
-  Timer,
-  Tag,
-  Video,
   ChevronDown,
   X,
   RotateCcw,
+  ArrowRight,
+  Search,
+  Loader2,
+  Filter,
+  SlidersHorizontal,
+  Timer,
+  Tag,
+  User,
+  Hash,
+  Clock,
+  Settings2,
+  Sparkles,
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { parseDuration } from "@/lib/utils";
@@ -78,6 +76,7 @@ const FormSchema = z.object({
 
 export default function SearchBar() {
   const [isAdvanced, setIsAdvanced] = useState<boolean>(false);
+  const [format, setFormat] = useState<videoFormat>('hrs');
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const [loadingStep, setLoadingStep] = useState<number>(0);
@@ -323,7 +322,7 @@ export default function SearchBar() {
           if (element) {
             const elementRect = element.getBoundingClientRect();
             const absoluteElementTop = elementRect.top + window.pageYOffset;
-            const offset = 80; // 导航栏高度 + 一些间距
+            const offset = 80; // Navbar height + some spacing
             window.scrollTo({
               top: absoluteElementTop - offset,
               behavior: "smooth"
@@ -383,383 +382,399 @@ export default function SearchBar() {
     : [];
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto py-4">
+    <div className="space-y-12 w-full mx-auto max-w-4xl">
       {/* Enhanced Search Form */}
-      <Card className={`overflow-hidden shadow-lg transition-all duration-300 ${
-        isPending ? 'opacity-75 pointer-events-none' : ''
+      <div className={`transition-all duration-500 ease-in-out transform ${
+        isPending ? 'scale-[0.98] opacity-90' : 'scale-100 opacity-100'
       }`}>
-        <CardContent className="p-4 sm:p-6 relative">
-          {isPending && (
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 to-blue-50/50 z-10 pointer-events-none" />
-          )}
+        <div className="relative">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* Main Search */}
-              <div className="space-y-4 flex flex-col sm:flex-row gap-4 sm:items-end">
-                <FormField
-                  control={form.control}
-                  name="url"
-                  render={({ field }) => (
-                    <FormItem className="w-full">
-                      <FormLabel className="text-sm sm:text-base font-semibold">
-                        YouTube Playlist URL
-                      </FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
-                          <Input
-                            type="url"
-                            placeholder="https://youtube.com/playlist?list=..."
-                            className={`h-12 sm:h-14 text-sm sm:text-base border-2 focus:border-purple-500 transition-all duration-300 pl-10 sm:pl-12 ${
-                              isPending ? 'animate-pulse border-purple-300' : ''
-                            }`}
-                            disabled={isPending}
-                            {...field}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  disabled={isPending}
-                  size="lg"
-                  className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 w-full sm:w-auto relative overflow-hidden"
-                >
-                  {isPending ? (
-                    <>
-                      <div className="flex items-center">
-                        <Loader2 className="h-4 w-4 sm:h-5 sm:w-5 animate-spin mr-2" />
-                        <span className="transition-all duration-300">
-                          {loadingMessages[loadingStep] || "Processing..."}
-                        </span>
-                      </div>
-                      {/* Progress bar */}
-                      <div className="absolute bottom-0 left-0 h-1 bg-purple-300/30 w-full">
-                        <div 
-                          className="h-full bg-purple-200 transition-all duration-500 ease-out"
-                          style={{ width: `${((loadingStep + 1) / loadingMessages.length) * 100}%` }}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <Calculator className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
-                      Calculate
-                    </>
-                  )}
-                </Button>
-              </div>
-
-              {/* Playlist Example Button */}
-              <div className="flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => {
-                    form.setValue("url", "https://www.youtube.com/playlist?list=PLK6HsuHeltDnKkWgAQMmck7x5ghgugu78");
-                  }}
-                  className="group relative inline-flex items-center gap-3 px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-emerald-400/20"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-teal-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                  <Video className="relative h-4 w-4 text-emerald-100" />
-                  <span className="relative">Try with an example playlist</span>
-                  <div className="relative h-1.5 w-1.5 bg-emerald-200 rounded-full animate-pulse"></div>
-                </button>
-              </div>
-
-              {/* Advanced Options Toggle */}
-              <Collapsible open={isAdvanced} onOpenChange={setIsAdvanced}>
-                <CollapsibleTrigger asChild>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full h-10 sm:h-12 text-sm sm:text-base"
-                    type="button"
-                  >
-                    <Filter className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
-                    Advanced Options
-                    <Badge
-                      variant="secondary"
-                      className="ml-2 text-xs sm:text-sm"
-                    >
-                      {isAdvanced ? "Hide" : "Show"}
-                    </Badge>
-                  </Button>
-                </CollapsibleTrigger>
-
-                <CollapsibleContent className="space-y-6 pt-4 sm:pt-6">
-                  {/* Range Selection */}
-                  <Card className="p-3 sm:p-4 dark:bg-purple-950/20">
-                    <h4 className="font-semibold mb-3 text-sm sm:text-base">
-                      Range Selection
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="start"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-xs sm:text-sm">
-                              Start from video #
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                type="number"
-                                placeholder="1"
-                                className="h-10 sm:h-12 text-xs sm:text-sm"
-                                {...field}
-                                onChange={(e) =>
-                                  form.setValue(
-                                    "start",
-                                    parseInt(e.target.value) || 1
-                                  )
-                                }
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="end"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-xs sm:text-sm">
-                              End at video #
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                type="number"
-                                placeholder="50"
-                                className="h-10 sm:h-12 text-xs sm:text-sm"
-                                {...field}
-                                onChange={(e) =>
-                                  form.setValue(
-                                    "end",
-                                    parseInt(e.target.value) || 50
-                                  )
-                                }
-                              />
-                            </FormControl>
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </Card>
-                </CollapsibleContent>
-              </Collapsible>
-
-              {/* Filters Section */}
-              {playlist && (
-                <Card className="border-2 border-dashed border-gray-300 dark:border-gray-600">
-                  <CardHeader className="p-3 sm:p-4 pb-2 sm:pb-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-                      <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-                        <SlidersHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
-                        Filters & Sorting
-                        {activeFilters.length > 0 && (
-                          <Badge
-                            variant="secondary"
-                            className="text-xs sm:text-sm"
-                          >
-                            {activeFilters.length} active
-                          </Badge>
-                        )}
-                      </CardTitle>
-                      <div className="flex gap-2 self-end sm:self-auto">
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={clearFilters}
-                          className="h-7 sm:h-8 text-xs sm:text-sm"
-                        >
-                          <RotateCcw className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1" />
-                          Clear
-                        </Button>
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                          className="h-7 sm:h-8 text-xs sm:text-sm"
-                        >
-                          <ChevronDown
-                            className={`h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1 transition-transform ${
-                              isFiltersOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                          {isFiltersOpen ? "Hide" : "Show"}
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* Active Filters Display */}
-                    {activeFilters.length > 0 && (
-                      <div className="flex flex-wrap gap-1 sm:gap-2 pt-2">
-                        {activeFilters.map((filter, index) => (
-                          <Badge
-                            key={index}
-                            variant="secondary"
-                            className="text-xs"
-                          >
-                            {filter}
-                          </Badge>
-                        ))}
-                      </div>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              {/* Main Search Area */}
+              <div className="space-y-4">
+                <div className="flex flex-col md:flex-row gap-4">
+                  <FormField
+                    control={form.control}
+                    name="url"
+                    render={({ field }) => (
+                      <FormItem className="w-full relative group flex-1">
+                        <FormControl>
+                          <div className="relative flex items-center">
+                            <Search className="absolute left-5 text-muted-foreground/60 h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
+                            <Input
+                              type="url"
+                              placeholder="Paste YouTube playlist URL here..."
+                              className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-2xl pl-12 pr-4 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10"
+                              disabled={isPending}
+                              {...field}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage className="pl-4" />
+                      </FormItem>
                     )}
-                  </CardHeader>
+                  />
 
-                  <Collapsible
-                    open={isFiltersOpen}
-                    onOpenChange={setIsFiltersOpen}
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isPending}
+                    size="lg"
+                    className="h-16 px-8 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-lg shadow-lg hover:shadow-purple-500/25 hover:-translate-y-0.5 transition-all duration-300 min-w-[140px]"
                   >
-                    <CollapsibleContent>
-                      <CardContent className="space-y-4 sm:space-y-6 p-3 sm:p-4">
-                        {/* Duration Filters */}
-                        <div className="space-y-3 sm:space-y-4">
-                          <h5 className="font-medium flex items-center gap-2 text-sm sm:text-base">
-                            <Timer className="h-3 w-3 sm:h-4 sm:w-4" />
-                            Video Duration
+                    {isPending ? (
+                      <Loader2 className="h-6 w-6 animate-spin" />
+                    ) : (
+                      "Calculate"
+                    )}
+                  </Button>
+                </div>
+
+                {/* Secondary Actions Row */}
+                <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
+                   {/* Example Link */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      form.setValue("url", "https://www.youtube.com/playlist?list=PLK6HsuHeltDnKkWgAQMmck7x5ghgugu78");
+                    }}
+                    className="group flex items-center gap-2 text-sm text-muted-foreground/80 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 px-3 rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/10"
+                  >
+                    <Sparkles className="h-4 w-4 text-amber-400 group-hover:scale-110 transition-transform" />
+                    <span>Try with an example playlist</span>
+                  </button>
+
+                  {/* Advanced Options Toggle */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={`text-muted-foreground hover:text-foreground group transition-all duration-300 ${isAdvanced ? 'bg-secondary/50 text-foreground' : ''}`}
+                    type="button"
+                    onClick={() => setIsAdvanced(!isAdvanced)}
+                  >
+                    <Settings2 className="h-4 w-4 mr-2 group-hover:rotate-90 transition-transform duration-500" />
+                    Advanced Options
+                    <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isAdvanced ? 'rotate-180' : ''}`} />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Advanced Options Panel */}
+              <Collapsible open={isAdvanced} onOpenChange={setIsAdvanced} className="w-full">
+                <CollapsibleContent className="animate-in slide-in-from-top-4 fade-in duration-300 overflow-hidden">
+                  <div className="mt-4 bg-background/60 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-border/40 shadow-xl ring-1 ring-white/10">
+                    
+                    {/* Section 1: Configuration */}
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-3 pb-4 border-b border-border/40">
+                        <div className="p-2 bg-purple-500/10 rounded-lg">
+                          <SlidersHorizontal className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-lg">Configuration</h4>
+                          <p className="text-sm text-muted-foreground">Customize how you want to analyze the playlist</p>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
+                        {/* Range Selection */}
+                        <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                          <h5 className="text-sm font-medium flex items-center gap-2">
+                            <Hash className="h-4 w-4 text-muted-foreground" />
+                            Playlist Range
                           </h5>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="flex gap-4 items-center">
                             <FormField
                               control={form.control}
-                              name="minDuration"
+                              name="start"
                               render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel className="text-xs sm:text-sm">
-                                    Minimum Duration (seconds)
-                                  </FormLabel>
-                                  <FormControl>
-                                    <Input
-                                      type="number"
-                                      placeholder="0"
-                                      className="h-10 sm:h-auto text-xs sm:text-sm"
-                                      {...field}
-                                      onChange={(e) => {
-                                        form.setValue(
-                                          "minDuration",
-                                          parseInt(e.target.value) || 0
-                                        );
-                                        reapplyFilters();
-                                      }}
-                                    />
-                                  </FormControl>
+                                <FormItem className="flex-1">
+                                  <div className="relative">
+                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Start</span>
+                                    <FormControl>
+                                      <Input
+                                        type="number"
+                                        className="h-12 pt-5 text-center font-medium bg-background/50 border-border/40 focus:border-purple-500/50"
+                                        {...field}
+                                        onChange={(e) => form.setValue("start", parseInt(e.target.value) || 1)}
+                                      />
+                                    </FormControl>
+                                  </div>
                                 </FormItem>
                               )}
                             />
+                            <div className="h-px w-4 bg-border" />
                             <FormField
                               control={form.control}
-                              name="maxDuration"
+                              name="end"
                               render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel className="text-xs sm:text-sm">
-                                    Maximum Duration (seconds)
-                                  </FormLabel>
-                                  <FormControl>
-                                    <Input
-                                      type="number"
-                                      placeholder="3600"
-                                      className="h-10 sm:h-auto text-xs sm:text-sm"
-                                      {...field}
-                                      onChange={(e) => {
-                                        form.setValue(
-                                          "maxDuration",
-                                          parseInt(e.target.value) || 3600
-                                        );
-                                        reapplyFilters();
-                                      }}
-                                    />
-                                  </FormControl>
+                                <FormItem className="flex-1">
+                                  <div className="relative">
+                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">End</span>
+                                    <FormControl>
+                                      <Input
+                                        type="number"
+                                        className="h-12 pt-5 text-center font-medium bg-background/50 border-border/40 focus:border-purple-500/50"
+                                        {...field}
+                                        onChange={(e) => form.setValue("end", parseInt(e.target.value) || 50)}
+                                      />
+                                    </FormControl>
+                                  </div>
                                 </FormItem>
                               )}
                             />
                           </div>
                         </div>
 
-                        <Separator />
-
-                        {/* Content Type Filter */}
-                        <div className="space-y-3 sm:space-y-4">
-                          <h5 className="font-medium flex items-center gap-2 text-sm sm:text-base">
-                            <Tag className="h-3 w-3 sm:h-4 sm:w-4" />
-                            Content Type
+                        {/* Display Format */}
+                        <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                          <h5 className="text-sm font-medium flex items-center gap-2">
+                            <Clock className="h-4 w-4 text-muted-foreground" />
+                            Display Format
                           </h5>
-                          <FormField
-                            control={form.control}
-                            name="contentType"
-                            render={({ field }) => (
-                              <FormItem>
-                                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                                  {[
-                                    {
-                                      id: "shorts",
-                                      label: "Shorts (<5m)",
-                                      color: "bg-purple-100 text-purple-700",
-                                    },
-                                    {
-                                      id: "standard",
-                                      label: "Standard (5-20m)",
-                                      color: "bg-purple-100 text-purple-700",
-                                    },
-                                    {
-                                      id: "long",
-                                      label: "Long (>20m)",
-                                      color: "bg-purple-100 text-purple-700",
-                                    },
-                                  ].map((type) => (
-                                    <div
-                                      key={type.id}
-                                      className="flex items-center space-x-2"
-                                    >
-                                      <Checkbox
-                                        id={type.id}
-                                        checked={field.value?.includes(type.id)}
-                                        onCheckedChange={(checked) => {
-                                          const current = field.value || [];
-                                          if (checked) {
-                                            form.setValue("contentType", [
-                                              ...current,
-                                              type.id,
-                                            ]);
-                                          } else {
-                                            form.setValue(
-                                              "contentType",
-                                              current.filter(
-                                                (item) => item !== type.id
-                                              )
-                                            );
-                                          }
-                                          reapplyFilters();
-                                        }}
-                                      />
-                                      <label
-                                        htmlFor={type.id}
-                                        className={`text-xs sm:text-sm px-2 py-1 rounded ${type.color}`}
-                                      >
-                                        {type.label}
-                                      </label>
-                                    </div>
-                                  ))}
-                                </div>
-                              </FormItem>
-                            )}
-                          />
+                          <div className="space-y-2">
+                             <Select value={format} onValueChange={(v: videoFormat) => setFormat(v)}>
+                              <SelectTrigger className="h-12 bg-background/50 border-border/40 focus:ring-purple-500/20 text-center font-medium">
+                                <SelectValue placeholder="Select format" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="hrs">Hours, Minutes, Seconds</SelectItem>
+                                <SelectItem value="min">Minutes only</SelectItem>
+                                <SelectItem value="sec">Seconds only</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Section 2: Filters (Visible only when playlist loaded) */}
+                    {playlist && (
+                      <div className="mt-8 pt-8 border-t border-border/40">
+                         <div className="flex items-center justify-between pb-6">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 bg-blue-500/10 rounded-lg">
+                              <Filter className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-lg flex items-center gap-2">
+                                Filters & Sorting
+                                {activeFilters.length > 0 && (
+                                  <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300">
+                                    {activeFilters.length} active
+                                  </Badge>
+                                )}
+                              </h4>
+                              <p className="text-sm text-muted-foreground">Refine your results</p>
+                            </div>
+                          </div>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={clearFilters}
+                            className="text-xs h-9 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors"
+                          >
+                            <RotateCcw className="h-3 w-3 mr-2" />
+                            Reset Filters
+                          </Button>
                         </div>
 
-                        <Separator />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                           {/* Left Column: Duration & Content Type */}
+                           <div className="space-y-6">
+                              {/* Duration */}
+                              <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                                <h5 className="text-sm font-medium flex items-center gap-2">
+                                  <Timer className="h-4 w-4 text-muted-foreground" />
+                                  Duration (seconds)
+                                </h5>
+                                <div className="flex gap-4 items-center">
+                                  <FormField
+                                    control={form.control}
+                                    name="minDuration"
+                                    render={({ field }) => (
+                                      <FormItem className="flex-1">
+                                        <div className="relative">
+                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Min</span>
+                                          <FormControl>
+                                            <Input
+                                              type="number"
+                                              className="h-10 pl-10 text-center font-medium bg-background/50 border-border/40 focus:border-purple-500/50"
+                                              {...field}
+                                              onChange={(e) => {
+                                                form.setValue("minDuration", parseInt(e.target.value) || 0);
+                                                reapplyFilters();
+                                              }}
+                                            />
+                                          </FormControl>
+                                        </div>
+                                      </FormItem>
+                                    )}
+                                  />
+                                  <div className="h-px w-4 bg-border" />
+                                  <FormField
+                                    control={form.control}
+                                    name="maxDuration"
+                                    render={({ field }) => (
+                                      <FormItem className="flex-1">
+                                        <div className="relative">
+                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Max</span>
+                                          <FormControl>
+                                            <Input
+                                              type="number"
+                                              className="h-10 pl-10 text-center font-medium bg-background/50 border-border/40 focus:border-purple-500/50"
+                                              {...field}
+                                              onChange={(e) => {
+                                                form.setValue("maxDuration", parseInt(e.target.value) || 3600);
+                                                reapplyFilters();
+                                              }}
+                                            />
+                                          </FormControl>
+                                        </div>
+                                      </FormItem>
+                                    )}
+                                  />
+                                </div>
+                              </div>
 
-                        {/* Channel Filter */}
+                              {/* Content Type */}
+                              <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                                <h5 className="text-sm font-medium flex items-center gap-2">
+                                  <Tag className="h-4 w-4 text-muted-foreground" />
+                                  Content Type
+                                </h5>
+                                <FormField
+                                  control={form.control}
+                                  name="contentType"
+                                  render={({ field }) => (
+                                    <FormItem>
+                                      <div className="flex flex-wrap gap-2">
+                                        {[
+                                          { id: "shorts", label: "Shorts" },
+                                          { id: "standard", label: "Standard" },
+                                          { id: "long", label: "Long" },
+                                        ].map((type) => (
+                                          <div key={type.id} className="relative">
+                                            <Checkbox
+                                              id={type.id}
+                                              className="peer sr-only"
+                                              checked={field.value?.includes(type.id)}
+                                              onCheckedChange={(checked) => {
+                                                const current = field.value || [];
+                                                if (checked) form.setValue("contentType", [...current, type.id]);
+                                                else form.setValue("contentType", current.filter((i) => i !== type.id));
+                                                reapplyFilters();
+                                              }}
+                                            />
+                                            <label
+                                              htmlFor={type.id}
+                                              className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border/50 bg-background/50 hover:bg-background/80 cursor-pointer transition-all peer-data-[state=checked]:bg-purple-500/10 peer-data-[state=checked]:border-purple-500/50 peer-data-[state=checked]:text-purple-600 dark:peer-data-[state=checked]:text-purple-300"
+                                            >
+                                              <span className={`w-2 h-2 rounded-full ${field.value?.includes(type.id) ? 'bg-purple-500' : 'bg-muted-foreground/30'}`} />
+                                              <span className="text-xs font-medium">{type.label}</span>
+                                            </label>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </FormItem>
+                                  )}
+                                />
+                              </div>
+                           </div>
+
+                           {/* Right Column: Channels, Keywords, Sorting */}
+                           <div className="space-y-6">
+                              {/* Keywords */}
+                              <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                                <h5 className="text-sm font-medium flex items-center gap-2">
+                                  <Search className="h-4 w-4 text-muted-foreground" />
+                                  Keywords
+                                </h5>
+                                <FormField
+                                  control={form.control}
+                                  name="keywords"
+                                  render={({ field }) => (
+                                    <FormItem>
+                                      <FormControl>
+                                        <div className="relative">
+                                          <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground/50" />
+                                          <Input
+                                            placeholder="Filter by title..."
+                                            className="h-10 pl-9 text-sm bg-background/50 border-border/40 focus:border-purple-500/50"
+                                            {...field}
+                                            onChange={(e) => {
+                                              field.onChange(e);
+                                              setTimeout(() => reapplyFilters(), 500);
+                                            }}
+                                          />
+                                        </div>
+                                      </FormControl>
+                                    </FormItem>
+                                  )}
+                                />
+                              </div>
+
+                              {/* Sorting */}
+                              <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                                <h5 className="text-sm font-medium flex items-center gap-2">
+                                  <Hash className="h-4 w-4 text-muted-foreground" />
+                                  Sorting
+                                </h5>
+                                <div className="flex gap-3">
+                                  <FormField
+                                    control={form.control}
+                                    name="sortBy"
+                                    render={({ field }) => (
+                                      <FormItem className="flex-[2]">
+                                        <Select
+                                          onValueChange={(value) => { field.onChange(value); reapplyFilters(); }}
+                                          defaultValue={field.value}
+                                        >
+                                          <SelectTrigger className="h-10 text-xs bg-background/50 border-border/40">
+                                            <SelectValue />
+                                          </SelectTrigger>
+                                          <SelectContent>
+                                            <SelectItem value="position">Position</SelectItem>
+                                            <SelectItem value="duration">Duration</SelectItem>
+                                            <SelectItem value="publishDate">Date</SelectItem>
+                                            <SelectItem value="title">Title</SelectItem>
+                                          </SelectContent>
+                                        </Select>
+                                      </FormItem>
+                                    )}
+                                  />
+                                  <FormField
+                                    control={form.control}
+                                    name="sortOrder"
+                                    render={({ field }) => (
+                                      <FormItem className="flex-1">
+                                        <Select
+                                          onValueChange={(value) => { field.onChange(value); reapplyFilters(); }}
+                                          defaultValue={field.value}
+                                        >
+                                          <SelectTrigger className="h-10 text-xs bg-background/50 border-border/40">
+                                            <SelectValue />
+                                          </SelectTrigger>
+                                          <SelectContent>
+                                            <SelectItem value="asc">Asc</SelectItem>
+                                            <SelectItem value="desc">Desc</SelectItem>
+                                          </SelectContent>
+                                        </Select>
+                                      </FormItem>
+                                    )}
+                                  />
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        {/* Channels (Full Width) */}
                         {availableChannels.length > 0 && (
-                          <div className="space-y-3 sm:space-y-4">
-                            <h5 className="font-medium flex items-center gap-2 text-sm sm:text-base">
-                              <User className="h-3 w-3 sm:h-4 sm:w-4" />
-                              Channels ({availableChannels.length} available)
+                          <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
+                            <h5 className="text-sm font-medium flex items-center gap-2">
+                              <User className="h-4 w-4 text-muted-foreground" />
+                              Channels
                             </h5>
                             <FormField
                               control={form.control}
@@ -770,57 +785,34 @@ export default function SearchBar() {
                                     onValueChange={(value) => {
                                       const current = field.value || [];
                                       if (!current.includes(value)) {
-                                        form.setValue("channels", [
-                                          ...current,
-                                          value,
-                                        ]);
+                                        form.setValue("channels", [...current, value]);
                                         reapplyFilters();
                                       }
                                     }}
                                   >
-                                    <SelectTrigger className="text-xs sm:text-sm h-10 sm:h-auto">
-                                      <SelectValue placeholder="Select channels to filter..." />
+                                    <SelectTrigger className="h-10 text-xs bg-background/50 border-border/40 w-full md:w-1/2">
+                                      <SelectValue placeholder="Add channel filter..." />
                                     </SelectTrigger>
                                     <SelectContent>
                                       {availableChannels.map((channel) => (
-                                        <SelectItem
-                                          key={channel}
-                                          value={channel}
-                                          className="text-xs sm:text-sm"
-                                        >
+                                        <SelectItem key={channel} value={channel} className="text-xs">
                                           {channel}
                                         </SelectItem>
                                       ))}
                                     </SelectContent>
                                   </Select>
                                   {field.value && field.value.length > 0 && (
-                                    <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
+                                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border/40">
                                       {field.value.map((channel) => (
-                                        <Badge
-                                          key={channel}
-                                          variant="secondary"
-                                          className="flex items-center gap-1 text-xs"
+                                        <Badge key={channel} variant="secondary" className="flex items-center gap-1.5 text-xs py-1.5 px-3 bg-white/50 dark:bg-black/20 border border-border/50 shadow-sm transition-all hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 cursor-pointer group"
+                                          onClick={() => {
+                                            const updated = field.value?.filter((c) => c !== channel) || [];
+                                            form.setValue("channels", updated);
+                                            reapplyFilters();
+                                          }}
                                         >
                                           {channel}
-                                          <Button
-                                            type="button"
-                                            variant="ghost"
-                                            size="sm"
-                                            className="h-3 w-3 sm:h-4 sm:w-4 p-0 hover:bg-transparent"
-                                            onClick={() => {
-                                              const updated =
-                                                field.value?.filter(
-                                                  (c) => c !== channel
-                                                ) || [];
-                                              form.setValue(
-                                                "channels",
-                                                updated
-                                              );
-                                              reapplyFilters();
-                                            }}
-                                          >
-                                            <X className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
-                                          </Button>
+                                          <X className="h-3 w-3 opacity-50 group-hover:opacity-100" />
                                         </Badge>
                                       ))}
                                     </div>
@@ -830,171 +822,15 @@ export default function SearchBar() {
                             />
                           </div>
                         )}
-
-                        <Separator />
-
-                        {/* Keywords Filter */}
-                        <div className="space-y-3 sm:space-y-4">
-                          <h5 className="font-medium flex items-center gap-2 text-sm sm:text-base">
-                            <Search className="h-3 w-3 sm:h-4 sm:w-4" />
-                            Keywords Search
-                          </h5>
-                          <FormField
-                            control={form.control}
-                            name="keywords"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormControl>
-                                  <Input
-                                    placeholder="Enter keywords separated by commas..."
-                                    className="text-xs sm:text-sm h-10 sm:h-auto"
-                                    {...field}
-                                    onChange={(e) => {
-                                      field.onChange(e);
-                                      // Debounce the filter application
-                                      setTimeout(() => reapplyFilters(), 500);
-                                    }}
-                                  />
-                                </FormControl>
-                                <p className="text-xs text-muted-foreground pt-1">
-                                  Search in video titles and descriptions. Use
-                                  commas to separate multiple keywords.
-                                </p>
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-
-                        <Separator />
-
-                        {/* Sorting */}
-                        <div className="space-y-3 sm:space-y-4">
-                          <h5 className="font-medium flex items-center gap-2 text-sm sm:text-base">
-                            <Hash className="h-3 w-3 sm:h-4 sm:w-4" />
-                            Sort Results
-                          </h5>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="sortBy"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel className="text-xs sm:text-sm">
-                                    Sort by
-                                  </FormLabel>
-                                  <Select
-                                    onValueChange={(value) => {
-                                      field.onChange(value);
-                                      reapplyFilters();
-                                    }}
-                                    defaultValue={field.value}
-                                  >
-                                    <SelectTrigger className="text-xs sm:text-sm h-10 sm:h-auto">
-                                      <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                      <SelectItem
-                                        value="position"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Playlist Position
-                                      </SelectItem>
-                                      <SelectItem
-                                        value="duration"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Video Duration
-                                      </SelectItem>
-                                      <SelectItem
-                                        value="publishDate"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Publish Date
-                                      </SelectItem>
-                                      <SelectItem
-                                        value="addedDate"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Added to Playlist
-                                      </SelectItem>
-                                      <SelectItem
-                                        value="title"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Title (A-Z)
-                                      </SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </FormItem>
-                              )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name="sortOrder"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormLabel className="text-xs sm:text-sm">
-                                    Order
-                                  </FormLabel>
-                                  <Select
-                                    onValueChange={(value) => {
-                                      field.onChange(value);
-                                      reapplyFilters();
-                                    }}
-                                    defaultValue={field.value}
-                                  >
-                                    <SelectTrigger className="text-xs sm:text-sm h-10 sm:h-auto">
-                                      <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                      <SelectItem
-                                        value="asc"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Ascending
-                                      </SelectItem>
-                                      <SelectItem
-                                        value="desc"
-                                        className="text-xs sm:text-sm"
-                                      >
-                                        Descending
-                                      </SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-                        </div>
-
-                        {/* Apply Filters Button */}
-                        <Button
-                          type="button"
-                          onClick={reapplyFilters}
-                          className="w-full h-10 sm:h-auto text-sm sm:text-base"
-                          variant="outline"
-                        >
-                          <Filter className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
-                          Apply Filters
-                        </Button>
-                      </CardContent>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </Card>
-              )}
-
-              {/* URL Format Help */}
-              <Alert className="p-3 sm:p-4">
-                <Info className="h-3 w-3 sm:h-4 sm:w-4" />
-                <AlertDescription className="text-xs sm:text-sm ml-2">
-                  <strong>Tip:</strong> Make sure your URL contains a playlist
-                  ID (list=...). Works with public playlists from YouTube.
-                </AlertDescription>
-              </Alert>
+                      </div>
+                    )}
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             </form>
           </Form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
       {/* Results */}
       {isPending && loadingStep < 3 && (
         <LoadingMessage 
@@ -1003,7 +839,7 @@ export default function SearchBar() {
         />
       )}
       {isPending && loadingStep >= 3 && <PlaylistSkeleton />}
-      {!isPending && filteredPlaylist && <PlaylistResult playlist={filteredPlaylist} />}
+      {!isPending && filteredPlaylist && <PlaylistResult playlist={filteredPlaylist} format={format} />}
     </div>
   );
 }

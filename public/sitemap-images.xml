@@ -35,6 +35,11 @@
       <image:title>YouTube Playlist Length Calculator Favicon 32x32</image:title>
       <image:caption>Medium favicon for YouTube Playlist Length Calculator</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/grid.svg</image:loc>
+      <image:title>Background Grid Pattern</image:title>
+      <image:caption>Subtle grid background pattern for the homepage</image:caption>
+    </image:image>
   </url>
 
   <!-- About Page -->

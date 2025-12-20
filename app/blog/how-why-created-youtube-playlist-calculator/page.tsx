@@ -72,7 +72,7 @@ export default function BlogPost() {
             <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-12 pb-8 border-b border-border">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                January 19, 2025
+                December 19, 2025
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />

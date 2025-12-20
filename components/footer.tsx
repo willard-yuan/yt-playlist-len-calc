@@ -47,6 +47,13 @@ export default function Footer() {
                 {link.name}
               </Link>
             ))}
+            <Link
+              href="/llms.txt"
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm py-4 px-2"
+              target="_blank"
+            >
+              llms.txt
+            </Link>
           </div>
         </div>
       </div>

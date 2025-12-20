@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ytplaylistlength.pro'),
@@ -66,7 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true} className="overflow-x-hidden">
-      <body className={`${inter.className} relative overflow-x-hidden`}>
+      <body className={`${inter.className} relative overflow-x-hidden`} suppressHydrationWarning={true}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-W1834E98M7"
           strategy="afterInteractive"
