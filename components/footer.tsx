@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Star } from "lucide-react"
+import { Star, Twitter, Mail } from "lucide-react"
 
 export default function Footer() {
   const footerLinks = [
@@ -76,17 +76,39 @@ export default function Footer() {
           {/* Social / Contact */}
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com/willard-yuan" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Star className="w-5 h-5" />
-                <span className="sr-only">GitHub</span>
-              </a>
-            </div>
+            <ul className="space-y-2">
+              <li>
+                <a 
+                  href="https://github.com/willard-yuan" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
+                >
+                  <Star className="w-4 h-4 group-hover:text-yellow-500 transition-colors" />
+                  <span>Star on GitHub</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://twitter.com/Yong" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
+                >
+                  <Twitter className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                  <span>Follow on X</span>
+                </a>
+              </li>
+              <li>
+                <Link 
+                  href="/contact"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
+                >
+                  <Mail className="w-4 h-4 group-hover:text-purple-500 transition-colors" />
+                  <span>Contact Support</span>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 

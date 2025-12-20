@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
                 <div>
                   <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Introduction</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    YouTube Playlist Length Calculator ("we," "our," or "us") is committed to protecting your privacy. 
+                    YouTube Playlist Length Calculator (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. 
                     This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you 
                     visit our website and use our services.
                   </p>

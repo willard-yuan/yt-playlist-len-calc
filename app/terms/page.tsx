@@ -148,7 +148,7 @@ export default function TermsPage() {
                   <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Disclaimer</h2>
                   <div className="space-y-3 text-muted-foreground">
                     <p>
-                      The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company:
+                      The information on this website is provided on an &quot;as is&quot; basis. To the fullest extent permitted by law, this Company:
                     </p>
                     <ul className="list-disc list-inside space-y-1 ml-4">
                       <li>excludes all representations and warranties relating to this website and its contents</li>
