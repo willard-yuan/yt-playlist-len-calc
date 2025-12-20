@@ -84,6 +84,14 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog Post - Conquer the 46-Hour Marathon -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/conquer-46-hour-marathon-youtube-most-viewed-playlist</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- LLM Context File - For AI agents and bots -->
   <url>
     <loc>https://ytplaylistlength.pro/llms.txt</loc>

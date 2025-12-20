@@ -127,4 +127,24 @@
     </image:image>
   </url>
 
+  <!-- Blog Post - Conquer the 46-Hour Marathon -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/conquer-46-hour-marathon-youtube-most-viewed-playlist</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/youtube-most-viewed-videos-of-all-time.webp</image:loc>
+      <image:title>YouTube Most Viewed Videos of All Time Playlist Analysis</image:title>
+      <image:caption>Analysis dashboard showing the massive scale of the most viewed YouTube playlist</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/youtube-most-viewed-playlist-analysis.webp</image:loc>
+      <image:title>Active Planning Feature for YouTube Playlists</image:title>
+      <image:caption>Visualizing completion date with the Active Planning tool</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/youtube-most-viewed-video-list.webp</image:loc>
+      <image:title>List of Most Viewed YouTube Videos</image:title>
+      <image:caption>Scrollable list of the internet's most iconic videos</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
