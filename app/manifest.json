@@ -1,0 +1,21 @@
+{
+  "name": "YouTube Playlist Length Calculator",
+  "short_name": "Playlist Calc",
+  "description": "Calculate the total length of any YouTube playlists quickly! Paste playlist URL to get instant result.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#a855f7",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

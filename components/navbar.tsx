@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
-import Logo from "@/components/logo"
 import {
   DropdownMenu,
   DropdownMenuContent,

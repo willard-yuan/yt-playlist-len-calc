@@ -38,7 +38,7 @@ export default function AboutPage() {
               About Us
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We're passionate about making YouTube playlist analysis 
+              We&apos;re passionate about making YouTube playlist analysis 
               <span className="text-foreground font-semibold"> simple</span>, 
               <span className="text-foreground font-semibold"> fast</span>, and 
               <span className="text-foreground font-semibold"> accurate</span>
@@ -164,7 +164,7 @@ export default function AboutPage() {
                 and viewers make informed decisions about their entertainment time.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Thank you for being part of our journey. We're committed to continuously improving 
+                Thank you for being part of our journey. We&apos;re committed to continuously improving 
                 and adding new features that make your YouTube experience better.
               </p>
             </div>

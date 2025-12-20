@@ -8,12 +8,12 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
-export default function VideoCard({ item, format, speed, isCompleted, onToggleCompleted }: { 
+export default function VideoCard({ item, format, speed, isCompleted = false, onToggleCompleted }: { 
     item: PlaylistItemListResponse['items'][0] & { index: number }, 
     format: videoFormat, 
     speed: videoSpeed,
-    isCompleted: boolean,
-    onToggleCompleted: () => void
+    isCompleted?: boolean,
+    onToggleCompleted?: () => void
 }) {
     const [imageError, setImageError] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -89,10 +89,12 @@ export default function VideoCard({ item, format, speed, isCompleted, onToggleCo
                                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
                                 </div>
                             )}
-                            <img 
+                            <Image 
                                 src={imageUrl} 
                                 alt={item.snippet.title} 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
                                 onLoad={() => setImageLoading(false)}
                                 onError={() => {
                                     if (retryCount < maxRetries) {
@@ -107,7 +109,6 @@ export default function VideoCard({ item, format, speed, isCompleted, onToggleCo
                                         setImageLoading(false)
                                     }
                                 }}
-                                style={{ display: imageLoading ? 'none' : 'block' }}
                             />
                         </>
                     ) : (
@@ -238,23 +239,25 @@ export default function VideoCard({ item, format, speed, isCompleted, onToggleCo
 
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-2 mt-auto pt-2">
-                    <Button
-                        variant={isCompleted ? "secondary" : "outline"}
-                        size="sm"
-                        className={cn(
-                            "w-full gap-1.5 h-9 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700",
-                            isCompleted 
-                                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-                                : "text-muted-foreground hover:text-green-600 dark:hover:text-green-400"
-                        )}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onToggleCompleted();
-                        }}
-                    >
-                        {isCompleted ? <CheckCircle className="h-3.5 w-3.5" /> : <Circle className="h-3.5 w-3.5" />}
-                        <span className="text-xs font-medium">{isCompleted ? "Completed" : "Mark Watched"}</span>
-                    </Button>
+                    {onToggleCompleted && (
+                        <Button
+                            variant={isCompleted ? "secondary" : "outline"}
+                            size="sm"
+                            className={cn(
+                                "w-full gap-1.5 h-9 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700",
+                                isCompleted 
+                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
+                                    : "text-muted-foreground hover:text-green-600 dark:hover:text-green-400"
+                            )}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                onToggleCompleted();
+                            }}
+                        >
+                            {isCompleted ? <CheckCircle className="h-3.5 w-3.5" /> : <Circle className="h-3.5 w-3.5" />}
+                            <span className="text-xs font-medium">{isCompleted ? "Completed" : "Mark Watched"}</span>
+                        </Button>
+                    )}
 
                     <Button
                         asChild

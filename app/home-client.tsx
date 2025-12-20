@@ -159,7 +159,7 @@ export default function HomeClient() {
                   <span className="text-purple-600 dark:text-purple-400">Powerful Results</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-                  We've streamlined the process to make it as effortless as possible. No sign-ups, no complex steps. Just insights.
+                  We&apos;ve streamlined the process to make it as effortless as possible. No sign-ups, no complex steps. Just insights.
                 </p>
                 
                 <div className="space-y-8">
@@ -206,7 +206,7 @@ export default function HomeClient() {
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">How We Calculate</h2>
                 <p className="text-lg text-muted-foreground">
-                  Transparency is key. Here's the math behind our precise duration and time-saving calculations.
+                  Transparency is key. Here&apos;s the math behind our precise duration and time-saving calculations.
                 </p>
               </div>
 

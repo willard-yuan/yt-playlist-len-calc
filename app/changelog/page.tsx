@@ -210,7 +210,7 @@ export default function Changelog() {
               Changelog
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light mt-6">
-              Track all the improvements, new features, and bug fixes we've made to enhance your YouTube playlist analysis experience.
+              Track all the improvements, new features, and bug fixes we&apos;ve made to enhance your YouTube playlist analysis experience.
             </p>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function Changelog() {
             </div>
             <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
             <p className="text-muted-foreground text-lg max-w-lg mx-auto leading-relaxed">
-              We're constantly working to improve your experience. Check back regularly for the latest updates and features!
+              We&apos;re constantly working to improve your experience. Check back regularly for the latest updates and features!
             </p>
           </div>
         </div>

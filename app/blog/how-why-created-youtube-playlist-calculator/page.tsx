@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowLeft, Star, Youtube, Code, Zap, Users, CheckCircle } from "lucide-react";
@@ -94,11 +95,14 @@ export default function BlogPost() {
             
             {/* Cover Image */}
             <div className="w-full mb-12">
-              <img 
-                src="/YouTube_Playlist_Length_Calculator_1.png" 
-                alt="YouTube Playlist Length Calculator Interface - Main Dashboard"
-                className="w-full rounded-2xl shadow-2xl border border-border/50"
-              />
+              <div className="relative aspect-video">
+                <Image 
+                  src="/YouTube_Playlist_Length_Calculator_1.png" 
+                  alt="YouTube Playlist Length Calculator Interface - Main Dashboard"
+                  fill
+                  className="rounded-2xl shadow-2xl border border-border/50 object-cover"
+                />
+              </div>
               <p className="text-center text-sm text-muted-foreground mt-4 italic">
                 The main interface of YouTube Playlist Length Calculator showing playlist analysis
               </p>
@@ -211,7 +215,7 @@ export default function BlogPost() {
               <h2 className="text-3xl font-bold text-foreground mt-12 mb-6">Key Features That Make It Special</h2>
 
               <p>
-                The YouTube Playlist Length Calculator isn't just another tool — it's designed to provide comprehensive insights about your playlists:
+                The YouTube Playlist Length Calculator isn&apos;t just another tool — it&apos;s designed to provide comprehensive insights about your playlists:
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -234,11 +238,14 @@ export default function BlogPost() {
 
               {/* Second Screenshot */}
               <div className="w-full my-12">
-                <img 
-                  src="/YouTube_Playlist_Length_Calculator_2.png" 
-                  alt="YouTube Playlist Length Calculator Results - Detailed Analytics"
-                  className="w-full rounded-2xl shadow-2xl border border-border/50"
-                />
+                <div className="relative aspect-video">
+                  <Image 
+                    src="/YouTube_Playlist_Length_Calculator_2.png" 
+                    alt="YouTube Playlist Length Calculator Results - Detailed Analytics"
+                    fill
+                    className="rounded-2xl shadow-2xl border border-border/50 object-cover"
+                  />
+                </div>
                 <p className="text-center text-sm text-muted-foreground mt-4 italic">
                   Detailed playlist analysis showing individual video durations and comprehensive statistics
                 </p>
@@ -251,7 +258,7 @@ export default function BlogPost() {
               </p>
 
               <p>
-                Looking ahead, I'm planning several exciting features:
+                Looking ahead, I&apos;m planning several exciting features:
               </p>
 
               <ul className="space-y-2">
@@ -282,7 +289,7 @@ export default function BlogPost() {
               </p>
 
               <p>
-                Whether you're a student planning study sessions, a music lover organizing playlists, or a content creator analyzing competitors, this tool will save you time and provide valuable insights.
+                Whether you&apos;re a student planning study sessions, a music lover organizing playlists, or a content creator analyzing competitors, this tool will save you time and provide valuable insights.
               </p>
 
               <div className="bg-gradient-to-r from-purple-50/50 to-pink-50/50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-8 my-12 text-center">

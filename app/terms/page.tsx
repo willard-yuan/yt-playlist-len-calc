@@ -65,7 +65,7 @@ export default function TermsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Agreement to Terms</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    By accessing and using YouTube Playlist Length Calculator ("Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                    By accessing and using YouTube Playlist Length Calculator (&quot;Service&quot;), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
                   </p>
                 </div>
               </div>
