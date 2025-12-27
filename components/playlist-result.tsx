@@ -1,4 +1,5 @@
 import { PlaylistItemListResponse, videoFormat, videoSpeed } from '@/lib/types';
+import Link from 'next/link';
 import { calculateTotalDuration, parseDuration } from '@/lib/utils';
 import VideoCard from './video-card';
 import { useState, useMemo, useEffect } from 'react';
@@ -10,7 +11,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, ChevronDown, ChevronUp, Sliders, CheckCircle } from 'lucide-react';
+import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, ChevronDown, ChevronUp, Sliders, CheckCircle, Download } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from './ui/progress';
@@ -505,14 +506,23 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
 
             {/* Videos Grid */}
             <div>
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                    <PlayCircle className="h-6 w-6 text-purple-600" />
-                    Videos ({playlist.items.length})
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 flex-wrap">
+                    <div className="flex items-center gap-3">
+                        <PlayCircle className="h-6 w-6 text-purple-600" />
+                        Videos ({playlist.items.length})
+                    </div>
                     {playlistStats.isPartialPlaylist && (
                         <Badge variant="outline" className="text-sm">
                             Showing {playlist.items.length} of {playlistStats.totalPlaylistSize}
                         </Badge>
                     )}
+                    <Link 
+                        href={`/youtube-playlist-exporter${playlist.items[0]?.snippet?.playlistId ? `?list=${playlist.items[0].snippet.playlistId}` : ''}`}
+                        className="ml-auto flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 bg-purple-50 dark:bg-purple-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-purple-100 dark:hover:bg-purple-900/40"
+                    >
+                        <Download className="h-4 w-4" />
+                        Export Playlist Data
+                    </Link>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {playlist.items.map((item, index) => (

@@ -26,11 +26,11 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
     
     const thumbnails = item?.snippet?.thumbnails;
     const imageUrl =
+      thumbnails?.default?.url ||
       thumbnails?.medium?.url ||
       thumbnails?.standard?.url ||
       thumbnails?.high?.url ||
-      item.videoThumbnail ||
-      thumbnails?.default?.url;
+      item.videoThumbnail;
     const videoLength = parseDuration(item.videoDuration)
     const videoFormat = format.charAt(0).toUpperCase() + format.slice(1)
     const originalLength = calculateTotalDuration(videoLength, format)

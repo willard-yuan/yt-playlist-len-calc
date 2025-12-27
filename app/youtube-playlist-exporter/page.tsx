@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
+import { useSearchParams } from "next/navigation"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -8,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Youtube, Download, FileText, FileSpreadsheet, Bookmark, Loader2, Clock, X, Search, Video as VideoIcon } from "lucide-react"
+import { Youtube, Download, FileText, FileSpreadsheet, Bookmark, Loader2, Clock, X, Search, Video as VideoIcon, ChevronDown } from "lucide-react"
 import VideoCard from "@/components/video-card"
 
 interface Video {
@@ -34,7 +35,8 @@ interface PlaylistData {
   videos: Video[]
 }
 
-export default function YouTubePlaylistExporter() {
+function ExporterContent() {
+  const searchParams = useSearchParams()
   const [playlistUrl, setPlaylistUrl] = useState("")
   const [playlistData, setPlaylistData] = useState<PlaylistData | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -42,6 +44,12 @@ export default function YouTubePlaylistExporter() {
   const [error, setError] = useState("")
   const [urlHistory, setUrlHistory] = useState<string[]>([])
   const [showHistory, setShowHistory] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(6)
+
+  const validatePlaylistUrl = (url: string): boolean => {
+    const playlistRegex = /[?&]list=([a-zA-Z0-9_-]+)/
+    return playlistRegex.test(url)
+  }
 
   // Load history from localStorage on component mount
   useEffect(() => {
@@ -94,18 +102,15 @@ export default function YouTubePlaylistExporter() {
     localStorage.setItem('youtube-playlist-history', JSON.stringify(newHistory))
   }
 
-  const validatePlaylistUrl = (url: string): boolean => {
-    const playlistRegex = /[?&]list=([a-zA-Z0-9_-]+)/
-    return playlistRegex.test(url)
-  }
-
-  const fetchPlaylistData = async () => {
-    if (!playlistUrl.trim()) {
+  // Initialize from query param
+  const fetchPlaylistData = async (urlOverride?: string) => {
+    const urlToFetch = urlOverride || playlistUrl
+    if (!urlToFetch.trim()) {
       setError("Please enter a YouTube playlist URL")
       return
     }
 
-    if (!validatePlaylistUrl(playlistUrl)) {
+    if (!validatePlaylistUrl(urlToFetch)) {
       setError("Please enter a valid YouTube playlist URL")
       return
     }
@@ -119,7 +124,7 @@ export default function YouTubePlaylistExporter() {
       const { parseDuration, calculateTotalDuration } = await import("@/lib/utils")
       
       // Call the real YouTube API
-      const apiResponse = await getPlaylist(playlistUrl)
+      const apiResponse = await getPlaylist(urlToFetch)
       
       // Transform API response to our Video interface
       const videos: Video[] = apiResponse.items.map((item: any) => {
@@ -129,7 +134,7 @@ export default function YouTubePlaylistExporter() {
         return {
           title: item.videoTitle || item.snippet.title,
           description: item.videoDescription || item.snippet.description || "",
-          thumbnail: item.videoThumbnail || item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url || "",
+          thumbnail: item.snippet.thumbnails?.default?.url || item.snippet.thumbnails?.medium?.url || item.videoThumbnail || item.snippet.thumbnails?.default?.url || "",
           channelName: item.videoChannelTitle || item.snippet.channelTitle || "",
           views: parseInt(item.videoViewCount) || 0,
           likes: parseInt(item.videoLikeCount) || 0,
@@ -159,8 +164,9 @@ export default function YouTubePlaylistExporter() {
        }
 
       setPlaylistData(playlistData)
+      setVisibleCount(6)
       // Save successful URL to history
-      saveToHistory(playlistUrl)
+      saveToHistory(urlToFetch)
       setShowHistory(false)
     } catch (err: any) {
       console.error("Error fetching playlist:", err)
@@ -169,6 +175,16 @@ export default function YouTubePlaylistExporter() {
       setIsLoading(false)
     }
   }
+
+  // Initialize from query param
+  useEffect(() => {
+    const listId = searchParams.get('list')
+    if (listId) {
+      const url = `https://www.youtube.com/playlist?list=${listId}`
+      setPlaylistUrl(url)
+      fetchPlaylistData(url)
+    }
+  }, [searchParams])
 
   const exportData = () => {
     if (!playlistData) return
@@ -392,7 +408,7 @@ ${videos.map(video =>
                    </div>
                  </div>
                 <Button 
-                  onClick={fetchPlaylistData}
+                  onClick={() => fetchPlaylistData()}
                   disabled={isLoading}
                   size="lg"
                   className="h-16 px-8 sm:px-10 rounded-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 min-w-[180px]"
@@ -545,7 +561,7 @@ ${videos.map(video =>
                     Video Preview
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[800px] overflow-y-auto pr-2 custom-scrollbar">
-                    {playlistData.videos.slice(0, 6).map((video, index) => (
+                    {playlistData.videos.slice(0, visibleCount).map((video, index) => (
                       <VideoCard
                         key={index}
                         item={{
@@ -587,11 +603,16 @@ ${videos.map(video =>
                       />
                     ))}
                   </div>
-                  {playlistData.videos.length > 6 && (
+                  {playlistData.videos.length > visibleCount && (
                     <div className="text-center mt-8">
-                      <p className="text-muted-foreground text-sm bg-secondary/50 inline-block px-4 py-2 rounded-full">
-                        ... and {playlistData.videos.length - 6} more videos
-                      </p>
+                      <Button
+                        variant="ghost"
+                        onClick={() => setVisibleCount(prev => Math.min(prev + 12, playlistData.videos.length))}
+                        className="text-muted-foreground text-sm bg-secondary/50 hover:bg-secondary/80 inline-flex items-center px-6 py-2 rounded-full h-auto transition-all hover:scale-105"
+                      >
+                        ... and {playlistData.videos.length - visibleCount} more videos
+                        <ChevronDown className="ml-2 h-4 w-4" />
+                      </Button>
                     </div>
                   )}
                 </div>
@@ -646,5 +667,13 @@ ${videos.map(video =>
 
       <Footer />
     </div>
+  )
+}
+
+export default function YouTubePlaylistExporter() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background"><Navbar /><div className="container mx-auto px-4 py-8 flex justify-center"><Loader2 className="h-8 w-8 animate-spin" /></div><Footer /></div>}>
+      <ExporterContent />
+    </Suspense>
   )
 }

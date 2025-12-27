@@ -52,7 +52,7 @@ export default function HomeClient() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                 </span>
-                v1.4.3
+                v1.4.4
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform opacity-50 group-hover:opacity-100" />
               </Link>
             </div>
@@ -109,6 +109,9 @@ export default function HomeClient() {
             <SearchBar />
           </div>
 
+          {/* Quick Access Section */}
+          <QuickAccess />
+
           {/* Why Use Section - Redesigned */}
           <div className="mb-40">
             <div className="text-center mb-20">
@@ -151,9 +154,6 @@ export default function HomeClient() {
               ))}
             </div>
           </div>
-
-          {/* Quick Access Section */}
-          <QuickAccess />
 
           {/* How the Tool Works - Redesigned */}
           <div id="how-it-works" className="mb-40">
