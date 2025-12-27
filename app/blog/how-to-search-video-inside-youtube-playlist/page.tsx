@@ -65,7 +65,7 @@ export default function BlogPost() {
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light mb-8">
-              It's 2025, and YouTube still hasn't added a search bar to playlists. <br className="hidden md:block"/>We decided to fix that for you.
+              It&apos;s 2025, and YouTube still hasn&apos;t added a search bar to playlists. <br className="hidden md:block"/>We decided to fix that for you.
             </p>
 
             {/* Author & Meta */}
@@ -116,7 +116,7 @@ export default function BlogPost() {
               <div className="relative pl-8 md:pl-10 py-2 border-l-4 border-purple-500/50">
                 <Quote className="absolute top-0 left-0 h-6 w-6 text-purple-500/20 -translate-x-2 -translate-y-2" />
                 <p className="text-xl md:text-2xl font-medium italic text-muted-foreground leading-relaxed">
-                  "Is it just me, or is it completely insane that in 2025, we still can't search for a video within a playlist?"
+                  &quot;Is it just me, or is it completely insane that in 2025, we still can&apos;t search for a video within a playlist?&quot;
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-sm font-semibold text-foreground/80">
                   <span>— Frustrated User on</span>
@@ -162,7 +162,7 @@ export default function BlogPost() {
               </ul>
 
               <p className="text-sm text-muted-foreground italic mt-6 border-t border-red-200/50 dark:border-red-800/20 pt-4">
-                "It feels like we're being told that our video collections are important, but not important enough to be easily navigable."
+                &quot;It feels like we&apos;re being told that our video collections are important, but not important enough to be easily navigable.&quot;
               </p>
             </div>
 
@@ -180,7 +180,7 @@ export default function BlogPost() {
               </p>
 
               <p className="text-lg font-medium text-foreground">
-                That's why we are thrilled to announce <strong>Version 1.4.4</strong>, featuring a dedicated <strong>In-Playlist Video Search Engine</strong>.
+                That&apos;s why we are thrilled to announce <strong>Version 1.4.4</strong>, featuring a dedicated <strong>In-Playlist Video Search Engine</strong>.
               </p>
 
               <figure className="my-12 not-prose">
@@ -231,7 +231,7 @@ export default function BlogPost() {
                   </div>
                   <h4 className="font-bold text-lg mb-2">Unified UI Design</h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Standardized input fields with a modern "Capsule" design, glassmorphism, and breathing gradient glows.
+                    Standardized input fields with a modern &quot;Capsule&quot; design, glassmorphism, and breathing gradient glows.
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-secondary/50 to-secondary/20 p-8 rounded-3xl border border-border/50 hover:border-blue-500/30 transition-all hover:-translate-y-1">
@@ -250,7 +250,7 @@ export default function BlogPost() {
             <div className="mt-20">
               <h2 className="text-2xl font-bold mb-6">Why This Matters</h2>
               <p className="text-lg text-muted-foreground">
-                In an era where we use YouTube for learning and research, efficiency is everything. With V1.4.4, we're not just calculating time; we're <strong>saving your time</strong> by making navigation effortless.
+                In an era where we use YouTube for learning and research, efficiency is everything. With V1.4.4, we&apos;re not just calculating time; we&apos;re <strong>saving your time</strong> by making navigation effortless.
               </p>
 
               <div className="mt-16 relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-purple-600 to-blue-600 p-10 md:p-14 text-center shadow-2xl">
@@ -263,7 +263,7 @@ export default function BlogPost() {
                     Try the New Search Feature Now
                   </h3>
                   <p className="mb-10 text-purple-100 text-lg max-w-xl mx-auto font-medium">
-                    Don't waste another minute scrolling. Paste your playlist link and find exactly what you need in seconds.
+                    Don&apos;t waste another minute scrolling. Paste your playlist link and find exactly what you need in seconds.
                   </p>
                   <Link href="/">
                     <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 font-bold text-lg h-16 px-10 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 group">
