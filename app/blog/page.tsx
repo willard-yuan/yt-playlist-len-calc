@@ -22,6 +22,18 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const blogPosts = [
     {
+      id: 3,
+      title: "How to Search a Video Inside a YouTube Playlist: V1.4.4 New Version Release!",
+      slug: "how-to-search-video-inside-youtube-playlist",
+      excerpt: "Struggling to find a specific video in a massive YouTube playlist? You're not alone. Discover how our latest V1.4.4 update solves this 8-year-old problem with instant playlist searching.",
+      coverImage: "/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_1.webp",
+      publishDate: "2025-12-27",
+      readTime: "5 min read",
+      category: "New Features",
+      tags: ["YouTube Tips", "Product Update", "Search"],
+      featured: true
+    },
+    {
       id: 2,
       title: "Conquer the 46-Hour Marathon: How to Master Your Time and Finish the World's Most Popular YouTube Playlist",
       slug: "conquer-46-hour-marathon-youtube-most-viewed-playlist",

@@ -147,4 +147,19 @@
     </image:image>
   </url>
 
+  <!-- Blog Post - How to Search a Video Inside a YouTube Playlist -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/how-to-search-video-inside-youtube-playlist</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_1.webp</image:loc>
+      <image:title>How to Search a Video Inside a YouTube Playlist</image:title>
+      <image:caption>Frustrated user trying to find a video in a YouTube playlist</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_2.webp</image:loc>
+      <image:title>V1.4.4 Real-Time Search Feature</image:title>
+      <image:caption>New search feature in V1.4.4 showing filtered playlist results</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

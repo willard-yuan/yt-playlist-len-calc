@@ -404,7 +404,7 @@ export default function SearchBar() {
                           <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
                           <Input
                             type="url"
-                            placeholder="Paste YouTube Playlist URL..."
+                            placeholder="https://www.youtube.com/playlist?list=..."
                             className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-full pl-14 pr-40 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10 w-full"
                             disabled={isPending}
                             {...field}
