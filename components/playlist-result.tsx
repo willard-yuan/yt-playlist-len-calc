@@ -587,7 +587,7 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                     {filteredItems.length === 0 && (
                         <div className="col-span-full py-16 text-center text-muted-foreground bg-secondary/20 rounded-3xl border border-dashed border-border/50">
                             <Search className="h-12 w-12 mx-auto mb-4 opacity-20" />
-                            <p className="text-lg font-medium">No videos found matching "{searchQuery}"</p>
+                            <p className="text-lg font-medium">No videos found matching &quot;{searchQuery}&quot;</p>
                             <p className="text-sm opacity-70 mt-1">Try checking your spelling or using different keywords</p>
                             <Button 
                                 variant="link" 

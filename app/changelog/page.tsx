@@ -25,7 +25,7 @@ export default function Changelog() {
       type: "feature",
       title: "UI Unification, New Features & Navigation",
       changes: [
-        <span key="ui">🎨 UI Unification: Standardized inputs with modern 'Capsule' design & glassmorphism</span>,
+        <span key="ui">🎨 UI Unification: Standardized inputs with modern &apos;Capsule&apos; design & glassmorphism</span>,
         "⚡️ Speed Slider: Interactive gradient slider for precise playback control (0.25x - 2x)",
         "🔍 Video Search: Real-time keyword filtering for playlist videos",
         "📚 FAQ Update: Added 8 new comprehensive questions to help users",

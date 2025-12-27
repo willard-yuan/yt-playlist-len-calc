@@ -184,6 +184,7 @@ function ExporterContent() {
       setPlaylistUrl(url)
       fetchPlaylistData(url)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams])
 
   const exportData = () => {
