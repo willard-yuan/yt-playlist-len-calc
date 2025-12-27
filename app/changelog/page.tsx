@@ -20,6 +20,18 @@ export const metadata: Metadata = {
 export default function Changelog() {
   const changelogEntries = [
     {
+      version: "v1.4.4",
+      date: "2025-12-27",
+      type: "feature",
+      title: "Enhanced Navigation & Social Proof",
+      changes: [
+        <span key="layout">Optimized homepage layout: Prioritized <Link href="/#quick-access" className="text-purple-600 hover:underline">Quick Access</Link> section for faster workflow</span>,
+        <span key="testimonials">✨ NEW: Added <Link href="/#testimonials" className="text-purple-600 hover:underline">Testimonials</Link> section featuring user success stories</span>,
+        "Expanded navigation menu with direct links to 'Playlists' and 'Testimonials'",
+        "Improved mobile responsiveness for section ordering and navigation"
+      ]
+    },
+    {
       version: "v1.4.3",
       date: "2025-12-20",
       type: "feature",

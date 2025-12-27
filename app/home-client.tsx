@@ -4,7 +4,9 @@ import Link from "next/link";
 import SearchBar from "@/components/search-bar";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Clock, Play, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import QuickAccess from "@/components/quick-access";
+import Testimonials from "@/components/testimonials";
+import { Clock, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
   const scrollToSection = (id: string) => {
@@ -150,6 +152,9 @@ export default function HomeClient() {
             </div>
           </div>
 
+          {/* Quick Access Section */}
+          <QuickAccess />
+
           {/* How the Tool Works - Redesigned */}
           <div id="how-it-works" className="mb-40">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -261,6 +266,49 @@ export default function HomeClient() {
             </div>
           </div>
 
+          {/* Why Use Section - Redesigned */}
+          <div className="mb-40">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                Why Choose Us?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Powerful features designed to help you manage your content consumption efficiently.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {[
+                {
+                  icon: <Clock className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+                  title: "Precision Timing",
+                  desc: "Get exact duration calculations down to the second for any playlist size.",
+                  bg: "bg-purple-50 dark:bg-purple-900/10"
+                },
+                {
+                  icon: <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
+                  title: "Smart Planning",
+                  desc: "Calculate exactly how long it will take to watch at different playback speeds.",
+                  bg: "bg-blue-50 dark:bg-blue-900/10"
+                },
+                {
+                  icon: <Zap className="h-8 w-8 text-pink-600 dark:text-pink-400" />,
+                  title: "Instant Analysis",
+                  desc: "No waiting time. Get comprehensive insights about your playlist immediately.",
+                  bg: "bg-pink-50 dark:bg-pink-900/10"
+                }
+              ].map((item, i) => (
+                <div key={i} className="group p-10 rounded-[2rem] bg-background border border-border/50 hover:border-border hover:shadow-lg transition-all duration-300">
+                  <div className={`w-16 h-16 ${item.bg} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-lg">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* FAQs Section - Modern Accordion Style */}
           <div id="faq" className="mb-32 scroll-mt-24">
             <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">
@@ -319,6 +367,9 @@ export default function HomeClient() {
               ))}
             </div>
           </div>
+
+          {/* Testimonials Section */}
+          <Testimonials />
         </div>
       </div>
 
