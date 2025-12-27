@@ -23,8 +23,12 @@ export default function Changelog() {
       version: "v1.4.4",
       date: "2025-12-27",
       type: "feature",
-      title: "Enhanced Navigation & Social Proof",
+      title: "UI Unification, New Features & Navigation",
       changes: [
+        <span key="ui">🎨 UI Unification: Standardized inputs with modern 'Capsule' design & glassmorphism</span>,
+        "⚡️ Speed Slider: Interactive gradient slider for precise playback control (0.25x - 2x)",
+        "🔍 Video Search: Real-time keyword filtering for playlist videos",
+        "📚 FAQ Update: Added 8 new comprehensive questions to help users",
         <span key="layout">Optimized homepage layout: Prioritized <Link href="/#quick-access" className="text-purple-600 hover:underline">Quick Access</Link> section for faster workflow</span>,
         <span key="testimonials">✨ NEW: Added <Link href="/#testimonials" className="text-purple-600 hover:underline">Testimonials</Link> section featuring user success stories</span>,
         "Expanded navigation menu with direct links to 'Playlists' and 'Testimonials'",

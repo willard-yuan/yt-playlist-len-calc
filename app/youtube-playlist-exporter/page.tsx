@@ -384,44 +384,45 @@ ${videos.map(video =>
             </div>
             
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-stretch">
-                 <div className="w-full relative group">
-                   <div className="relative flex items-center">
-                     <Search className="absolute left-6 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors" />
-                    <Input
-                      placeholder="https://www.youtube.com/playlist?list=..."
-                      value={playlistUrl}
-                      onChange={(e) => setPlaylistUrl(e.target.value)}
-                      onFocus={() => urlHistory.length > 0 && setShowHistory(true)}
-                      className="h-16 text-base sm:text-lg bg-background border-0 ring-1 ring-border/50 hover:ring-purple-500/30 focus:ring-2 focus:ring-purple-500 focus-visible:ring-purple-500 rounded-full pl-14 pr-12 transition-all duration-300 shadow-sm history-trigger"
-                    />
-                    {urlHistory.length > 0 && (
+              <div className="relative max-w-3xl mx-auto group">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-purple-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                   <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-red-500 transition-colors duration-300" />
+                   <Input
+                     placeholder="https://www.youtube.com/playlist?list=..."
+                     value={playlistUrl}
+                     onChange={(e) => setPlaylistUrl(e.target.value)}
+                     onFocus={() => urlHistory.length > 0 && setShowHistory(true)}
+                     className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-red-500/30 focus:border-red-500 rounded-full pl-14 pr-[220px] transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-red-500/10 w-full history-trigger"
+                   />
+                   
+                   <div className="absolute right-2 top-2 bottom-2 flex items-center gap-2">
+                     {urlHistory.length > 0 && (
                        <Button
                          variant="ghost"
-                         size="sm"
+                         size="icon"
                          onClick={() => setShowHistory(!showHistory)}
-                         className="absolute right-4 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 hover:bg-secondary/50 rounded-full history-trigger"
+                         className="h-10 w-10 rounded-full hover:bg-secondary/80 history-trigger"
                        >
-                         <Clock className="h-4 w-4 text-muted-foreground" />
+                         <Clock className="h-5 w-5 text-muted-foreground" />
                        </Button>
                      )}
+                     <Button 
+                       onClick={() => fetchPlaylistData()}
+                       disabled={isLoading}
+                       className="h-full px-8 rounded-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white font-bold text-base shadow-md transition-all duration-300"
+                     >
+                       {isLoading ? (
+                         <>
+                           <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                           Loading...
+                         </>
+                       ) : (
+                         "Fetch Playlist"
+                       )}
+                     </Button>
                    </div>
-                 </div>
-                <Button 
-                  onClick={() => fetchPlaylistData()}
-                  disabled={isLoading}
-                  size="lg"
-                  className="h-16 px-8 sm:px-10 rounded-full bg-gradient-to-r from-red-600 to-purple-600 hover:from-red-700 hover:to-purple-700 text-white font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 min-w-[180px]"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-                      Loading...
-                    </>
-                  ) : (
-                    "Fetch Playlist"
-                  )}
-                </Button>
+                </div>
               </div>
               
               {/* History Dropdown */}

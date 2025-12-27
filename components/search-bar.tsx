@@ -392,45 +392,45 @@ export default function SearchBar() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {/* Main Search Area */}
               <div className="space-y-4">
-                <div className="flex flex-col md:flex-row gap-4">
-                  <FormField
-                    control={form.control}
-                    name="url"
-                    render={({ field }) => (
-                      <FormItem className="w-full relative group flex-1">
-                        <FormControl>
-                          <div className="relative flex items-center">
-                            <Search className="absolute left-5 text-muted-foreground/60 h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
-                            <Input
-                              type="url"
-                              placeholder="https://www.youtube.com/playlist?list=ID"
-                              className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-2xl pl-12 pr-4 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10"
+              <div className="relative max-w-2xl mx-auto group">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <FormField
+                  control={form.control}
+                  name="url"
+                  render={({ field }) => (
+                    <FormItem className="relative z-10">
+                      <FormControl>
+                        <div className="relative">
+                          <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
+                          <Input
+                            type="url"
+                            placeholder="Paste YouTube Playlist URL..."
+                            className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-full pl-14 pr-40 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10 w-full"
+                            disabled={isPending}
+                            {...field}
+                          />
+                          <div className="absolute right-2 top-2 bottom-2">
+                            <Button
+                              type="submit"
                               disabled={isPending}
-                              {...field}
-                            />
+                              className="h-full px-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-base shadow-md transition-all duration-300"
+                            >
+                              {isPending ? (
+                                <Loader2 className="h-5 w-5 animate-spin" />
+                              ) : (
+                                "Calculate"
+                              )}
+                            </Button>
                           </div>
-                        </FormControl>
-                        <FormMessage className="pl-4" />
-                      </FormItem>
-                    )}
-                  />
+                        </div>
+                      </FormControl>
+                      <FormMessage className="pl-6 mt-2" />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-                  {/* Submit Button */}
-                  <Button
-                    type="submit"
-                    disabled={isPending}
-                    size="lg"
-                    className="h-16 px-8 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-lg shadow-lg hover:shadow-purple-500/25 hover:-translate-y-0.5 transition-all duration-300 min-w-[140px]"
-                  >
-                    {isPending ? (
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                    ) : (
-                      "Calculate"
-                    )}
-                  </Button>
-                </div>
-
-                {/* Secondary Actions Row */}
+              {/* Secondary Actions Row */}
                 <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
                    {/* Example Link */}
                   <button

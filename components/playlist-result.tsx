@@ -3,19 +3,12 @@ import Link from 'next/link';
 import { calculateTotalDuration, parseDuration } from '@/lib/utils';
 import VideoCard from './video-card';
 import { useState, useMemo, useEffect } from 'react';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, ChevronDown, ChevronUp, Sliders, CheckCircle, Download } from 'lucide-react';
+import { Input } from "@/components/ui/input"
+import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, CheckCircle, Download, Search, X } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from './ui/progress';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Button } from './ui/button';
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -33,10 +26,12 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
     const [dailyInvestment, setDailyInvestment] = useState<number>(2) // Default 2 hours
     const [targetDate, setTargetDate] = useState<string>('')
     const [isDrivingDate, setIsDrivingDate] = useState(false)
-    const [isOpenAdvanced, setIsOpenAdvanced] = useState(false)
     
     // Completed Videos State
     const [completedVideoIds, setCompletedVideoIds] = useState<Set<string>>(new Set())
+    
+    // Search State
+    const [searchQuery, setSearchQuery] = useState('')
 
     // Load completed videos from localStorage
     useEffect(() => {
@@ -213,6 +208,18 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
     const shortPercent = (playlistStats.shortVideos / totalVideos) * 100;
     const mediumPercent = (playlistStats.mediumVideos / totalVideos) * 100;
     const longPercent = (playlistStats.longVideos / totalVideos) * 100;
+
+    const filteredItems = useMemo(() => {
+        return playlist.items.map((item, index) => ({
+            ...item,
+            originalIndex: index + 1
+        })).filter(item => {
+            if (!searchQuery.trim()) return true;
+            const query = searchQuery.toLowerCase();
+            return (item.snippet.title || '').toLowerCase().includes(query) || 
+                   (item.snippet.channelTitle || '').toLowerCase().includes(query);
+        });
+    }, [playlist.items, searchQuery]);
 
     return (
         <div id="playlist-analysis" className="space-y-12 w-full mx-auto max-w-7xl">
@@ -420,30 +427,51 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                                 </div>
 
                                 {/* Playback Speed */}
-                                <div className="space-y-4">
+                                <div className="space-y-6">
                                     <div className="flex justify-between items-center">
                                         <label className="text-base font-semibold flex items-center gap-2">
                                             <Zap className="h-4 w-4 text-yellow-500" />
                                             Playback Speed
                                         </label>
-                                        <Badge variant="outline" className="text-sm font-mono">
+                                        <Badge variant="secondary" className="text-sm font-mono bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border-0 px-3">
                                             {speed}x
                                         </Badge>
                                     </div>
-                                    <div className="grid grid-cols-4 gap-2">
-                                        {['1', '1.25', '1.5', '1.75', '2'].map((s) => (
-                                            <button
-                                                key={s}
-                                                onClick={() => handleSpeedChange(s as videoSpeed)}
-                                                className={`py-2 rounded-lg text-sm font-medium transition-all ${
-                                                    speed === s 
-                                                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30' 
-                                                    : 'bg-secondary/50 hover:bg-secondary text-muted-foreground'
-                                                }`}
-                                            >
-                                                {s}x
-                                            </button>
-                                        ))}
+                                    
+                                    <div className="relative pt-2 pb-6 px-1">
+                                        <input 
+                                            type="range" 
+                                            min="0.25" 
+                                            max="2" 
+                                            step="0.25" 
+                                            value={parseFloat(speed)}
+                                            onChange={(e) => handleSpeedChange(e.target.value as videoSpeed)}
+                                            className="w-full h-3 bg-secondary rounded-full appearance-none cursor-pointer accent-purple-600 hover:accent-purple-500 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500/30"
+                                            style={{
+                                                background: `linear-gradient(to right, #9333ea 0%, #9333ea ${((parseFloat(speed) - 0.25) / 1.75) * 100}%, hsl(var(--secondary)) ${((parseFloat(speed) - 0.25) / 1.75) * 100}%, hsl(var(--secondary)) 100%)`
+                                            }}
+                                        />
+                                        
+                                        {/* Tick Labels */}
+                                        <div className="absolute w-full flex justify-between text-xs font-medium text-muted-foreground mt-3 select-none pointer-events-none">
+                                            {/* We need to position these manually to match the values: 0.5, 1, 1.5, 2 */}
+                                            {/* Range is 0.25 to 2.0 (span 1.75) */}
+                                            {/* 0.5 is at ~14.3% */}
+                                            {/* 1.0 is at ~42.9% */}
+                                            {/* 1.5 is at ~71.4% */}
+                                            {/* 2.0 is at 100% */}
+                                            
+                                            {/* To ensure perfect alignment with the thumb, we use a slightly different strategy or absolute positioning */}
+                                            <span className="absolute left-[14.28%] -translate-x-1/2">0.5x</span>
+                                            <span className="absolute left-[42.85%] -translate-x-1/2">1x</span>
+                                            <span className="absolute left-[71.42%] -translate-x-1/2">1.5x</span>
+                                            <span className="absolute left-[100%] -translate-x-1/2">2x</span>
+                                        </div>
+
+                                        {/* Visual Ticks on the bar (optional but nice) */}
+                                        <div className="absolute top-2 w-full h-3 pointer-events-none flex justify-between px-[6px] opacity-0">
+                                             {/* Hidden structural helper if needed, but the labels are enough */}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -524,17 +552,52 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                         Export Playlist Data
                     </Link>
                 </h3>
+
+                <div className="relative mb-12 max-w-2xl mx-auto group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
+                    <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-purple-600 transition-colors duration-300 z-10" />
+                    <Input 
+                        placeholder="Search videos by title..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="relative pl-14 pr-12 h-14 text-base rounded-full bg-background/80 backdrop-blur-sm border-2 border-border/50 shadow-sm hover:shadow-md hover:border-purple-500/30 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-300 z-10 placeholder:text-muted-foreground/50"
+                    />
+                    {searchQuery && (
+                        <button
+                            onClick={() => setSearchQuery('')}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-200 z-10"
+                            aria-label="Clear search"
+                        >
+                            <X className="h-4 w-4" />
+                        </button>
+                    )}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {playlist.items.map((item, index) => (
+                    {filteredItems.map((item) => (
                         <VideoCard 
                             key={item.etag} 
-                            item={{...item, index: index + 1}} 
+                            item={{...item, index: item.originalIndex}} 
                             format={format} 
                             speed={speed} 
                             isCompleted={completedVideoIds.has(item.contentDetails.videoId)}
                             onToggleCompleted={() => toggleCompleted(item.contentDetails.videoId)}
                         />
                     ))}
+                    {filteredItems.length === 0 && (
+                        <div className="col-span-full py-16 text-center text-muted-foreground bg-secondary/20 rounded-3xl border border-dashed border-border/50">
+                            <Search className="h-12 w-12 mx-auto mb-4 opacity-20" />
+                            <p className="text-lg font-medium">No videos found matching "{searchQuery}"</p>
+                            <p className="text-sm opacity-70 mt-1">Try checking your spelling or using different keywords</p>
+                            <Button 
+                                variant="link" 
+                                onClick={() => setSearchQuery('')}
+                                className="mt-4 text-purple-600"
+                            >
+                                Clear Search
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
