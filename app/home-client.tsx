@@ -306,6 +306,34 @@ export default function HomeClient() {
                   answer: "Yes! Once you get the results, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
                 },
                 {
+                  question: "Why would I want to calculate playlist length?",
+                  answer: "Knowing the total length helps you plan your time effectively. Whether you're a student with a lecture playlist, a binge-watcher, or a creator analyzing competitors, our tool gives you the exact time commitment required so you can schedule your viewing sessions efficiently."
+                },
+                {
+                  question: "Can I exclude certain videos from the calculation?",
+                  answer: "Yes! Once the playlist is loaded, you'll see a list of all videos. You can simply uncheck any videos you've already watched or don't want to include, and the total duration will update instantly to reflect your selection."
+                },
+                {
+                  question: "Does this work with private playlists?",
+                  answer: "No, due to YouTube's privacy policies, we cannot access private playlists. However, you can use it with 'Unlisted' playlists if you have the direct link. If you own the private playlist, you can temporarily set it to 'Unlisted' to calculate the length."
+                },
+                {
+                  question: "What if a playlist has unavailable videos?",
+                  answer: "Our tool automatically detects and flags unavailable (deleted or private) videos within a public playlist. While we can't get their exact duration, we alert you to their presence so you know the calculation only includes the currently playable content."
+                },
+                {
+                  question: "Can I use this for my own playlists?",
+                  answer: "Absolutely! As long as your playlist is set to 'Public' or 'Unlisted', you can use this tool to analyze your own content duration, which is great for planning course modules or video series length."
+                },
+                {
+                  question: "Does this work with YouTube Music playlists?",
+                  answer: "Yes, YouTube Music playlists work perfectly with our calculator since they share the same underlying infrastructure as regular YouTube playlists. Just paste the playlist URL to see the total listening time."
+                },
+                {
+                  question: "How often is the data updated?",
+                  answer: "We fetch fresh data directly from YouTube every time you click 'Analyze'. This ensures you always get the most up-to-date information, including recent video additions or duration changes."
+                },
+                {
                   question: "Who can benefit from using this tool?",
                   answer: "This tool is perfect for students planning study sessions, educators organizing course content, content creators managing video series, researchers analyzing video content, and anyone who wants to know how much time they'll need to watch a YouTube playlist before starting."
                 }
@@ -401,6 +429,62 @@ export default function HomeClient() {
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Yes! Once you get the results, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why would I want to calculate playlist length?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Knowing the total length helps you plan your time effectively. Whether you're a student with a lecture playlist, a binge-watcher, or a creator analyzing competitors, our tool gives you the exact time commitment required so you can schedule your viewing sessions efficiently."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I exclude certain videos from the calculation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! Once the playlist is loaded, you'll see a list of all videos. You can simply uncheck any videos you've already watched or don't want to include, and the total duration will update instantly to reflect your selection."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does this work with private playlists?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, due to YouTube's privacy policies, we cannot access private playlists. However, you can use it with 'Unlisted' playlists if you have the direct link. If you own the private playlist, you can temporarily set it to 'Unlisted' to calculate the length."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What if a playlist has unavailable videos?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our tool automatically detects and flags unavailable (deleted or private) videos within a public playlist. While we can't get their exact duration, we alert you to their presence so you know the calculation only includes the currently playable content."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use this for my own playlists?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely! As long as your playlist is set to 'Public' or 'Unlisted', you can use this tool to analyze your own content duration, which is great for planning course modules or video series length."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does this work with YouTube Music playlists?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, YouTube Music playlists work perfectly with our calculator since they share the same underlying infrastructure as regular YouTube playlists. Just paste the playlist URL to see the total listening time."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How often is the data updated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We fetch fresh data directly from YouTube every time you click 'Analyze'. This ensures you always get the most up-to-date information, including recent video additions or duration changes."
                 }
               },
               {
