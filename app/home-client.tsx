@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link";
+
 import SearchBar from "@/components/search-bar";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -42,19 +42,26 @@ export default function HomeClient() {
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-10">
-            {/* Version Badge */}
+            {/* AiRenamify Promo Badge */}
             <div className="flex justify-center -mb-4">
-              <Link 
-                href="/changelog"
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-all duration-300 group"
+              <a 
+                href="https://airenamify.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex p-[1px] rounded-full transition-transform duration-500 hover:scale-105"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-500 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-                </span>
-                v1.4.4
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform opacity-50 group-hover:opacity-100" />
-              </Link>
+                {/* Gradient Border & Breathing Glow */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-30 blur-md animate-pulse" style={{ animationDuration: '4s' }} />
+                
+                {/* Content */}
+                <div className="relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md group-hover:bg-white/90 dark:group-hover:bg-black/90 transition-colors duration-300">
+                  <span className="animate-pulse" style={{ animationDuration: '2s' }}>✨</span>
+                  <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200">
+                    Meet AiRenamify: Organize files with AI →
+                  </span>
+                </div>
+              </a>
             </div>
 
             {/* Main Title */}
