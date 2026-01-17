@@ -49,7 +49,7 @@ export function RandomizerSeoContent() {
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-bold tracking-tight text-foreground">Why Use Our YouTube Playlist Randomizer?</h2>
           <p className="text-lg max-w-2xl mx-auto">
-            YouTube's native shuffle often repeats the same songs. We fixed that.
+            YouTube&apos;s native shuffle often repeats the same songs. We fixed that.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export function RandomizerSeoContent() {
             <div className="md:col-span-4">
               <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-blue-500 ring-4 ring-background md:hidden" />
               <h3 className="text-xl font-semibold text-foreground mb-2">Paste & Load</h3>
-              <p>Paste the link into the box above and hit "Load". We'll fetch all video details instantly.</p>
+              <p>Paste the link into the box above and hit &quot;Load&quot;. We&apos;ll fetch all video details instantly.</p>
             </div>
           </div>
 

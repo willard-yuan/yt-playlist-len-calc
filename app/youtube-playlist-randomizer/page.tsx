@@ -157,6 +157,7 @@ function RandomizerContent() {
     } else if (player && videos.length > 0) {
       player.loadVideoById(videos[currentVideoIndex].resourceId);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videos, currentVideoIndex]);
 
   const onPlayerReady = (event: any) => {
