@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { Search, Play, Pause, SkipBack, SkipForward, RotateCcw, Shuffle, Volume2, Trash2, Repeat, ArrowRight, Music2, ListMusic, Sparkles } from "lucide-react"
+import { Search, Play, Pause, SkipBack, SkipForward, RotateCcw, Shuffle, Volume2, Trash2, Repeat, ArrowRight, ListMusic, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThumbnailImage } from "@/components/thumbnail-image"
+import { RandomizerSeoContent } from "@/components/randomizer-seo-content"
 
 declare global {
   interface Window {
@@ -481,29 +482,7 @@ function RandomizerContent() {
           )}
         </AnimatePresence>
         
-        {/* Empty State / Initial Instructions */}
-        {!videos.length && !isLoading && !error && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-24"
-          >
-            {[
-              { icon: Shuffle, title: "True Random", desc: "Break out of the algorithm bubbles. Shuffle your playlists with a true randomizer." },
-              { icon: ListMusic, title: "Smart Queue", desc: "Easily manage your queue. Remove videos you don't want to see without affecting your actual playlist." },
-              { icon: Music2, title: "Focus Mode", desc: "Distraction-free listening experience designed for music lovers and learners." }
-            ].map((feature, i) => (
-              <div key={i} className="flex flex-col items-center text-center p-6 rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm">
-                <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center mb-4 text-purple-500">
-                  <feature.icon className="h-6 w-6" />
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.desc}</p>
-              </div>
-            ))}
-          </motion.div>
-        )}
+        <RandomizerSeoContent />
       </main>
 
       <Footer />
