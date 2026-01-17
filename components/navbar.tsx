@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
-import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench } from "lucide-react"
+import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
 import {
@@ -20,6 +20,9 @@ export default function Navbar() {
   const getLogoText = () => {
     if (pathname === '/youtube-playlist-exporter') {
       return 'YouTube Playlist Exporter'
+    }
+    if (pathname === '/youtube-playlist-randomizer') {
+      return 'YouTube Playlist Randomizer'
     }
     if (pathname === '/tools-you-may-also-like') {
       return 'Tools You May Also Like'
@@ -112,6 +115,12 @@ export default function Navbar() {
                   <Link href="/youtube-playlist-exporter" className="flex items-center space-x-2">
                     <Youtube className="h-4 w-4" />
                     <span>YouTube Playlist Exporter</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/youtube-playlist-randomizer" className="flex items-center space-x-2">
+                    <Shuffle className="h-4 w-4" />
+                    <span>YouTube Playlist Randomizer</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -231,6 +240,14 @@ export default function Navbar() {
                 >
                   <Youtube className="h-4 w-4" />
                   <span>YouTube Playlist Exporter</span>
+                </Link>
+                <Link
+                  href="/youtube-playlist-randomizer"
+                  className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Shuffle className="h-4 w-4" />
+                  <span>YouTube Playlist Randomizer</span>
                 </Link>
                 <Link
                   href="/tools-you-may-also-like"
