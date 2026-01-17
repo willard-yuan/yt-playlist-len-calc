@@ -141,6 +141,17 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             
+            {/* X (Twitter) Link */}
+            <a 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-muted-foreground hover:text-foreground transition-colors duration-200" 
+              href="https://x.com/i/lists/2012343447857033614" 
+              aria-label="Follow us on X"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            
             <ModeToggle />
           </div>
 
@@ -239,6 +250,18 @@ export default function Navbar() {
               >
                 Changelog
               </Link>
+
+              {/* X (Twitter) Link */}
+              <a
+                href="https://x.com/i/lists/2012343447857033614"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                <span>Follow on X</span>
+              </a>
             </div>
           </div>
         )}
