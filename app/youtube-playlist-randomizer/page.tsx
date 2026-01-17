@@ -34,22 +34,42 @@ interface PlaylistData {
   videos: Video[]
 }
 
-function VideoThumbnail({ src, alt, isCurrent }: { src: string, alt: string, isCurrent: boolean }) {
-  const [imgSrc, setImgSrc] = useState(src)
-  
+function ThumbnailImage({ video, isCurrent }: { video: Video, isCurrent: boolean }) {
+  const [src, setSrc] = useState(video.thumbnail);
+  const [retryCount, setRetryCount] = useState(0);
+
   useEffect(() => {
-    setImgSrc(src)
-  }, [src])
-  
+    setSrc(video.thumbnail);
+    setRetryCount(0);
+  }, [video.thumbnail]);
+
+  const handleError = () => {
+    if (retryCount >= 3) return; // Stop after 3 attempts
+
+    const nextRetry = retryCount + 1;
+    setRetryCount(nextRetry);
+
+    if (nextRetry === 1) {
+       // First fallback: Try HQ Default from standard domain
+       setSrc(`https://i.ytimg.com/vi/${video.resourceId}/hqdefault.jpg`);
+    } else if (nextRetry === 2) {
+       // Second fallback: Try User suggested domain/format
+       setSrc(`https://img.youtube.com/vi/${video.resourceId}/0.jpg`);
+    } else {
+       // Final fallback: Low res default
+       setSrc(`https://i.ytimg.com/vi/${video.resourceId}/default.jpg`);
+    }
+  };
+
   return (
     <Image 
-      src={imgSrc || "https://i.ytimg.com/img/no_thumbnail.jpg"} 
-      alt={alt} 
+      src={src} 
+      alt={video.title} 
       fill 
       className={cn("object-cover transition-transform duration-500", isCurrent ? "scale-105" : "group-hover:scale-105")}
-      onError={() => setImgSrc("https://i.ytimg.com/img/no_thumbnail.jpg")}
+      onError={handleError}
     />
-  )
+  );
 }
 
 function RandomizerContent() {
@@ -106,7 +126,12 @@ function RandomizerContent() {
         id: item.id,
         title: item.videoTitle || item.snippet.title,
         channelName: item.videoChannelTitle || item.snippet.channelTitle || "",
-        thumbnail: item.videoThumbnail || item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url || "",
+        thumbnail: item.videoThumbnail || 
+                  item.snippet.thumbnails?.maxres?.url || 
+                  item.snippet.thumbnails?.high?.url || 
+                  item.snippet.thumbnails?.medium?.url || 
+                  item.snippet.thumbnails?.default?.url || 
+                  `https://i.ytimg.com/vi/${item.contentDetails.videoId}/hqdefault.jpg`,
         durationInSeconds: parseDuration(item.videoDuration),
         resourceId: item.contentDetails.videoId
       }))
@@ -441,9 +466,8 @@ function RandomizerContent() {
                         }}
                       >
                         <div className="relative w-28 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-muted shadow-sm group-hover:shadow-md transition-shadow">
-                          <VideoThumbnail 
-                            src={video.thumbnail} 
-                            alt={video.title} 
+                          <ThumbnailImage 
+                            video={video} 
                             isCurrent={isCurrent}
                           />
                           {isCurrent && (

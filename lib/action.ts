@@ -55,7 +55,11 @@ export async function getPlaylist(url: string) {
         if (item) {
           item.videoTitle = video.snippet.title;
           item.videoDescription = video.snippet.description;
-          item.videoThumbnail = video.snippet.thumbnails.medium?.url || video.snippet.thumbnails.default?.url;
+          item.videoThumbnail = 
+            video.snippet.thumbnails.maxres?.url || 
+            video.snippet.thumbnails.high?.url || 
+            video.snippet.thumbnails.medium?.url || 
+            video.snippet.thumbnails.default?.url;
           item.videoDuration = video.contentDetails.duration;
           item.videoChannelTitle = video.snippet.channelTitle;
           item.videoPublishedAt = video.snippet.publishedAt;
@@ -128,7 +132,11 @@ export async function getPlaylistByParams(
         if (item) {
           item.videoTitle = video.snippet.title;
           item.videoDescription = video.snippet.description;
-          item.videoThumbnail = video.snippet.thumbnails.medium?.url || video.snippet.thumbnails.default?.url;
+          item.videoThumbnail = 
+            video.snippet.thumbnails.maxres?.url || 
+            video.snippet.thumbnails.high?.url || 
+            video.snippet.thumbnails.medium?.url || 
+            video.snippet.thumbnails.default?.url;
           item.videoDuration = video.contentDetails.duration;
           item.videoChannelTitle = video.snippet.channelTitle;
           item.videoPublishedAt = video.snippet.publishedAt;
