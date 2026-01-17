@@ -100,6 +100,7 @@ export default function BlogPost() {
                   src="/YouTube_Playlist_Length_Calculator_1.png" 
                   alt="YouTube Playlist Length Calculator Interface - Main Dashboard"
                   fill
+                  sizes="(max-width: 768px) 100vw, 768px"
                   className="rounded-2xl shadow-2xl border border-border/50 object-cover"
                 />
               </div>

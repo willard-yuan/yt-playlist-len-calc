@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense, useRef } from "react"
 import { useSearchParams } from "next/navigation"
-import Image from "next/image"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -12,6 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { Search, Play, Pause, SkipBack, SkipForward, RotateCcw, Shuffle, Volume2, Trash2, Repeat, ArrowRight, Music2, ListMusic, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { ThumbnailImage } from "@/components/thumbnail-image"
 
 declare global {
   interface Window {
@@ -32,44 +32,6 @@ interface Video {
 interface PlaylistData {
   title: string
   videos: Video[]
-}
-
-function ThumbnailImage({ video, isCurrent }: { video: Video, isCurrent: boolean }) {
-  const [src, setSrc] = useState(video.thumbnail);
-  const [retryCount, setRetryCount] = useState(0);
-
-  useEffect(() => {
-    setSrc(video.thumbnail);
-    setRetryCount(0);
-  }, [video.thumbnail]);
-
-  const handleError = () => {
-    if (retryCount >= 3) return; // Stop after 3 attempts
-
-    const nextRetry = retryCount + 1;
-    setRetryCount(nextRetry);
-
-    if (nextRetry === 1) {
-       // First fallback: Try HQ Default from standard domain
-       setSrc(`https://i.ytimg.com/vi/${video.resourceId}/hqdefault.jpg`);
-    } else if (nextRetry === 2) {
-       // Second fallback: Try User suggested domain/format
-       setSrc(`https://img.youtube.com/vi/${video.resourceId}/0.jpg`);
-    } else {
-       // Final fallback: Low res default
-       setSrc(`https://i.ytimg.com/vi/${video.resourceId}/default.jpg`);
-    }
-  };
-
-  return (
-    <Image 
-      src={src} 
-      alt={video.title} 
-      fill 
-      className={cn("object-cover transition-transform duration-500", isCurrent ? "scale-105" : "group-hover:scale-105")}
-      onError={handleError}
-    />
-  );
 }
 
 function RandomizerContent() {
@@ -467,8 +429,11 @@ function RandomizerContent() {
                       >
                         <div className="relative w-28 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-muted shadow-sm group-hover:shadow-md transition-shadow">
                           <ThumbnailImage 
-                            video={video} 
-                            isCurrent={isCurrent}
+                            src={video.thumbnail} 
+                            alt={video.title} 
+                            videoId={video.resourceId}
+                            className="absolute inset-0"
+                            imgClassName={cn("transition-transform duration-500", isCurrent ? "scale-105" : "group-hover:scale-105")}
                           />
                           {isCurrent && (
                             <div className="absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-[1px]">

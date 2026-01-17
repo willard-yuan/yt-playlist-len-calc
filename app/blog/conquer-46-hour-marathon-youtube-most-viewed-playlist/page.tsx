@@ -106,6 +106,7 @@ export default function BlogPost() {
                   src="/blog-images/youtube-most-viewed-videos-of-all-time.webp" 
                   alt="Most Viewed Videos of All Time Playlist Analysis Dashboard"
                   fill
+                  sizes="(max-width: 768px) 100vw, 768px"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>

@@ -95,6 +95,7 @@ export default function BlogPost() {
               src="/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_1.webp" 
               alt="Frustrated user trying to find a video in a YouTube playlist" 
               fill
+              sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover transition-transform duration-1000 group-hover:scale-105"
               priority
             />

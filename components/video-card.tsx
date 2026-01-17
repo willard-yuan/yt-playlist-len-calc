@@ -1,12 +1,11 @@
 import { PlaylistItemListResponse, videoFormat, videoSpeed } from '@/lib/types'
 import { Card, CardContent } from "@/components/ui/card"
-import Image from 'next/image'
 import { calculateTotalDuration, parseDuration } from '@/lib/utils'
-import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles, Video, CheckCircle, Circle } from 'lucide-react'
+import { ExternalLink, Clock, Calendar, Play, Eye, TrendingUp, Timer, Hash, User2, Sparkles, CheckCircle, Circle } from 'lucide-react'
 import { Badge } from './ui/badge'
 import { Button } from './ui/button'
-import { useState } from 'react'
 import { cn } from '@/lib/utils'
+import { ThumbnailImage } from './thumbnail-image'
 
 export default function VideoCard({ item, format, speed, isCompleted = false, onToggleCompleted }: { 
     item: PlaylistItemListResponse['items'][0] & { index: number }, 
@@ -15,11 +14,6 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
     isCompleted?: boolean,
     onToggleCompleted?: () => void
 }) {
-    const [imageError, setImageError] = useState(false)
-    const [imageLoading, setImageLoading] = useState(true)
-    const [retryCount, setRetryCount] = useState(0)
-    const maxRetries = 2
-    
     const videoTitle = item.snippet.title.length > 70 ? 
         item.snippet.title.substring(0, 70) + '...' : 
         item.snippet.title
@@ -82,45 +76,13 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
                     "relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 transition-all duration-300",
                     isCompleted && "grayscale-[0.3]"
                 )}>
-                    {imageUrl && !imageError ? (
-                        <>
-                            {imageLoading && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-                                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
-                                </div>
-                            )}
-                            <Image 
-                                src={imageUrl} 
-                                alt={item.snippet.title} 
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="object-cover group-hover:scale-105 transition-transform duration-300"
-                                onLoad={() => setImageLoading(false)}
-                                onError={() => {
-                                    if (retryCount < maxRetries) {
-                                        setRetryCount(prev => prev + 1)
-                                        // Retry after a short delay
-                                        setTimeout(() => {
-                                            setImageLoading(true)
-                                            setImageError(false)
-                                        }, 1000)
-                                    } else {
-                                        setImageError(true)
-                                        setImageLoading(false)
-                                    }
-                                }}
-                            />
-                        </>
-                    ) : (
-                        <div className="flex flex-col h-full items-center justify-center bg-gray-100 dark:bg-gray-800">
-                            <Video className="h-12 w-12 text-gray-400 mb-2" />
-                            {retryCount > 0 && (
-                                <p className="text-xs text-gray-500">
-                                    {retryCount < maxRetries ? `Retrying... (${retryCount}/${maxRetries})` : 'Load Failed'}
-                                </p>
-                            )}
-                        </div>
-                    )}
+                    <ThumbnailImage 
+                        src={imageUrl} 
+                        alt={item.snippet.title} 
+                        videoId={item.contentDetails.videoId}
+                        className="absolute inset-0"
+                        imgClassName="group-hover:scale-105 transition-transform duration-300"
+                    />
                     
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
