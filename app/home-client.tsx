@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import QuickAccess from "@/components/quick-access";
 import Testimonials from "@/components/testimonials";
+import LatestPosts from "@/components/latest-posts";
 import { Clock, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
@@ -310,7 +311,7 @@ export default function HomeClient() {
                 },
                 {
                   question: "Can I share the calculated duration?",
-                  answer: "Yes! Once you get the results, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
+                  answer: "Yes! Once the results are generated, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
                 },
                 {
                   question: "Why would I want to calculate playlist length?",
@@ -359,6 +360,9 @@ export default function HomeClient() {
               ))}
             </div>
           </div>
+
+          {/* Latest Posts Section */}
+          <LatestPosts />
 
           {/* Testimonials Section */}
           <Testimonials />
