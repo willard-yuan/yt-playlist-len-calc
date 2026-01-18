@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Youtube, Download, FileText, FileSpreadsheet, Bookmark, Loader2, Clock, X, Search, Video as VideoIcon, ChevronDown } from "lucide-react"
 import VideoCard from "@/components/video-card"
+import { ExporterSeoContent } from "@/components/exporter-seo-content"
 
 interface Video {
   title: string
@@ -664,6 +665,8 @@ ${videos.map(video =>
               </p>
             </div>
           </div>
+          
+          <ExporterSeoContent />
         </div>
       </main>
 

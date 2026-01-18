@@ -6,7 +6,9 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import QuickAccess from "@/components/quick-access";
 import Testimonials from "@/components/testimonials";
+import { ChangelogPreview } from "@/components/changelog-preview";
 import LatestPosts from "@/components/latest-posts";
+import { OtherToolsSection } from "@/components/other-tools-section";
 import { Clock, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
@@ -361,11 +363,17 @@ export default function HomeClient() {
             </div>
           </div>
 
+          {/* Other Tools Section */}
+          <OtherToolsSection />
+
           {/* Latest Posts Section */}
           <LatestPosts />
 
           {/* Testimonials Section */}
           <Testimonials />
+
+          {/* Changelog Section */}
+          <ChangelogPreview />
         </div>
       </div>
 

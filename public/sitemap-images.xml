@@ -102,6 +102,16 @@
     </image:image>
   </url>
 
+  <!-- YouTube Playlist Randomizer Page -->
+  <url>
+    <loc>https://ytplaylistlength.pro/youtube-playlist-randomizer</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/favicon.ico</image:loc>
+      <image:title>YouTube Playlist Randomizer Tool</image:title>
+      <image:caption>Shuffle and randomize YouTube playlists for a fresh viewing experience</image:caption>
+    </image:image>
+  </url>
+
   <!-- Blog Page -->
   <url>
     <loc>https://ytplaylistlength.pro/blog</loc>

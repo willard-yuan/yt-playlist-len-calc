@@ -5,7 +5,7 @@ import VideoCard from './video-card';
 import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from "@/components/ui/input"
-import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, CheckCircle, Download, Search, X } from 'lucide-react';
+import { Clock, PlayCircle, User, TrendingUp, Activity, Calendar as CalendarIcon, Target, Zap, CheckCircle, Download, Search, X, Shuffle } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from './ui/progress';
@@ -545,8 +545,15 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                         </Badge>
                     )}
                     <Link 
+                        href="/youtube-playlist-randomizer"
+                        className="ml-auto flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-blue-100 dark:hover:bg-blue-900/40"
+                    >
+                        <Shuffle className="h-4 w-4" />
+                        Randomize Order
+                    </Link>
+                    <Link 
                         href={`/youtube-playlist-exporter${playlist.items[0]?.snippet?.playlistId ? `?list=${playlist.items[0].snippet.playlistId}` : ''}`}
-                        className="ml-auto flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 bg-purple-50 dark:bg-purple-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-purple-100 dark:hover:bg-purple-900/40"
+                        className="flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 bg-purple-50 dark:bg-purple-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-purple-100 dark:hover:bg-purple-900/40"
                     >
                         <Download className="h-4 w-4" />
                         Export Playlist Data
