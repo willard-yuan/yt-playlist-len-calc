@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowRight, Star } from "lucide-react";
@@ -62,12 +61,11 @@ export default function BlogPage() {
                 <div className="md:flex items-stretch">
                   {/* Cover Image */}
                   <div className="md:w-2/5 relative overflow-hidden min-h-[250px] md:min-h-0">
-                    <Image
+                    <img
                       src={post.coverImage}
                       alt={`Cover image for ${post.title}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r md:from-transparent md:to-black/10 opacity-60" />
                     

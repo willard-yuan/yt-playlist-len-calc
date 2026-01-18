@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowLeft, Star, Youtube, PlayCircle, BarChart, CheckCircle2 } from "lucide-react";
@@ -102,12 +101,11 @@ export default function BlogPost() {
             <div className="my-12 relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative aspect-video rounded-2xl overflow-hidden bg-secondary/50">
-                <Image 
+                <img 
                   src="/blog-images/youtube-most-viewed-videos-of-all-time.webp" 
                   alt="Most Viewed Videos of All Time Playlist Analysis Dashboard"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 768px"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <p className="text-sm text-center text-muted-foreground mt-2 italic">
@@ -222,11 +220,11 @@ export default function BlogPost() {
             <div className="my-12 relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative aspect-video rounded-2xl overflow-hidden bg-secondary/50">
-                <Image 
+                <img 
                   src="/blog-images/youtube-most-viewed-playlist-analysis.webp" 
                   alt="Active Planning Feature for YouTube Playlists"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <p className="text-sm text-center text-muted-foreground mt-2 italic">
@@ -264,11 +262,11 @@ export default function BlogPost() {
             <div className="my-12 relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
               <div className="relative aspect-video rounded-2xl overflow-hidden bg-secondary/50">
-                <Image 
+                <img 
                   src="/blog-images/youtube-most-viewed-video-list.webp" 
                   alt="List of Most Viewed YouTube Videos"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <p className="text-sm text-center text-muted-foreground mt-2 italic">
