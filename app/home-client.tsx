@@ -77,7 +77,7 @@ export default function HomeClient() {
             </h1>
 
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
-              Master your time. Get precise duration analytics for any YouTube playlist instantly.
+              Master your time. Get precise duration analytics for any YouTube playlist instantly. Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.
             </p>
 
             {/* Action Buttons */}

@@ -103,7 +103,15 @@
   <!-- Blog Post - How to Search a Video Inside a YouTube Playlist -->
   <url>
     <loc>https://ytplaylistlength.pro/blog/how-to-search-video-inside-youtube-playlist</loc>
-    <lastmod>2025-12-27</lastmod>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Post - How to Shuffle YouTube Playlists (2026 Update) -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/how-to-shuffle-youtube-playlists-2026-update</loc>
+    <lastmod>2026-01-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

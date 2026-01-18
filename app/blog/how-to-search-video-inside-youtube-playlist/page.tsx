@@ -190,6 +190,7 @@ export default function BlogPost() {
                     src="/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_2.webp" 
                     alt="New search feature in V1.4.4 showing filtered playlist results" 
                     fill
+                    sizes="(max-width: 768px) 100vw, 800px"
                     className="object-cover transition-all duration-700 group-hover:scale-[1.02]"
                   />
                 </div>

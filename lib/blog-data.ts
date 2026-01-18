@@ -13,6 +13,18 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 4,
+    title: "How to Shuffle YouTube Playlists (2026 Update): What’s New in Randomizer V1.4.5",
+    slug: "how-to-shuffle-youtube-playlists-2026-update",
+    excerpt: "Stop settling for 'fake shuffle.' Discover how our latest V1.4.5 update brings true mathematical randomness, persistent sorting, and privacy-first design to your YouTube listening experience.",
+    coverImage: "/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now).webp",
+    publishDate: "2026-01-18",
+    readTime: "6 min read",
+    category: "Product Update",
+    tags: ["YouTube Playlist Randomizer", "Randomize Playlist", "Shuffle YouTube Playlist"],
+    featured: true
+  },
+  {
     id: 3,
     title: "How to Search a Video Inside a YouTube Playlist: V1.4.4 New Version Release!",
     slug: "how-to-search-video-inside-youtube-playlist",

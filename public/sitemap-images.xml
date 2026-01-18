@@ -172,4 +172,34 @@
     </image:image>
   </url>
 
+  <!-- Blog Post - How to Shuffle YouTube Playlists (2026 Update) -->
+  <url>
+    <loc>https://ytplaylistlength.pro/blog/how-to-shuffle-youtube-playlists-2026-update</loc>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now).webp</image:loc>
+      <image:title>Step 1: Copy YouTube Playlist URL</image:title>
+      <image:caption>Copy the URL of the YouTube playlist you want to shuffle</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now)_original.webp</image:loc>
+      <image:title>Step 4: Shuffled Playlist View</image:title>
+      <image:caption>View of the playlist after being shuffled by the randomizer</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now)_shuffile.webp</image:loc>
+      <image:title>Step 4: Original Order View</image:title>
+      <image:caption>Restoring the original playlist order with a single click</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/video_play_with_playlist_randomizer_demo.webp</image:loc>
+      <image:title>Step 5: Direct Video Playback</image:title>
+      <image:caption>Playing videos directly within the randomizer interface</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ytplaylistlength.pro/blog-images/randomize_order_at_homepage.webp</image:loc>
+      <image:title>Homepage Randomize Button</image:title>
+      <image:caption>Quick access to the randomizer tool from the homepage</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
