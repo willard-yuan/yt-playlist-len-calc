@@ -48,6 +48,7 @@ function RandomizerContent() {
   const [player, setPlayer] = useState<any>(null)
   const [isShuffled, setIsShuffled] = useState(false)
   const [originalVideos, setOriginalVideos] = useState<Video[]>([])
+  const [sortMode, setSortMode] = useState<'reshuffle' | 'original' | 'title' | 'artist'>('reshuffle')
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -213,22 +214,47 @@ function RandomizerContent() {
     }
   }
 
-  const shuffleVideos = () => {
-    const shuffled = [...videos].sort(() => Math.random() - 0.5);
-    setVideos(shuffled);
-    setCurrentVideoIndex(0);
-    setIsShuffled(true);
-  }
+  const handleSort = (mode: 'reshuffle' | 'original' | 'title' | 'artist') => {
+    setSortMode(mode);
+    const currentVideo = videos[currentVideoIndex];
+    let newVideos: Video[] = [];
 
-  const resetToOriginal = () => {
-    setVideos([...originalVideos]);
-    setCurrentVideoIndex(0);
-    setIsShuffled(false);
+    switch (mode) {
+      case 'reshuffle':
+        newVideos = [...originalVideos].sort(() => Math.random() - 0.5);
+        setIsShuffled(true);
+        break;
+      case 'original':
+        newVideos = [...originalVideos];
+        setIsShuffled(false);
+        break;
+      case 'title':
+        newVideos = [...originalVideos].sort((a, b) => a.title.localeCompare(b.title));
+        setIsShuffled(false);
+        break;
+      case 'artist':
+        newVideos = [...originalVideos].sort((a, b) => a.channelName.localeCompare(b.channelName));
+        setIsShuffled(false);
+        break;
+    }
+
+    setVideos(newVideos);
+
+    if (currentVideo) {
+      const newIndex = newVideos.findIndex(v => v.id === currentVideo.id);
+      if (newIndex !== -1) {
+        setCurrentVideoIndex(newIndex);
+      } else {
+        setCurrentVideoIndex(0);
+      }
+    }
   }
 
   const removeVideo = (id: string) => {
     const newVideos = videos.filter(v => v.id !== id);
     setVideos(newVideos);
+    setOriginalVideos(prev => prev.filter(v => v.id !== id));
+    
     if (currentVideoIndex >= newVideos.length) {
       setCurrentVideoIndex(Math.max(0, newVideos.length - 1));
     }
@@ -378,31 +404,57 @@ function RandomizerContent() {
                 {/* Playlist Header */}
                 <div className="p-4 border-b border-border/50 bg-card/50 backdrop-blur-md z-10 space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-foreground flex items-center gap-2">
-                      <ListMusic className="h-4 w-4 text-purple-500" />
-                      Up Next
+                    <h3 className="font-semibold text-foreground flex items-center gap-2 line-clamp-1 mr-2" title={playlistData?.title || "Playlist"}>
+                      <ListMusic className="h-4 w-4 text-purple-500 flex-shrink-0" />
+                      {playlistData?.title || "Playlist"}
                     </h3>
-                    <div className="flex items-center gap-1">
-                       <Button 
-                        variant={isShuffled ? "secondary" : "ghost"} 
-                        size="sm" 
-                        onClick={shuffleVideos}
-                        className={cn("h-8 px-2 text-xs gap-1.5", isShuffled && "bg-purple-500/10 text-purple-500 hover:bg-purple-500/20")}
-                      >
-                        <Shuffle className="h-3.5 w-3.5" />
-                        Shuffle
-                      </Button>
-                    </div>
                   </div>
                   
-                  <div className="relative">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                      placeholder="Filter videos..." 
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-9 pl-9 bg-background/50 border-border/50 focus-visible:ring-purple-500/50"
-                    />
+                  <div className="space-y-3">
+                    <div className="relative">
+                      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                      <Input 
+                        placeholder="Search..." 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="h-9 pl-9 bg-background/50 border-border/50 focus-visible:ring-purple-500/50"
+                      />
+                    </div>
+
+                    <div className="flex gap-2 overflow-x-auto pb-1">
+                      <Button 
+                        variant={sortMode === 'reshuffle' ? "secondary" : "outline"} 
+                        size="sm" 
+                        onClick={() => handleSort('reshuffle')}
+                        className={cn("h-8 text-xs font-medium flex-shrink-0", sortMode === 'reshuffle' && "bg-secondary hover:bg-secondary/80")}
+                      >
+                        Reshuffle
+                      </Button>
+                      <Button 
+                        variant={sortMode === 'original' ? "secondary" : "outline"} 
+                        size="sm" 
+                        onClick={() => handleSort('original')}
+                        className={cn("h-8 text-xs font-medium flex-shrink-0", sortMode === 'original' && "bg-secondary hover:bg-secondary/80")}
+                      >
+                        Original
+                      </Button>
+                      <Button 
+                        variant={sortMode === 'title' ? "secondary" : "outline"} 
+                        size="sm" 
+                        onClick={() => handleSort('title')}
+                        className={cn("h-8 text-xs font-medium flex-shrink-0", sortMode === 'title' && "bg-secondary hover:bg-secondary/80")}
+                      >
+                        Title
+                      </Button>
+                      <Button 
+                        variant={sortMode === 'artist' ? "secondary" : "outline"} 
+                        size="sm" 
+                        onClick={() => handleSort('artist')}
+                        className={cn("h-8 text-xs font-medium flex-shrink-0", sortMode === 'artist' && "bg-secondary hover:bg-secondary/80")}
+                      >
+                        Artist
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
@@ -461,7 +513,7 @@ function RandomizerContent() {
                         <Button 
                           variant="ghost" 
                           size="icon" 
-                          className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-all self-center text-muted-foreground hover:text-red-500 hover:bg-red-500/10 rounded-full"
+                          className="h-8 w-8 transition-all self-center text-muted-foreground/40 hover:text-red-500 hover:bg-red-500/10 rounded-full"
                           onClick={(e) => {
                             e.stopPropagation();
                             removeVideo(video.id);

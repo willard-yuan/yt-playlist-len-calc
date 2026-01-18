@@ -110,17 +110,17 @@ export default function Navbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="end" className="w-[280px]">
+                  <DropdownMenuItem asChild>
+                  <Link href="/youtube-playlist-randomizer" className="flex items-center space-x-2">
+                    <Shuffle className="h-4 w-4" />
+                    <span>YouTube Playlist Randomizer</span>
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/youtube-playlist-exporter" className="flex items-center space-x-2">
                     <Youtube className="h-4 w-4" />
                     <span>YouTube Playlist Exporter</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/youtube-playlist-randomizer" className="flex items-center space-x-2">
-                    <Shuffle className="h-4 w-4" />
-                    <span>YouTube Playlist Randomizer</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

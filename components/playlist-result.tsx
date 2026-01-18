@@ -16,6 +16,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { format as formatDate } from "date-fns"
 import { cn } from "@/lib/utils"
 
@@ -32,6 +38,7 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
     
     // Search State
     const [searchQuery, setSearchQuery] = useState('')
+    const [playingVideoId, setPlayingVideoId] = useState<string | null>(null)
 
     // Load completed videos from localStorage
     useEffect(() => {
@@ -589,6 +596,7 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                             speed={speed} 
                             isCompleted={completedVideoIds.has(item.contentDetails.videoId)}
                             onToggleCompleted={() => toggleCompleted(item.contentDetails.videoId)}
+                            onPlay={() => setPlayingVideoId(item.contentDetails.videoId)}
                         />
                     ))}
                     {filteredItems.length === 0 && (
@@ -607,6 +615,25 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                     )}
                 </div>
             </div>
+
+            <Dialog open={!!playingVideoId} onOpenChange={(open) => !open && setPlayingVideoId(null)}>
+                <DialogContent className="max-w-5xl p-0 overflow-hidden bg-black border-gray-800 pt-10 [&>button]:top-2 [&>button]:right-2 [&>button]:text-white/70 [&>button]:hover:text-white [&>button]:bg-white/10 [&>button]:hover:bg-white/20 [&>button]:w-8 [&>button]:h-8 [&>button]:rounded-full [&>button]:p-1.5 [&>button]:transition-all">
+                    <DialogHeader className="sr-only">
+                        <DialogTitle>Video Player</DialogTitle>
+                    </DialogHeader>
+                    {playingVideoId && (
+                        <div className="relative aspect-video w-full bg-black">
+                            <iframe
+                                src={`https://www.youtube.com/embed/${playingVideoId}?autoplay=1&rel=0`}
+                                title="YouTube video player"
+                                className="absolute inset-0 w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            />
+                        </div>
+                    )}
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

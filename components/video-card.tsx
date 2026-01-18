@@ -7,12 +7,13 @@ import { Button } from './ui/button'
 import { cn } from '@/lib/utils'
 import { ThumbnailImage } from './thumbnail-image'
 
-export default function VideoCard({ item, format, speed, isCompleted = false, onToggleCompleted }: { 
+export default function VideoCard({ item, format, speed, isCompleted = false, onToggleCompleted, onPlay }: { 
     item: PlaylistItemListResponse['items'][0] & { index: number }, 
     format: videoFormat, 
     speed: videoSpeed,
     isCompleted?: boolean,
-    onToggleCompleted?: () => void
+    onToggleCompleted?: () => void,
+    onPlay?: () => void
 }) {
     const videoTitle = item.snippet.title.length > 70 ? 
         item.snippet.title.substring(0, 70) + '...' : 
@@ -72,10 +73,13 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
         )}>
             <div className="relative">
                 {/* Thumbnail */}
-                <div className={cn(
-                    "relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 transition-all duration-300",
-                    isCompleted && "grayscale-[0.3]"
-                )}>
+                <div 
+                    className={cn(
+                        "relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 transition-all duration-300 cursor-pointer group/thumb",
+                        isCompleted && "grayscale-[0.3]"
+                    )}
+                    onClick={onPlay}
+                >
                     <ThumbnailImage 
                         src={imageUrl} 
                         alt={item.snippet.title} 
@@ -85,7 +89,14 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
                     />
                     
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover/thumb:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                        <div className="h-14 w-14 rounded-full bg-white/90 dark:bg-white/90 flex items-center justify-center shadow-lg backdrop-blur-sm">
+                            <Play className="h-7 w-7 text-purple-600 fill-purple-600 ml-1" />
+                        </div>
+                    </div>
                     
                     {/* Video Number Badge */}
                     <Badge 
@@ -201,15 +212,46 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
 
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-2 mt-auto pt-2">
+                    {/* Primary Play Action & External Link */}
+                    <div className="flex items-center gap-2">
+                        <Button
+                            className={cn(
+                                "flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-sm transition-all hover:shadow-md group/play h-9",
+                                isCompleted && "opacity-90 saturate-50"
+                            )}
+                            onClick={onPlay}
+                        >
+                            <Play className="h-4 w-4 mr-2 fill-white/20 transition-transform group-hover/play:scale-110" />
+                            Watch Now
+                        </Button>
+
+                        <Button
+                            asChild
+                            variant="outline"
+                            size="icon"
+                            className="shrink-0 h-9 w-9 text-muted-foreground hover:text-red-600 hover:border-red-200 dark:hover:border-red-900/50 transition-colors"
+                            title="Open in YouTube"
+                        >
+                            <a
+                                href={`https://youtube.com/watch?v=${item.contentDetails.videoId}&list=${item.snippet.playlistId}&index=${item.snippet.position + 1}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <ExternalLink className="h-4 w-4" />
+                                <span className="sr-only">Watch on YouTube</span>
+                            </a>
+                        </Button>
+                    </div>
+
                     {onToggleCompleted && (
                         <Button
-                            variant={isCompleted ? "secondary" : "outline"}
+                            variant={isCompleted ? "secondary" : "ghost"}
                             size="sm"
                             className={cn(
-                                "w-full gap-1.5 h-9 border-green-200 dark:border-green-800 hover:border-green-300 dark:hover:border-green-700",
+                                "w-full gap-1.5 h-8 border border-transparent hover:bg-secondary/50",
                                 isCompleted 
-                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400" 
-                                    : "text-muted-foreground hover:text-green-600 dark:hover:text-green-400"
+                                    ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800" 
+                                    : "text-muted-foreground"
                             )}
                             onClick={(e) => {
                                 e.preventDefault();
@@ -217,29 +259,9 @@ export default function VideoCard({ item, format, speed, isCompleted = false, on
                             }}
                         >
                             {isCompleted ? <CheckCircle className="h-3.5 w-3.5" /> : <Circle className="h-3.5 w-3.5" />}
-                            <span className="text-xs font-medium">{isCompleted ? "Completed" : "Mark Watched"}</span>
+                            <span className="text-xs font-medium">{isCompleted ? "Completed" : "Mark as Watched"}</span>
                         </Button>
                     )}
-
-                    <Button
-                        asChild
-                        className={cn(
-                            "w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white h-9",
-                            isCompleted && "opacity-80 saturate-50"
-                        )}
-                        size="sm"
-                    >
-                        <a
-                            href={`https://youtube.com/watch?v=${item.contentDetails.videoId}&list=${item.snippet.playlistId}&index=${item.snippet.position + 1}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2 text-sm"
-                        >
-                            <Play className="h-3 w-3" />
-                            <span>Watch on YouTube</span>
-                            <ExternalLink className="h-3 w-3" />
-                        </a>
-                    </Button>
                 </div>
             </CardContent>
         </Card>
