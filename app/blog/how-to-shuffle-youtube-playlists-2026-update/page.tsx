@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -162,11 +163,12 @@ export default function BlogPost() {
                     First, copy the URL of the YouTube playlist you want to shuffle. For this guide, we are using a popular 2026 hits playlist.
                   </p>
                   <div className="relative aspect-video rounded-lg overflow-hidden border my-4">
-                    <img 
+                    <Image 
                       src="/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now).webp"
                       alt="Step 1: Copy YouTube Playlist URL"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy"
+                      fill
+                      className="object-cover"
+                      unoptimized
                     />
                   </div>
                 </div>
@@ -198,22 +200,24 @@ export default function BlogPost() {
                     This is where the magic happens. Click <strong>&quot;Reshuffle&quot;</strong> to randomize the order. Don&apos;t like the result? Click it again!
                   </p>
                   <div className="relative aspect-video rounded-lg overflow-hidden border my-4">
-                    <img 
+                    <Image 
                       src="/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now)_original.webp"
                       alt="Step 4: Shuffled Playlist View"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy"
+                      fill
+                      className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <p>
                     Want to go back? Simply click the <strong>&quot;Original&quot;</strong> button to restore the playlist&apos;s default order as curated by the creator.
                   </p>
                   <div className="relative aspect-video rounded-lg overflow-hidden border my-4">
-                    <img 
+                    <Image 
                       src="/blog-images/2026_Songs_Playlist_Top_Most_Played_Music_2026_(Best_Hits_2026_Right_Now)_shuffile.webp"
                       alt="Step 4: Original Order View"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy"
+                      fill
+                      className="object-cover"
+                      unoptimized
                     />
                   </div>
                 </div>
@@ -231,22 +235,24 @@ export default function BlogPost() {
                     You don&apos;t need to leave the page. Click on any video in your new shuffled list to start watching immediately in our immersive player.
                   </p>
                   <div className="relative aspect-video rounded-lg overflow-hidden border my-4">
-                    <img 
+                    <Image 
                       src="/blog-images/video_play_with_playlist_randomizer_demo.webp"
                       alt="Step 5: Direct Video Playback"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      loading="lazy"
+                      fill
+                      className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <p className="text-sm text-muted-foreground bg-secondary/50 p-4 rounded-lg">
                     <strong>Pro Tip:</strong> You can also access this feature directly from <Link href="/" className="text-purple-600 hover:underline">our homepage</Link>! Look for the &quot;Randomize Order&quot; button on any playlist result card.
                   </p>
                   <div className="relative aspect-video rounded-lg overflow-hidden border my-4">
-                    <img 
+                    <Image 
                       src="/blog-images/randomize_order_at_homepage.webp"
                       alt="Homepage Randomize Button"
-                      className="absolute inset-0 w-full h-full object-cover object-top"
-                      loading="lazy"
+                      fill
+                      className="object-cover object-top"
+                      unoptimized
                     />
                   </div>
                 </div>

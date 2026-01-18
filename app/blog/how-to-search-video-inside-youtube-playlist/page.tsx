@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowLeft, Search, Zap, CheckCircle2, AlertCircle, Quote, ArrowRight } from "lucide-react";
@@ -90,11 +91,12 @@ export default function BlogPost() {
         {/* Hero Image */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">
           <div className="max-w-5xl mx-auto relative aspect-[21/9] overflow-hidden rounded-3xl shadow-2xl border border-border/50 bg-secondary/30 group">
-            <img 
+            <Image 
               src="/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_1.webp" 
               alt="Frustrated user trying to find a video in a YouTube playlist" 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-              loading="lazy"
+              fill
+              className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
             <div className="absolute bottom-4 left-6 right-6 text-center md:text-left">
@@ -183,11 +185,12 @@ export default function BlogPost() {
 
               <figure className="my-12 not-prose">
                 <div className="relative aspect-video overflow-hidden rounded-2xl shadow-2xl border border-purple-500/20 bg-secondary/30 group">
-                  <img 
+                  <Image 
                     src="/blog-images/How_to_Search_a_Video_Inside_Youtube_Playlist_2.webp" 
                     alt="New search feature in V1.4.4 showing filtered playlist results" 
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-[1.02]"
-                    loading="lazy"
+                    fill
+                    className="object-cover transition-all duration-700 group-hover:scale-[1.02]"
+                    unoptimized
                   />
                 </div>
                 <figcaption className="text-center text-sm text-muted-foreground mt-4">

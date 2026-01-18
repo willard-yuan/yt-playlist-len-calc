@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Calendar, Clock, ArrowLeft, Code, Zap, Users, CheckCircle } from "lucide-react";
@@ -95,11 +96,12 @@ export default function BlogPost() {
             {/* Cover Image */}
             <div className="w-full mb-12">
               <div className="relative aspect-video">
-                <img 
+                <Image 
                   src="/YouTube_Playlist_Length_Calculator_1.png" 
                   alt="YouTube Playlist Length Calculator Interface - Main Dashboard"
-                  className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border border-border/50 object-cover"
-                  loading="lazy"
+                  fill
+                  className="rounded-2xl shadow-2xl border border-border/50 object-cover"
+                  unoptimized
                 />
               </div>
               <p className="text-center text-sm text-muted-foreground mt-4 italic">
@@ -238,11 +240,12 @@ export default function BlogPost() {
               {/* Second Screenshot */}
               <div className="w-full my-12">
                 <div className="relative aspect-video">
-                  <img 
+                  <Image 
                     src="/YouTube_Playlist_Length_Calculator_2.png" 
                     alt="YouTube Playlist Length Calculator Results - Detailed Analytics"
-                    className="absolute inset-0 w-full h-full rounded-2xl shadow-2xl border border-border/50 object-cover"
-                    loading="lazy"
+                    fill
+                    className="rounded-2xl shadow-2xl border border-border/50 object-cover"
+                    unoptimized
                   />
                 </div>
                 <p className="text-center text-sm text-muted-foreground mt-4 italic">
