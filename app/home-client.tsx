@@ -45,10 +45,10 @@ export default function HomeClient() {
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-10">
-            {/* AiRenamify Promo Badge */}
+            {/* ScrollShot Promo Badge */}
             <div className="flex justify-center -mb-4">
               <a 
-                href="https://airenamify.com"
+                href="https://scrollshot.work"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex p-[1px] rounded-full transition-transform duration-500 hover:scale-105"
@@ -61,7 +61,7 @@ export default function HomeClient() {
                 <div className="relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md group-hover:bg-white/90 dark:group-hover:bg-black/90 transition-colors duration-300">
                   <span className="animate-pulse" style={{ animationDuration: '2s' }}>✨</span>
                   <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200">
-                    Meet AiRenamify: Organize files with AI →
+                    Maximize your efficiency. Stop stitching. Start scrolling. The ultimate iOS scrolling screenshot tool. →
                   </span>
                 </div>
               </a>
