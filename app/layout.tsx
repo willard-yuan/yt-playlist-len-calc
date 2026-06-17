@@ -3,9 +3,11 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { I18nProvider } from "@/lib/i18n";
 
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
+import { HreflangUpdater } from "@/components/hreflang-updater";
 
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
@@ -124,10 +126,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
-          <Analytics />
-
+          <I18nProvider>
+            <HreflangUpdater />
+            {children}
+            <Toaster />
+            <Analytics />
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

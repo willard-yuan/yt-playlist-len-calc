@@ -9,9 +9,12 @@ import Testimonials from "@/components/testimonials";
 import { ChangelogPreview } from "@/components/changelog-preview";
 import LatestPosts from "@/components/latest-posts";
 import { OtherToolsSection } from "@/components/other-tools-section";
+import { useI18n } from "@/lib/i18n";
 import { Clock, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
+  const { t } = useI18n();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -61,7 +64,7 @@ export default function HomeClient() {
                 <div className="relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md group-hover:bg-white/90 dark:group-hover:bg-black/90 transition-colors duration-300">
                   <span className="animate-pulse" style={{ animationDuration: '2s' }}>✨</span>
                   <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200">
-                    Maximize your efficiency. Stop stitching. Start scrolling. The ultimate iOS scrolling screenshot tool. →
+                    {t("hero.badge")}
                   </span>
                 </div>
               </a>
@@ -69,15 +72,15 @@ export default function HomeClient() {
 
             {/* Main Title */}
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05]">
-              Youtube Playlist
+              {t("hero.title.line1")}
               <br />
               <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent animate-gradient-x">
-                Length Calculator
+                {t("hero.title.line2")}
               </span>
             </h1>
 
             <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
-              Master your time. Get precise duration analytics for any YouTube playlist instantly. Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.
+              {t("hero.subtitle")}
             </p>
 
             {/* Action Buttons */}
@@ -87,7 +90,7 @@ export default function HomeClient() {
                 className="group relative px-10 py-5 bg-foreground text-background font-semibold rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-3 text-lg">
-                  Start Calculating
+                  {t("hero.cta.start")}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </button>
@@ -96,7 +99,7 @@ export default function HomeClient() {
                 onClick={() => scrollToSection('how-it-works')}
                 className="px-10 py-5 text-muted-foreground hover:text-foreground font-medium transition-colors duration-300 flex items-center gap-2 text-lg"
               >
-                Learn How
+                {t("hero.cta.learn")}
               </button>
             </div>
           </div>
@@ -110,10 +113,10 @@ export default function HomeClient() {
           <div id="calculate-section" className="relative z-20 bg-background/60 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-16 mb-32 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.05)] border border-white/20 dark:border-white/5">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 tracking-tight">
-                Analyze Your Playlist
+                {t("analyze.title")}
               </h2>
               <p className="text-muted-foreground text-lg">
-                Paste your YouTube playlist URL below to get comprehensive insights
+                {t("analyze.subtitle")}
               </p>
             </div>
             <SearchBar />
@@ -126,10 +129,10 @@ export default function HomeClient() {
           <div className="mb-40">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                Why Choose Us?
+                {t("why.title")}
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Powerful features designed to help you manage your content consumption efficiently.
+                {t("why.subtitle")}
               </p>
             </div>
             
@@ -137,20 +140,20 @@ export default function HomeClient() {
               {[
                 {
                   icon: <Clock className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-                  title: "Precision Timing",
-                  desc: "Get exact duration calculations down to the second for any playlist size.",
+                  title: t("why.precision.title"),
+                  desc: t("why.precision.desc"),
                   bg: "bg-purple-50 dark:bg-purple-900/10"
                 },
                 {
                   icon: <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
-                  title: "Smart Planning",
-                  desc: "Calculate exactly how long it will take to watch at different playback speeds.",
+                  title: t("why.planning.title"),
+                  desc: t("why.planning.desc"),
                   bg: "bg-blue-50 dark:bg-blue-900/10"
                 },
                 {
                   icon: <Zap className="h-8 w-8 text-pink-600 dark:text-pink-400" />,
-                  title: "Instant Analysis",
-                  desc: "No waiting time. Get comprehensive insights about your playlist immediately.",
+                  title: t("why.instant.title"),
+                  desc: t("why.instant.desc"),
                   bg: "bg-pink-50 dark:bg-pink-900/10"
                 }
               ].map((item, i) => (
@@ -170,18 +173,18 @@ export default function HomeClient() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
-                  Simple Process, <br/>
-                  <span className="text-purple-600 dark:text-purple-400">Powerful Results</span>
+                  {t("howItWorks.title.line1")} <br/>
+                  <span className="text-purple-600 dark:text-purple-400">{t("howItWorks.title.line2")}</span>
                 </h2>
                 <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-                  We&apos;ve streamlined the process to make it as effortless as possible. No sign-ups, no complex steps. Just insights.
+                  {t("howItWorks.subtitle")}
                 </p>
                 
                 <div className="space-y-8">
                   {[
-                    { step: "01", title: "Copy URL", desc: "Copy the link of any YouTube playlist you want to analyze." },
-                    { step: "02", title: "Paste & Calculate", desc: "Paste it into our tool and hit the calculate button." },
-                    { step: "03", title: "Get Insights", desc: "View detailed duration breakdowns and planning tools." }
+                    { step: "01", title: t("howItWorks.step1.title"), desc: t("howItWorks.step1.desc") },
+                    { step: "02", title: t("howItWorks.step2.title"), desc: t("howItWorks.step2.desc") },
+                    { step: "03", title: t("howItWorks.step3.title"), desc: t("howItWorks.step3.desc") }
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-6 group">
                       <span className="text-4xl font-bold text-muted-foreground/20 group-hover:text-purple-500/50 transition-colors duration-300">{item.step}</span>
@@ -219,30 +222,30 @@ export default function HomeClient() {
           <div className="mb-40">
             <div className="bg-secondary/5 border border-border/50 rounded-[3rem] p-10 md:p-16">
               <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">How We Calculate</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">{t("calc.title")}</h2>
                 <p className="text-lg text-muted-foreground">
-                  Transparency is key. Here&apos;s the math behind our precise duration and time-saving calculations.
+                  {t("calc.subtitle")}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="space-y-10">
                   <div className="relative pl-8 border-l-2 border-purple-500">
-                    <h3 className="text-xl font-bold mb-2">Total Duration</h3>
+                    <h3 className="text-xl font-bold mb-2">{t("calc.duration.title")}</h3>
                     <p className="text-muted-foreground font-mono text-sm bg-background/50 p-4 rounded-xl border border-border/50 inline-block">
-                      (Hours × 3600) + (Minutes × 60) + Seconds
+                      {t("calc.duration.formula")}
                     </p>
                   </div>
                   <div className="relative pl-8 border-l-2 border-blue-500">
-                    <h3 className="text-xl font-bold mb-2">Playback Speed Adjustment</h3>
+                    <h3 className="text-xl font-bold mb-2">{t("calc.speed.title")}</h3>
                     <p className="text-muted-foreground font-mono text-sm bg-background/50 p-4 rounded-xl border border-border/50 inline-block">
-                      Original Duration / Playback Speed
+                      {t("calc.speed.formula")}
                     </p>
                   </div>
                   <div className="relative pl-8 border-l-2 border-pink-500">
-                    <h3 className="text-xl font-bold mb-2">Time Saved</h3>
+                    <h3 className="text-xl font-bold mb-2">{t("calc.saved.title")}</h3>
                     <p className="text-muted-foreground font-mono text-sm bg-background/50 p-4 rounded-xl border border-border/50 inline-block">
-                      Original Duration - New Duration
+                      {t("calc.saved.formula")}
                     </p>
                   </div>
                 </div>
@@ -250,24 +253,28 @@ export default function HomeClient() {
                 <div className="bg-background rounded-3xl p-8 md:p-10 shadow-sm border border-border/50">
                   <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5 text-green-500" />
-                    Real-world Example
+                    {t("calc.example.title")}
                   </h3>
                   <div className="space-y-6 text-sm md:text-base">
                     <p className="text-muted-foreground">
-                      For a <span className="text-foreground font-medium">2h 30m</span> playlist at <span className="text-foreground font-medium">1.5x speed</span>:
+                      {t("calc.example.desc").split("<b>").map((part, i) => {
+                        if (i === 0) return <span key={i}>{part}</span>;
+                        const [bold, rest] = part.split("</b>");
+                        return <span key={i}><span className="text-foreground font-medium">{bold}</span>{rest}</span>;
+                      })}
                     </p>
                     <div className="space-y-3 pt-2">
                       <div className="flex justify-between items-center py-2 border-b border-border/50">
-                        <span className="text-muted-foreground">Original Seconds</span>
-                        <span className="font-mono font-medium">9,000s</span>
+                        <span className="text-muted-foreground">{t("calc.example.original")}</span>
+                        <span className="font-mono font-medium">{t("calc.example.originalValue")}</span>
                       </div>
                       <div className="flex justify-between items-center py-2 border-b border-border/50">
-                        <span className="text-muted-foreground">Adjusted Seconds</span>
-                        <span className="font-mono font-medium">6,000s</span>
+                        <span className="text-muted-foreground">{t("calc.example.adjusted")}</span>
+                        <span className="font-mono font-medium">{t("calc.example.adjustedValue")}</span>
                       </div>
                       <div className="flex justify-between items-center py-2 pt-4">
-                        <span className="font-bold text-purple-600">Time Saved</span>
-                        <span className="font-bold text-green-600">50 mins</span>
+                        <span className="font-bold text-purple-600">{t("calc.example.saved")}</span>
+                        <span className="font-bold text-green-600">{t("calc.example.savedValue")}</span>
                       </div>
                     </div>
                   </div>
@@ -279,74 +286,26 @@ export default function HomeClient() {
           {/* FAQs Section - Modern Accordion Style */}
           <div id="faq" className="mb-32 scroll-mt-24">
             <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">
-              Frequently Asked Questions
+              {t("faq.title")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                {
-                  question: "What is the YouTube Playlist Length Calculator?",
-                  answer: "The YouTube Playlist Length Calculator is a free online tool that calculates the total duration of any YouTube playlist. Simply paste a playlist URL and get instant results with detailed analytics including total time, video count, and viewing estimates at different playback speeds."
-                },
-                {
-                  question: "What formats does the total duration display?",
-                  answer: "The total duration is displayed in multiple formats for your convenience: hours, minutes, and seconds (HH:MM:SS), total minutes, total hours, and estimated viewing time in days, work days, and sessions. You can also see duration estimates at different playback speeds (0.25x to 2x)."
-                },
-                {
-                  question: "Does the calculator work with individual video links?",
-                  answer: "No, this tool is specifically designed for YouTube playlists. For individual videos, you can see the duration directly on YouTube. However, you can create a playlist with a single video if you need to use our advanced analytics features."
-                },
-                {
-                  question: "Is there a limit to the number of videos in a playlist?",
-                  answer: "There's no limit imposed by our tool. We can calculate playlists with thousands of videos. However, very large playlists (1000+ videos) may take a few extra seconds to process as we fetch data for each video to ensure accuracy."
-                },
-                {
-                  question: "What if the playlist is empty?",
-                  answer: "If you submit an empty playlist or a playlist with no accessible videos, the tool will display a message indicating that no videos were found. Make sure the playlist is public and contains videos, or check if the playlist URL is correct."
-                },
-                {
-                  question: "Is my data safe when using the tool?",
-                  answer: "Absolutely! We only process the playlist URL you provide and don't store any personal information. All calculations are performed in real-time, and we don't save your playlist data or viewing history. Your privacy is our priority."
-                },
-                {
-                  question: "What if I encounter an error when calculating?",
-                  answer: "If you encounter an error, first check that the playlist URL is correct and the playlist is public. Common issues include private playlists, deleted playlists, or invalid URLs. If the problem persists, try refreshing the page or contact us through the contact page."
-                },
-                {
-                  question: "Can I share the calculated duration?",
-                  answer: "Yes! Once the results are generated, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
-                },
-                {
-                  question: "Why would I want to calculate playlist length?",
-                  answer: "Knowing the total length helps you plan your time effectively. Whether you're a student with a lecture playlist, a binge-watcher, or a creator analyzing competitors, our tool gives you the exact time commitment required so you can schedule your viewing sessions efficiently."
-                },
-                {
-                  question: "Can I exclude certain videos from the calculation?",
-                  answer: "Yes! Once the playlist is loaded, you'll see a list of all videos. You can simply uncheck any videos you've already watched or don't want to include, and the total duration will update instantly to reflect your selection."
-                },
-                {
-                  question: "Does this work with private playlists?",
-                  answer: "No, due to YouTube's privacy policies, we cannot access private playlists. However, you can use it with 'Unlisted' playlists if you have the direct link. If you own the private playlist, you can temporarily set it to 'Unlisted' to calculate the length."
-                },
-                {
-                  question: "What if a playlist has unavailable videos?",
-                  answer: "Our tool automatically detects and flags unavailable (deleted or private) videos within a public playlist. While we can't get their exact duration, we alert you to their presence so you know the calculation only includes the currently playable content."
-                },
-                {
-                  question: "Can I use this for my own playlists?",
-                  answer: "Absolutely! As long as your playlist is set to 'Public' or 'Unlisted', you can use this tool to analyze your own content duration, which is great for planning course modules or video series length."
-                },
-                {
-                  question: "Does this work with YouTube Music playlists?",
-                  answer: "Yes, YouTube Music playlists work perfectly with our calculator since they share the same underlying infrastructure as regular YouTube playlists. Just paste the playlist URL to see the total listening time."
-                },
-                {
-                  question: "How often is the data updated?",
-                  answer: "We fetch fresh data directly from YouTube every time you click 'Analyze'. This ensures you always get the most up-to-date information, including recent video additions or duration changes."
-                },
-                {
-                  question: "Who can benefit from using this tool?",
-                  answer: "This tool is perfect for students planning study sessions, educators organizing course content, content creators managing video series, researchers analyzing video content, and anyone who wants to know how much time they'll need to watch a YouTube playlist before starting."
-                }
+                { question: t("faq.q1"), answer: t("faq.a1") },
+                { question: t("faq.q2"), answer: t("faq.a2") },
+                { question: t("faq.q3"), answer: t("faq.a3") },
+                { question: t("faq.q4"), answer: t("faq.a4") },
+                { question: t("faq.q5"), answer: t("faq.a5") },
+                { question: t("faq.q6"), answer: t("faq.a6") },
+                { question: t("faq.q7"), answer: t("faq.a7") },
+                { question: t("faq.q8"), answer: t("faq.a8") },
+                { question: t("faq.q9"), answer: t("faq.a9") },
+                { question: t("faq.q10"), answer: t("faq.a10") },
+                { question: t("faq.q11"), answer: t("faq.a11") },
+                { question: t("faq.q12"), answer: t("faq.a12") },
+                { question: t("faq.q13"), answer: t("faq.a13") },
+                { question: t("faq.q14"), answer: t("faq.a14") },
+                { question: t("faq.q15"), answer: t("faq.a15") },
+                { question: t("faq.q16"), answer: t("faq.a16") },
               ].map((faq, index) => (
                 <div key={index} className="bg-background/50 border border-border/50 rounded-2xl p-8 hover:bg-secondary/30 transition-all duration-300 hover:shadow-md">
                   <div className="flex items-start gap-4">
@@ -447,7 +406,7 @@ export default function HomeClient() {
                 "name": "Can I share the calculated duration?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes! Once you get the results, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
+                  "text": "Yes! Once the results are generated, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
                 }
               },
               {

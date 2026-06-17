@@ -51,6 +51,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { parseDuration } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 const FormSchema = z.object({
   url: z.string().url({ message: "Please enter a valid YouTube playlist URL" }),
@@ -87,13 +88,14 @@ export default function SearchBar() {
     useState<PlaylistItemListResponse | null>(null);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const { toast } = useToast();
+  const { t } = useI18n();
 
   const loadingMessages = [
-    "Connecting to YouTube...",
-    "Fetching playlist data...",
-    "Analyzing video information...",
-    "Calculating durations...",
-    "Almost ready!"
+    t("search.loading.connecting"),
+    t("search.loading.fetching"),
+    t("search.loading.analyzing"),
+    t("search.loading.calculating"),
+    t("search.loading.ready")
   ];
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -256,8 +258,8 @@ export default function SearchBar() {
         ) {
           toast({
             variant: "destructive",
-            title: "Invalid URL",
-            description: "Please enter a valid YouTube URL",
+            title: t("toast.invalidUrl.title"),
+            description: t("toast.invalidUrl.desc"),
           });
           return;
         }
@@ -265,17 +267,16 @@ export default function SearchBar() {
         if (!playlistId) {
           toast({
             variant: "destructive",
-            title: "Invalid Playlist URL",
-            description:
-              "Please enter a valid YouTube playlist URL containing a 'list' parameter",
+            title: t("toast.invalidPlaylist.title"),
+            description: t("toast.invalidPlaylist.desc"),
           });
           return;
         }
       } catch (urlError) {
         toast({
           variant: "destructive",
-          title: "Invalid URL",
-          description: "Please enter a valid URL format",
+          title: t("toast.invalidFormat.title"),
+          description: t("toast.invalidFormat.desc"),
         });
         return;
       }
@@ -283,8 +284,8 @@ export default function SearchBar() {
       if (isAdvanced && data.start >= data.end) {
         toast({
           variant: "destructive",
-          title: "Invalid Range",
-          description: "Start position must be less than end position",
+          title: t("toast.invalidRange.title"),
+          description: t("toast.invalidRange.desc"),
         });
         return;
       }
@@ -313,8 +314,8 @@ export default function SearchBar() {
         await new Promise(resolve => setTimeout(resolve, 200));
 
         toast({
-          title: "Success!",
-          description: `Loaded ${response.items.length} videos, showing ${filtered.items.length} after filters`,
+          title: t("toast.success.title"),
+          description: t("toast.success.desc").replace("{total}", String(response.items.length)).replace("{filtered}", String(filtered.items.length)),
         });
 
         setTimeout(() => {
@@ -337,7 +338,7 @@ export default function SearchBar() {
         setLoadingStep(0);
         toast({
           variant: "destructive",
-          title: "Error",
+          title: t("toast.error.title"),
           description: (error as Error).message,
         });
       }
@@ -375,10 +376,10 @@ export default function SearchBar() {
             (item) =>
               item.snippet.videoOwnerChannelTitle ||
               item.snippet.channelTitle ||
-              "Unknown"
+              t("search.unknownChannel")
           )
         )
-      ).filter((channel) => channel !== "Unknown")
+      ).filter((channel) => channel !== t("search.unknownChannel"))
     : [];
 
   return (
@@ -404,7 +405,7 @@ export default function SearchBar() {
                           <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
                           <Input
                             type="url"
-                            placeholder="https://www.youtube.com/playlist?list=..."
+                            placeholder={t("search.urlPlaceholder")}
                             className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-full pl-14 pr-40 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10 w-full"
                             disabled={isPending}
                             {...field}
@@ -418,7 +419,7 @@ export default function SearchBar() {
                               {isPending ? (
                                 <Loader2 className="h-5 w-5 animate-spin" />
                               ) : (
-                                "Calculate"
+                                t("search.calculate")
                               )}
                             </Button>
                           </div>
@@ -441,7 +442,7 @@ export default function SearchBar() {
                     className="group flex items-center gap-2 text-sm text-muted-foreground/80 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 px-3 rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/10"
                   >
                     <Sparkles className="h-4 w-4 text-amber-400 group-hover:scale-110 transition-transform" />
-                    <span>Try with an example playlist</span>
+                    <span>{t("search.tryExample")}</span>
                   </button>
 
                   {/* Advanced Options Toggle */}
@@ -453,7 +454,7 @@ export default function SearchBar() {
                     onClick={() => setIsAdvanced(!isAdvanced)}
                   >
                     <Settings2 className="h-4 w-4 mr-2 group-hover:rotate-90 transition-transform duration-500" />
-                    Advanced Options
+                    {t("search.advancedOptions")}
                     <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isAdvanced ? 'rotate-180' : ''}`} />
                   </Button>
                 </div>
@@ -471,8 +472,8 @@ export default function SearchBar() {
                           <SlidersHorizontal className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-lg">Configuration</h4>
-                          <p className="text-sm text-muted-foreground">Customize how you want to analyze the playlist</p>
+                          <h4 className="font-semibold text-lg">{t("search.configuration")}</h4>
+                          <p className="text-sm text-muted-foreground">{t("search.configDesc")}</p>
                         </div>
                       </div>
                       
@@ -481,7 +482,7 @@ export default function SearchBar() {
                         <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                           <h5 className="text-sm font-medium flex items-center gap-2">
                             <Hash className="h-4 w-4 text-muted-foreground" />
-                            Playlist Range
+                            {t("search.playlistRange")}
                           </h5>
                           <div className="flex gap-4 items-center">
                             <FormField
@@ -490,7 +491,7 @@ export default function SearchBar() {
                               render={({ field }) => (
                                 <FormItem className="flex-1">
                                   <div className="relative">
-                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Start</span>
+                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">{t("search.start")}</span>
                                     <FormControl>
                                       <Input
                                         type="number"
@@ -510,7 +511,7 @@ export default function SearchBar() {
                               render={({ field }) => (
                                 <FormItem className="flex-1">
                                   <div className="relative">
-                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">End</span>
+                                    <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">{t("search.end")}</span>
                                     <FormControl>
                                       <Input
                                         type="number"
@@ -530,17 +531,17 @@ export default function SearchBar() {
                         <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                           <h5 className="text-sm font-medium flex items-center gap-2">
                             <Clock className="h-4 w-4 text-muted-foreground" />
-                            Display Format
+                            {t("search.displayFormat")}
                           </h5>
                           <div className="space-y-2">
                              <Select value={format} onValueChange={(v: videoFormat) => setFormat(v)}>
                               <SelectTrigger className="h-12 bg-background/50 border-border/40 focus:ring-purple-500/20 text-center font-medium">
-                                <SelectValue placeholder="Select format" />
+                                <SelectValue placeholder={t("search.formatSelect")} />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="hrs">Hours, Minutes, Seconds</SelectItem>
-                                <SelectItem value="min">Minutes only</SelectItem>
-                                <SelectItem value="sec">Seconds only</SelectItem>
+                                <SelectItem value="hrs">{t("search.formatHrs")}</SelectItem>
+                                <SelectItem value="min">{t("search.formatMin")}</SelectItem>
+                                <SelectItem value="sec">{t("search.formatSec")}</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -558,14 +559,14 @@ export default function SearchBar() {
                             </div>
                             <div>
                               <h4 className="font-semibold text-lg flex items-center gap-2">
-                                Filters & Sorting
+                                {t("search.filtersTitle")}
                                 {activeFilters.length > 0 && (
                                   <Badge variant="secondary" className="bg-blue-100 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-300">
-                                    {activeFilters.length} active
+                                    {t("search.filtersActive").replace("{count}", String(activeFilters.length))}
                                   </Badge>
                                 )}
                               </h4>
-                              <p className="text-sm text-muted-foreground">Refine your results</p>
+                              <p className="text-sm text-muted-foreground">{t("search.refineResults")}</p>
                             </div>
                           </div>
                           <Button
@@ -576,7 +577,7 @@ export default function SearchBar() {
                             className="text-xs h-9 hover:bg-destructive/10 hover:text-destructive hover:border-destructive/30 transition-colors"
                           >
                             <RotateCcw className="h-3 w-3 mr-2" />
-                            Reset Filters
+                            {t("search.resetFilters")}
                           </Button>
                         </div>
 
@@ -587,7 +588,7 @@ export default function SearchBar() {
                               <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                                 <h5 className="text-sm font-medium flex items-center gap-2">
                                   <Timer className="h-4 w-4 text-muted-foreground" />
-                                  Duration (seconds)
+                                  {t("search.durationTitle")}
                                 </h5>
                                 <div className="flex gap-4 items-center">
                                   <FormField
@@ -596,7 +597,7 @@ export default function SearchBar() {
                                     render={({ field }) => (
                                       <FormItem className="flex-1">
                                         <div className="relative">
-                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Min</span>
+                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">{t("search.min")}</span>
                                           <FormControl>
                                             <Input
                                               type="number"
@@ -619,7 +620,7 @@ export default function SearchBar() {
                                     render={({ field }) => (
                                       <FormItem className="flex-1">
                                         <div className="relative">
-                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">Max</span>
+                                          <span className="absolute left-3 top-2.5 text-xs text-muted-foreground">{t("search.max")}</span>
                                           <FormControl>
                                             <Input
                                               type="number"
@@ -642,7 +643,7 @@ export default function SearchBar() {
                               <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                                 <h5 className="text-sm font-medium flex items-center gap-2">
                                   <Tag className="h-4 w-4 text-muted-foreground" />
-                                  Content Type
+                                  {t("search.contentType")}
                                 </h5>
                                 <FormField
                                   control={form.control}
@@ -651,9 +652,9 @@ export default function SearchBar() {
                                     <FormItem>
                                       <div className="flex flex-wrap gap-2">
                                         {[
-                                          { id: "shorts", label: "Shorts" },
-                                          { id: "standard", label: "Standard" },
-                                          { id: "long", label: "Long" },
+                                          { id: "shorts", label: t("search.typeShorts") },
+                                          { id: "standard", label: t("search.typeStandard") },
+                                          { id: "long", label: t("search.typeLong") },
                                         ].map((type) => (
                                           <div key={type.id} className="relative">
                                             <Checkbox
@@ -689,7 +690,7 @@ export default function SearchBar() {
                               <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                                 <h5 className="text-sm font-medium flex items-center gap-2">
                                   <Search className="h-4 w-4 text-muted-foreground" />
-                                  Keywords
+                                  {t("search.keywords")}
                                 </h5>
                                 <FormField
                                   control={form.control}
@@ -700,7 +701,7 @@ export default function SearchBar() {
                                         <div className="relative">
                                           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground/50" />
                                           <Input
-                                            placeholder="Filter by title..."
+                                            placeholder={t("search.keywordsPlaceholder")}
                                             className="h-10 pl-9 text-sm bg-background/50 border-border/40 focus:border-purple-500/50"
                                             {...field}
                                             onChange={(e) => {
@@ -719,7 +720,7 @@ export default function SearchBar() {
                               <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                                 <h5 className="text-sm font-medium flex items-center gap-2">
                                   <Hash className="h-4 w-4 text-muted-foreground" />
-                                  Sorting
+                                  {t("search.sorting")}
                                 </h5>
                                 <div className="flex gap-3">
                                   <FormField
@@ -735,10 +736,10 @@ export default function SearchBar() {
                                             <SelectValue />
                                           </SelectTrigger>
                                           <SelectContent>
-                                            <SelectItem value="position">Position</SelectItem>
-                                            <SelectItem value="duration">Duration</SelectItem>
-                                            <SelectItem value="publishDate">Date</SelectItem>
-                                            <SelectItem value="title">Title</SelectItem>
+                                            <SelectItem value="position">{t("search.sortPosition")}</SelectItem>
+                                            <SelectItem value="duration">{t("search.sortDuration")}</SelectItem>
+                                            <SelectItem value="publishDate">{t("search.sortDate")}</SelectItem>
+                                            <SelectItem value="title">{t("search.sortTitle")}</SelectItem>
                                           </SelectContent>
                                         </Select>
                                       </FormItem>
@@ -757,8 +758,8 @@ export default function SearchBar() {
                                             <SelectValue />
                                           </SelectTrigger>
                                           <SelectContent>
-                                            <SelectItem value="asc">Asc</SelectItem>
-                                            <SelectItem value="desc">Desc</SelectItem>
+                                            <SelectItem value="asc">{t("search.sortAsc")}</SelectItem>
+                                            <SelectItem value="desc">{t("search.sortDesc")}</SelectItem>
                                           </SelectContent>
                                         </Select>
                                       </FormItem>
@@ -774,7 +775,7 @@ export default function SearchBar() {
                           <div className="space-y-4 bg-secondary/20 p-5 rounded-2xl border border-border/20">
                             <h5 className="text-sm font-medium flex items-center gap-2">
                               <User className="h-4 w-4 text-muted-foreground" />
-                              Channels
+                              {t("search.channels")}
                             </h5>
                             <FormField
                               control={form.control}
@@ -791,7 +792,7 @@ export default function SearchBar() {
                                     }}
                                   >
                                     <SelectTrigger className="h-10 text-xs bg-background/50 border-border/40 w-full md:w-1/2">
-                                      <SelectValue placeholder="Add channel filter..." />
+                                      <SelectValue placeholder={t("search.addChannel")} />
                                     </SelectTrigger>
                                     <SelectContent>
                                       {availableChannels.map((channel) => (
@@ -835,7 +836,7 @@ export default function SearchBar() {
       {isPending && loadingStep < 3 && (
         <LoadingMessage 
           step={loadingStep} 
-          message={loadingMessages[loadingStep] || "Processing..."} 
+          message={loadingMessages[loadingStep] || t("search.processing")} 
         />
       )}
       {isPending && loadingStep >= 3 && <PlaylistSkeleton />}

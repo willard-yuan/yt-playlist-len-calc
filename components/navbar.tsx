@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation"
 import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { useI18n } from "@/lib/i18n"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +18,7 @@ import {
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useI18n()
 
   const getLogoText = () => {
     if (pathname === '/youtube-playlist-exporter') {
@@ -25,9 +28,9 @@ export default function Navbar() {
       return 'YouTube Playlist Randomizer'
     }
     if (pathname === '/tools-you-may-also-like') {
-      return 'Tools You May Also Like'
+      return t("otherTools.toolsYouMayLike")
     }
-    return 'YouTube Playlist Length Calculator'
+    return t("nav.logo")
   }
 
   return (
@@ -51,61 +54,61 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-2.5 group shrink-0 mr-4 lg:mr-6">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative bg-gradient-to-r from-red-600 to-purple-700 p-2 rounded-full">
-                <Youtube className="h-7 w-7 text-white" />
+              <div className="relative bg-gradient-to-r from-red-600 to-purple-700 p-1.5 rounded-full">
+                <Youtube className="h-6 w-6 text-white" />
               </div>
             </div>
-            <span className="font-bold text-lg bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+            <span className="font-bold text-xs lg:text-sm leading-tight bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent whitespace-nowrap">
                {getLogoText()}
              </span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
             {/* Home */}
             <Link
               href="/"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Home
+              {t("nav.home")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             
             {/* Quick Access */}
             <Link
               href="/#quick-access"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Playlists
+              {t("nav.playlists")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* Testimonials */}
             <Link
               href="/#testimonials"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Testimonials
+              {t("nav.testimonials")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* FAQs */}
             <Link
               href="/#faq"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              FAQs
+              {t("nav.faqs")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* Other Tools Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group flex items-center space-x-1 h-auto p-0 font-normal">
-                  <span>Other Tools</span>
+                <Button variant="ghost" className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group flex items-center space-x-1 h-auto p-0 font-normal whitespace-nowrap">
+                  <span>{t("nav.otherTools")}</span>
                   <ChevronDown className="h-4 w-4" />
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
                 </Button>
@@ -126,7 +129,7 @@ export default function Navbar() {
                 <DropdownMenuItem asChild>
                   <Link href="/tools-you-may-also-like" className="flex items-center space-x-2">
                     <Wrench className="h-4 w-4" />
-                    <span>Tools You May Also Like</span>
+                    <span>{t("otherTools.toolsYouMayLike")}</span>
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -135,37 +138,28 @@ export default function Navbar() {
             {/* Blog */}
             <Link
               href="/blog"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Blog
+              {t("nav.blog")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
             {/* Changelog */}
             <Link
               href="/changelog"
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Changelog
+              {t("nav.changelog")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             
-            {/* X (Twitter) Link */}
-            <a 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-foreground transition-colors duration-200" 
-              href="https://x.com/i/lists/2012343447857033614" 
-              aria-label="Follow us on X"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-            </a>
-            
             <ModeToggle />
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
+            <LanguageSwitcher />
             <ModeToggle />
             <Button
               variant="ghost"
@@ -189,7 +183,7 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                {t("nav.home")}
               </Link>
 
               {/* FAQs */}
@@ -198,7 +192,7 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                FAQs
+                {t("nav.faqs")}
               </Link>
 
               {/* Quick Access */}
@@ -207,7 +201,7 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Playlists
+                {t("nav.playlists")}
               </Link>
 
               {/* Testimonials */}
@@ -216,7 +210,7 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Testimonials
+                {t("nav.testimonials")}
               </Link>
 
               {/* Blog */}
@@ -225,13 +219,13 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Blog
+                {t("nav.blog")}
               </Link>
               
               {/* Other Tools Section for Mobile */}
               <div className="border-t border-border pt-2 mt-2">
                 <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                  Other Tools
+                  {t("nav.otherTools")}
                 </div>
                 <Link
                   href="/youtube-playlist-exporter"
@@ -255,7 +249,7 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Wrench className="h-4 w-4" />
-                  <span>Tools You May Also Like</span>
+                  <span>{t("otherTools.toolsYouMayLike")}</span>
                 </Link>
               </div>
               
@@ -265,20 +259,10 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Changelog
+                {t("nav.changelog")}
               </Link>
 
-              {/* X (Twitter) Link */}
-              <a
-                href="https://x.com/i/lists/2012343447857033614"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                <span>Follow on X</span>
-              </a>
+
             </div>
           </div>
         )}

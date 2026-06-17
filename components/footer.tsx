@@ -1,19 +1,24 @@
+"use client"
+
 import Link from "next/link"
 import { Star, Twitter, Mail } from "lucide-react"
+import { useI18n } from "@/lib/i18n"
 
 export default function Footer() {
+  const { t } = useI18n()
+
   const footerLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms & Conditions", href: "/terms" },
+    { name: t("footer.about"), href: "/about" },
+    { name: t("footer.contact"), href: "/contact" },
+    { name: t("footer.privacy"), href: "/privacy" },
+    { name: t("footer.terms"), href: "/terms" },
   ]
 
   const toolLinks = [
     { name: "YouTube Playlist Exporter", href: "/youtube-playlist-exporter" },
     { name: "YouTube Playlist Length Calculator", href: "/" },
-    { name: "Tools You May Also Like", href: "/tools-you-may-also-like" },
-    { name: "Changelog", href: "/changelog" },
+    { name: t("otherTools.toolsYouMayLike"), href: "/tools-you-may-also-like" },
+    { name: t("nav.changelog"), href: "/changelog" },
   ]
 
   return (
@@ -23,16 +28,16 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <h3 className="font-bold text-lg bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              YT Playlist Length
+              {t("footer.brand")}
             </h3>
             <p className="text-muted-foreground text-sm">
-              The best tool to calculate YouTube playlist duration. Fast, accurate, and free.
+              {t("footer.brandDesc")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
@@ -49,7 +54,7 @@ export default function Footer() {
 
           {/* Tools */}
           <div>
-            <h4 className="font-semibold mb-4">Tools</h4>
+            <h4 className="font-semibold mb-4">{t("footer.tools")}</h4>
             <ul className="space-y-2">
               {toolLinks.map((link) => (
                 <li key={link.href}>
@@ -75,7 +80,7 @@ export default function Footer() {
 
           {/* Social / Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h4 className="font-semibold mb-4">{t("footer.connect")}</h4>
             <ul className="space-y-2">
               <li>
                 <a 
@@ -85,7 +90,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
                 >
                   <Star className="w-4 h-4 group-hover:text-yellow-500 transition-colors" />
-                  <span>Star on GitHub</span>
+                  <span>{t("footer.starGithub")}</span>
                 </a>
               </li>
               <li>
@@ -96,7 +101,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
                 >
                   <Twitter className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
-                  <span>Follow on X</span>
+                  <span>{t("nav.followOnX")}</span>
                 </a>
               </li>
               <li>
@@ -105,7 +110,7 @@ export default function Footer() {
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
                 >
                   <Mail className="w-4 h-4 group-hover:text-purple-500 transition-colors" />
-                  <span>Contact Support</span>
+                  <span>{t("footer.contactSupport")}</span>
                 </Link>
               </li>
             </ul>
@@ -115,7 +120,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground text-center md:text-left">
-            © {new Date().getFullYear()} YouTube Playlist Length Calculator. All rights reserved.
+            {t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}
           </p>
         </div>
       </div>

@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, Star, Zap, Bug, Plus, Sparkles } from "lucide-react";
 import { changelogEntries } from "@/lib/changelog-data";
+import { useI18n } from "@/lib/i18n";
 
 export function ChangelogPreview() {
   // Get the latest 3 entries
   const latestEntries = changelogEntries.slice(0, 3);
+  const { t } = useI18n();
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -41,10 +43,10 @@ export function ChangelogPreview() {
           <Sparkles className="h-6 w-6 text-purple-600 dark:text-purple-400" />
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-          Latest Updates
+          {t("changelog.title")}
         </h2>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          We&apos;re constantly improving. Check out the latest features and enhancements.
+          {t("changelog.subtitle")}
         </p>
       </div>
 
@@ -91,7 +93,7 @@ export function ChangelogPreview() {
                 ))}
                 {entry.changes.length > 3 && (
                   <li className="pt-2 text-xs font-medium text-muted-foreground italic">
-                    + {entry.changes.length - 3} more updates...
+                    {t("changelog.moreUpdates").replace("{count}", String(entry.changes.length - 3))}
                   </li>
                 )}
               </ul>
@@ -103,7 +105,7 @@ export function ChangelogPreview() {
                 href="/changelog" 
                 className="inline-flex items-center text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group"
               >
-                Read full notes 
+                {t("changelog.readFull")}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -116,7 +118,7 @@ export function ChangelogPreview() {
           href="/changelog" 
           className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-secondary hover:bg-secondary/80 text-foreground font-medium transition-colors duration-200"
         >
-          View All Updates
+          {t("changelog.viewAll")}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </div>
