@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   generator: "Next.js",
   applicationName: "Youtube Playlist Length Calculator",
   keywords: [
-    "Youtube Playlist Length", "Youtube Playlist Duration", "Youtube Playlist Lenth calculator"],
-  authors: [{ name: 'Uttam Likhiya', url: 'https://puli.vercel.app' }],
+    "Youtube Playlist Length", "Youtube Playlist Duration", "Youtube Playlist Length calculator"],
+  authors: [{ name: 'Willard Yuan', url: 'https://github.com/willard-yuan' }],
   openGraph: {
     title: "YTPlaylistLength - Best Youtube Playlist Length Calculator",
     description: "Calculate the total length of any YouTube playlists quickly! Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.",
@@ -110,11 +110,6 @@ export default function RootLayout({
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "ratingCount": "2450"
               }
             })
           }}

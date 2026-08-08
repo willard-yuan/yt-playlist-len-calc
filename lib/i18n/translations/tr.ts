@@ -13,7 +13,6 @@ const tr: Record<TranslationKey, string> = {
   "nav.followOnX": "X'te Takip Et",
 
   // === Hero Section ===
-  "hero.badge": "Verimliliğinizi en üst düzeye çıkarın. Birleştirmeyi bırakın. Kaydırmaya başlayın. En iyi iOS kaydırma ekran görüntüsü aracı. →",
   "hero.title.line1": "YouTube Çalma Listesi",
   "hero.title.line2": "Süre Hesaplayıcı",
   "hero.subtitle": "Zamanınıza hâkim olun. Herhangi bir YouTube çalma listesinin kesin süresini anında öğrenin. Çalma listesi bağlantısını yapıştırın ve tüm videoları tek seferde izlemenin ne kadar süreceğini hemen görün.",

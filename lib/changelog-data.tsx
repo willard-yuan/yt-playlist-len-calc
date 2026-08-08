@@ -2,6 +2,20 @@ import Link from "next/link";
 
 export const changelogEntries = [
   {
+    version: "v1.4.6",
+    date: "2026-08-08",
+    type: "feature",
+    title: "Guides Hub, Richer Homepage & Content Authenticity",
+    changes: [
+      <span key="guides">📚 NEW: Launched the <Link href="/guides" className="text-purple-600 hover:underline">Guides</Link> hub with 8 in-depth articles on playlist length, playback speed, course planning, partial durations, music runtimes, reverse planning, and how the calculator works</span>,
+      "🖼 Each guide now has a unique, topic-themed cover illustration (no more repeated images across articles)",
+      "❓ Expanded FAQ sections across all guides to 7–8 questions each for clearer, more complete answers",
+      <span key="home">🎨 Added new homepage sections — Everything You Need, Speed Comparison, Common Use Cases, Who Uses, and Why Use — for clearer value communication</span>,
+      "🧹 Removed placeholder testimonials to improve content authenticity and trust",
+      "🔍 Strengthened SEO and editorial depth across tool and guide pages"
+    ]
+  },
+  {
     version: "v1.4.5",
     date: "2026-01-18",
     type: "feature",

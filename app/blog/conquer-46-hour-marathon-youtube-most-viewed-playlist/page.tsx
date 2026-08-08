@@ -40,16 +40,16 @@ export default function BlogPost() {
       {/* Article Header */}
       <article className="pt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Back to Blog */}
-          <div className="mb-8">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group">
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
-            </Link>
-          </div>
-
-          {/* Article Meta */}
           <div className="max-w-4xl mx-auto">
+            {/* Back to Blog — aligned with article content */}
+            <div className="mb-8">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group">
+                <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
+                Back to Blog
+              </Link>
+            </div>
+
+            {/* Article Meta */}
             <div className="flex items-center gap-4 mb-6">
               <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0">
                 Guide

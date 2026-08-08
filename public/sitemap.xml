@@ -73,14 +73,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Tools You May Also Like - Recommended tools -->
-  <url>
-    <loc>https://ytplaylistlength.pro/tools-you-may-also-like</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <!-- Changelog Page - Updates and new features -->
   <url>
     <loc>https://ytplaylistlength.pro/changelog</loc>
@@ -143,6 +135,78 @@
     <lastmod>2026-01-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Guides Hub - Tutorials and how-to content -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Guide - How to Calculate the Total Length of Any YouTube Playlist -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/how-to-calculate-youtube-playlist-length</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Guide - YouTube Playback Speed Calculator -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/youtube-playback-speed-watch-time</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Guide - Plan Online Course Playlist Schedule -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/plan-online-course-playlist-schedule</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Guide - Calculate Partial Playlist Duration -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/calculate-partial-playlist-duration</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guide - Music Playlist Total Runtime -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/music-playlist-total-runtime</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guide - How Many Videos Fit in X Hours -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/how-many-videos-fit-in-x-hours</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guide - Video Count vs Playlist Duration -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/video-count-vs-playlist-duration</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guide - How the Calculator Gets Accurate Durations -->
+  <url>
+    <loc>https://ytplaylistlength.pro/guides/how-the-calculator-gets-accurate-durations</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <!-- LLM Context File - For AI agents and bots -->

@@ -40,16 +40,17 @@ export default function BlogPost() {
       {/* Article Header */}
       <article className="pt-24 lg:pt-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back to Blog */}
-          <div className="max-w-3xl mx-auto mb-8">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
-            </Link>
-          </div>
+          <div className="max-w-4xl mx-auto">
+            {/* Back to Blog — aligned with article content */}
+            <div className="mb-8 text-left">
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors group">
+                <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
+                Back to Blog
+              </Link>
+            </div>
 
-          {/* Article Title Section */}
-          <div className="max-w-4xl mx-auto text-center mb-16">
+            {/* Article Title Section */}
+            <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in-up">
               <Badge variant="outline" className="border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-50/50 dark:bg-purple-900/10 px-3 py-1 text-sm">
                 New Feature
@@ -87,6 +88,7 @@ export default function BlogPost() {
             </div>
           </div>
         </div>
+      </div>
 
         {/* Hero Image */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">

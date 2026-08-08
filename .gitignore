@@ -1,0 +1,19 @@
+# dependencies
+node_modules
+
+# env (local only — never commit secrets)
+.env*.local
+.env
+
+# next.js build output
+.next/
+out/
+next-env.d.ts
+
+# typescript build info
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# os / editor junk
+.DS_Store
+Thumbs.db

@@ -229,7 +229,7 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
     }, [playlist.items, searchQuery]);
 
     return (
-        <div id="playlist-analysis" className="space-y-12 w-full mx-auto max-w-7xl">
+        <div id="playlist-analysis" className="space-y-12 w-full mx-auto max-w-6xl">
             {/* Analysis & Planning Container */}
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 

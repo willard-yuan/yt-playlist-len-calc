@@ -11,7 +11,6 @@ const en = {
   "nav.followOnX": "Follow on X",
 
   // === Hero Section ===
-  "hero.badge": "Maximize your efficiency. Stop stitching. Start scrolling. The ultimate iOS scrolling screenshot tool. →",
   "hero.title.line1": "Youtube Playlist",
   "hero.title.line2": "Length Calculator",
   "hero.subtitle": "Master your time. Get precise duration analytics for any YouTube playlist instantly. Paste playlist URL to get instant result on how long it takes to watch all the videos in one go.",

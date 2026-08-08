@@ -4,169 +4,59 @@
 import SearchBar from "@/components/search-bar";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import QuickAccess from "@/components/quick-access";
-import Testimonials from "@/components/testimonials";
 import { ChangelogPreview } from "@/components/changelog-preview";
 import LatestPosts from "@/components/latest-posts";
 import { OtherToolsSection } from "@/components/other-tools-section";
+import HomeRichSections from "@/components/home-rich-sections";
 import { useI18n } from "@/lib/i18n";
-import { Clock, Users, Zap, HelpCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Clock, Users, Zap, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
   const { t } = useI18n();
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const navbarHeight = 90;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navbarHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-purple-500/30 selection:text-purple-900 dark:selection:text-purple-100 font-sans">
       <Navbar />
       <main>
       
-      {/* Hero Section */}
-      <div className="relative pt-32 pb-40 lg:pt-48 lg:pb-56 overflow-hidden">
+      {/* Hero + Calculator — Compact First Screen */}
+      <div className="relative pt-24 pb-32 lg:pt-32 lg:pb-44 overflow-hidden">
         {/* Modern Background Gradient */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl mx-auto opacity-40 dark:opacity-20 pointer-events-none">
-            <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-purple-500/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-normal animate-pulse" />
-            <div className="absolute top-[10%] right-[10%] w-[400px] h-[400px] bg-blue-500/30 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-normal animate-pulse delay-1000" />
-            <div className="absolute bottom-[-10%] left-[30%] w-[600px] h-[600px] bg-pink-500/30 rounded-full blur-[130px] mix-blend-multiply dark:mix-blend-normal animate-pulse delay-2000" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl mx-auto opacity-35 dark:opacity-15 pointer-events-none">
+            <div className="absolute top-[-5%] left-[20%] w-[450px] h-[450px] bg-purple-500/30 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-normal animate-pulse" />
+            <div className="absolute top-[15%] right-[10%] w-[350px] h-[350px] bg-blue-500/30 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-normal animate-pulse delay-1000" />
+            <div className="absolute bottom-[-5%] left-[30%] w-[500px] h-[500px] bg-pink-500/25 rounded-full blur-[130px] mix-blend-multiply dark:mix-blend-normal animate-pulse delay-2000" />
           </div>
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-10">
-            {/* ScrollShot Promo Badge */}
-            <div className="flex justify-center -mb-4">
-              <a 
-                href="https://scrollshot.work"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex p-[1px] rounded-full transition-transform duration-500 hover:scale-105"
-              >
-                {/* Gradient Border & Breathing Glow */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-30 blur-md animate-pulse" style={{ animationDuration: '4s' }} />
-                
-                {/* Content */}
-                <div className="relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md group-hover:bg-white/90 dark:group-hover:bg-black/90 transition-colors duration-300">
-                  <span className="animate-pulse" style={{ animationDuration: '2s' }}>✨</span>
-                  <span className="text-[13px] font-bold text-slate-800 dark:text-slate-200">
-                    {t("hero.badge")}
-                  </span>
-                </div>
-              </a>
-            </div>
-
-            {/* Main Title */}
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05]">
+          <div className="max-w-4xl mx-auto text-center space-y-7">
+            {/* Main Title — Compact */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08]">
               {t("hero.title.line1")}
-              <br />
+              {" "}
               <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent animate-gradient-x">
                 {t("hero.title.line2")}
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light tracking-wide">
               {t("hero.subtitle")}
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4">
-              <button
-                onClick={() => scrollToSection('calculate-section')}
-                className="group relative px-10 py-5 bg-foreground text-background font-semibold rounded-full shadow-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95"
-              >
-                <span className="relative z-10 flex items-center gap-3 text-lg">
-                  {t("hero.cta.start")}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </button>
-              
-              <button
-                onClick={() => scrollToSection('how-it-works')}
-                className="px-10 py-5 text-muted-foreground hover:text-foreground font-medium transition-colors duration-300 flex items-center gap-2 text-lg"
-              >
-                {t("hero.cta.learn")}
-              </button>
+            {/* Calculator — Integrated into Hero First Screen */}
+            <div id="calculate-section" className="relative z-20 mx-auto mt-6 mb-16">
+              <SearchBar />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Function Section */}
+      {/* Content Sections */}
       <div className="relative px-4 sm:px-6 lg:px-8 pb-32">
         <div className="max-w-6xl mx-auto">
-          {/* Search Bar Container */}
-          <div id="calculate-section" className="relative z-20 bg-background/60 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-16 mb-32 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(255,255,255,0.05)] border border-white/20 dark:border-white/5">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 tracking-tight">
-                {t("analyze.title")}
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                {t("analyze.subtitle")}
-              </p>
-            </div>
-            <SearchBar />
-          </div>
-
-          {/* Quick Access Section */}
-          <QuickAccess />
-
-          {/* Why Use Section - Redesigned */}
-          <div className="mb-40">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                {t("why.title")}
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                {t("why.subtitle")}
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {[
-                {
-                  icon: <Clock className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-                  title: t("why.precision.title"),
-                  desc: t("why.precision.desc"),
-                  bg: "bg-purple-50 dark:bg-purple-900/10"
-                },
-                {
-                  icon: <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
-                  title: t("why.planning.title"),
-                  desc: t("why.planning.desc"),
-                  bg: "bg-blue-50 dark:bg-blue-900/10"
-                },
-                {
-                  icon: <Zap className="h-8 w-8 text-pink-600 dark:text-pink-400" />,
-                  title: t("why.instant.title"),
-                  desc: t("why.instant.desc"),
-                  bg: "bg-pink-50 dark:bg-pink-900/10"
-                }
-              ].map((item, i) => (
-                <div key={i} className="group p-10 rounded-[2rem] bg-background border border-border/50 hover:border-border hover:shadow-lg transition-all duration-300">
-                  <div className={`w-16 h-16 ${item.bg} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
-                    {item.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-lg">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* How the Tool Works - Redesigned */}
           <div id="how-it-works" className="mb-40">
@@ -199,20 +89,19 @@ export default function HomeClient() {
               
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-blue-500/20 rounded-[3rem] blur-3xl -z-10" />
-                <div className="bg-background/80 backdrop-blur-xl border border-white/20 p-10 rounded-[3rem] shadow-2xl">
-                  {/* Abstract visual representation of the tool */}
-                  <div className="space-y-6">
-                    <div className="h-14 bg-secondary/50 rounded-2xl w-full animate-pulse" />
-                    <div className="flex gap-4">
-                      <div className="h-32 bg-purple-500/10 rounded-2xl flex-1" />
-                      <div className="h-32 bg-blue-500/10 rounded-2xl flex-1" />
-                    </div>
-                    <div className="space-y-3 pt-4">
-                      <div className="h-4 bg-secondary/30 rounded-full w-3/4" />
-                      <div className="h-4 bg-secondary/30 rounded-full w-1/2" />
-                      <div className="h-4 bg-secondary/30 rounded-full w-5/6" />
-                    </div>
+                <div className="bg-background/80 backdrop-blur-xl border border-white/20 p-8 md:p-10 rounded-[3rem] shadow-2xl overflow-hidden">
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg group">
+                    <img
+                      src="/Active_Planning.webp"
+                      alt="Plan your YouTube playlist viewing schedule with our calculator — see total duration, playback speed estimates and daily watch goals"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
                   </div>
+                  <p className="text-center text-sm text-muted-foreground mt-5 leading-relaxed">
+                    Visualize your playlist timeline and plan every session with precision.
+                  </p>
                 </div>
               </div>
             </div>
@@ -283,6 +172,9 @@ export default function HomeClient() {
             </div>
           </div>
 
+          {/* Rich Content Sections (referenced from approved competitor) */}
+          <HomeRichSections />
+
           {/* FAQs Section - Modern Accordion Style */}
           <div id="faq" className="mb-32 scroll-mt-24">
             <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">
@@ -322,14 +214,54 @@ export default function HomeClient() {
             </div>
           </div>
 
+          {/* Why Choose Us Section - Moved before Other Tools */}
+          <div className="mb-40">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                {t("why.title")}
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                {t("why.subtitle")}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {[
+                {
+                  icon: <Clock className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+                  title: t("why.precision.title"),
+                  desc: t("why.precision.desc"),
+                  bg: "bg-purple-50 dark:bg-purple-900/10"
+                },
+                {
+                  icon: <Users className="h-8 w-8 text-blue-600 dark:text-blue-400" />,
+                  title: t("why.planning.title"),
+                  desc: t("why.planning.desc"),
+                  bg: "bg-blue-50 dark:bg-blue-900/10"
+                },
+                {
+                  icon: <Zap className="h-8 w-8 text-pink-600 dark:text-pink-400" />,
+                  title: t("why.instant.title"),
+                  desc: t("why.instant.desc"),
+                  bg: "bg-pink-50 dark:bg-pink-900/10"
+                }
+              ].map((item, i) => (
+                <div key={i} className="group p-10 rounded-[2rem] bg-background border border-border/50 hover:border-border hover:shadow-lg transition-all duration-300">
+                  <div className={`w-16 h-16 ${item.bg} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-lg">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Other Tools Section */}
           <OtherToolsSection />
 
           {/* Latest Posts Section */}
           <LatestPosts />
-
-          {/* Testimonials Section */}
-          <Testimonials />
 
           {/* Changelog Section */}
           <ChangelogPreview />

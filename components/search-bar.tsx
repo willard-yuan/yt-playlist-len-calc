@@ -34,6 +34,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import {
   ChevronDown,
+  ChevronRight,
   X,
   RotateCcw,
   ArrowRight,
@@ -48,6 +49,9 @@ import {
   Clock,
   Settings2,
   Sparkles,
+  Youtube,
+  Share2,
+  Link as LinkIcon,
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { parseDuration } from "@/lib/utils";
@@ -382,83 +386,135 @@ export default function SearchBar() {
       ).filter((channel) => channel !== t("search.unknownChannel"))
     : [];
 
+  // Inline social icon components
+  const SendIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+      <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+    </svg>
+  );
+  const PinIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+      <path d="M12 2C10.34 2 9 3.34 9 5c0 1.03.52 1.93 1.31 2.47L7 16H5v2h14v-2h-2l-3.31-8.53C14.48 6.93 15 6.03 15 5c0-1.66-1.34-3-3-3z"/>
+    </svg>
+  );
+  const MailIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+      <rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 6l-10 7L2 6" />
+    </svg>
+  );
+
   return (
-    <div className="space-y-12 w-full mx-auto max-w-4xl">
-      {/* Enhanced Search Form */}
-      <div className={`transition-all duration-500 ease-in-out transform ${
-        isPending ? 'scale-[0.98] opacity-90' : 'scale-100 opacity-100'
+    <div className="w-full mx-auto max-w-6xl">
+      {/* Card Container — matches screenshot style, kept compact for focus */}
+      <div className={`max-w-3xl mx-auto bg-white dark:bg-gray-900 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-[0_2px_20px_-4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_20px_-4px_rgba(0,0,0,0.3)] border border-gray-200/60 dark:border-gray-700/40 transition-all duration-500 ease-in-out transform ${
+        isPending ? 'scale-[0.99] opacity-95' : 'scale-100 opacity-100'
       }`}>
-        <div className="relative">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              {/* Main Search Area */}
-              <div className="space-y-4">
-              <div className="relative max-w-2xl mx-auto group">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <FormField
-                  control={form.control}
-                  name="url"
-                  render={({ field }) => (
-                    <FormItem className="relative z-10">
-                      <FormControl>
-                        <div className="relative">
-                          <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none group-focus-within:text-purple-500 transition-colors duration-300" />
-                          <Input
-                            type="url"
-                            placeholder={t("search.urlPlaceholder")}
-                            className="h-16 text-lg bg-background/80 backdrop-blur-sm border-2 border-border/40 hover:border-purple-500/30 focus:border-purple-500 rounded-full pl-14 pr-40 transition-all duration-300 shadow-sm hover:shadow-md focus:shadow-lg focus:ring-4 focus:ring-purple-500/10 w-full"
-                            disabled={isPending}
-                            {...field}
-                          />
-                          <div className="absolute right-2 top-2 bottom-2">
-                            <Button
-                              type="submit"
-                              disabled={isPending}
-                              className="h-full px-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-base shadow-md transition-all duration-300"
-                            >
-                              {isPending ? (
-                                <Loader2 className="h-5 w-5 animate-spin" />
-                              ) : (
-                                t("search.calculate")
-                              )}
-                            </Button>
-                          </div>
-                        </div>
-                      </FormControl>
-                      <FormMessage className="pl-6 mt-2" />
-                    </FormItem>
-                  )}
-                />
-              </div>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            
+            {/* Title — left-aligned bold */}
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">
+              {t("analyze.title")}
+            </h2>
 
-              {/* Secondary Actions Row */}
-                <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
-                   {/* Example Link */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      form.setValue("url", "https://www.youtube.com/playlist?list=PLK6HsuHeltDnKkWgAQMmck7x5ghgugu78");
-                    }}
-                    className="group flex items-center gap-2 text-sm text-muted-foreground/80 hover:text-purple-600 dark:hover:text-purple-400 transition-colors py-2 px-3 rounded-full hover:bg-purple-50 dark:hover:bg-purple-900/10"
-                  >
-                    <Sparkles className="h-4 w-4 text-amber-400 group-hover:scale-110 transition-transform" />
-                    <span>{t("search.tryExample")}</span>
-                  </button>
+            {/* Textarea Input — multi-line like screenshot */}
+            <FormField
+              control={form.control}
+              name="url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <textarea
+                      placeholder={"Paste a YouTube playlist URL here…\n\nExamples:\n• youtube.com/playlist?list=PLxxxxxxx\n• youtu.be/watch?v=xxx&list=PLxxxxxxx\n\nWorks with any public or unlisted playlist"}
+                      className="w-full min-h-[100px] px-4 py-3.5 text-[15px] bg-gray-50/80 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-600 rounded-xl hover:border-gray-300 dark:hover:border-gray-500 focus:border-purple-400 dark:focus:border-purple-500 focus:ring-2 focus:ring-purple-500/10 focus:outline-none resize-none transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-900 dark:text-gray-100"
+                      disabled={isPending}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="mt-1.5" />
+                </FormItem>
+              )}
+            />
 
-                  {/* Advanced Options Toggle */}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className={`text-muted-foreground hover:text-foreground group transition-all duration-300 ${isAdvanced ? 'bg-secondary/50 text-foreground' : ''}`}
-                    type="button"
-                    onClick={() => setIsAdvanced(!isAdvanced)}
-                  >
-                    <Settings2 className="h-4 w-4 mr-2 group-hover:rotate-90 transition-transform duration-500" />
-                    {t("search.advancedOptions")}
-                    <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-300 ${isAdvanced ? 'rotate-180' : ''}`} />
-                  </Button>
-                </div>
-              </div>
+            {/* Secondary Actions Row — Try example (subtle) + Advanced options (prominent pill) */}
+            <div className="flex items-center justify-between gap-3">
+              {/* Try Example — warm-toned pill button, balanced with Advanced Options */}
+              <button
+                type="button"
+                onClick={() => {
+                  form.setValue("url", "https://www.youtube.com/playlist?list=PLK6HsuHeltDnKkWgAQMmck7x5ghgugu78");
+                }}
+                className="group flex items-center gap-2 text-sm font-medium px-4 py-1.5 rounded-full bg-amber-50 dark:bg-amber-900/15 border border-amber-200/70 dark:border-amber-700/40 text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/25 hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-300 cursor-pointer shrink-0"
+              >
+                <Sparkles className="h-4 w-4 text-amber-500 group-hover:rotate-12 transition-transform duration-300" />
+                <span>{t("search.tryExample")}</span>
+                <kbd className="hidden sm:inline-flex items-center gap-0.5 ml-0.5 text-[11px] font-sans font-normal text-amber-500/70 bg-amber-100/60 dark:bg-amber-800/30 rounded-md px-1.5 py-0.5">↵</kbd>
+              </button>
+
+              {/* Advanced Options Toggle — bordered pill button, more prominent */}
+              <button
+                type="button"
+                onClick={() => setIsAdvanced(!isAdvanced)}
+                className={`group flex items-center gap-1.5 text-sm font-medium px-3.5 py-1.5 rounded-full border transition-all duration-300 cursor-pointer ${
+                  isAdvanced
+                    ? 'border-purple-300 dark:border-purple-600 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300'
+                    : 'border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                <SlidersHorizontal className="h-3.5 w-3.5" />
+                <span>{t("search.advancedOptions")}</span>
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 ${isAdvanced ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+
+            {/* Full-width Dark CTA Button — YouTube icon + Calculate Duration */}
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="w-full h-13 rounded-xl bg-gray-900 dark:bg-gray-950 hover:bg-gray-800 dark:hover:bg-gray-800 text-white font-semibold text-base shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2.5"
+            >
+              {isPending ? (
+                <Loader2 className="h-5 w-5 animate-spin" />
+              ) : (
+                <Youtube className="h-5 w-5" />
+              )}
+              {t("search.calculate")} Duration
+            </Button>
+
+            {/* Footer Note */}
+            <p className="text-center text-sm text-gray-400 dark:text-gray-500 pt-1">
+              No sign-up required · Supports playlists &amp; single videos
+            </p>
+
+            {/* Social Share Icons Row */}
+            <div className="flex items-center justify-center gap-1.5 pt-1 pb-2">
+              <span className="text-xs text-gray-400 dark:text-gray-500 mr-1">Share:</span>
+              {[
+                { icon: <Share2 className="h-4 w-4" />, label: "X / Twitter" },
+                { icon: <span className="text-sm font-bold">f</span>, label: "Facebook" },
+                { icon: <span className="text-sm font-bold">in</span>, label: "LinkedIn" },
+                { icon: <span className="text-sm font-bold">📌</span>, label: "Reddit" },
+                { icon: <Share2 className="h-4 w-4" />, label: "WhatsApp" },
+                { icon: <SendIcon />, label: "Telegram" },
+                { icon: <PinIcon />, label: "Pinterest" },
+                { icon: <MailIcon />, label: "Email" },
+                { icon: <LinkIcon className="h-4 w-4" />, label: "Copy link" },
+              ].map((social, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  title={social.label}
+                  onClick={() => {
+                    if (social.label === "Copy link") {
+                      navigator.clipboard?.writeText(window.location.href);
+                    }
+                  }}
+                  className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-800 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500 transition-all duration-200"
+                >
+                  {social.icon}
+                </button>
+              ))}
+            </div>
 
               {/* Advanced Options Panel */}
               <Collapsible open={isAdvanced} onOpenChange={setIsAdvanced} className="w-full">
@@ -831,8 +887,8 @@ export default function SearchBar() {
             </form>
           </Form>
         </div>
-      </div>
-      {/* Results */}
+      {/* Results — with generous top spacing from card */}
+      <div className="mt-12">
       {isPending && loadingStep < 3 && (
         <LoadingMessage 
           step={loadingStep} 
@@ -841,6 +897,7 @@ export default function SearchBar() {
       )}
       {isPending && loadingStep >= 3 && <PlaylistSkeleton />}
       {!isPending && filteredPlaylist && <PlaylistResult playlist={filteredPlaylist} format={format} />}
+      </div>{/* End Results spacing wrapper */}
     </div>
   );
 }

@@ -9,6 +9,9 @@ const client = axios.create({
   baseURL: "https://www.googleapis.com/youtube/v3",
   timeout: 120000,
   httpsAgent: proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined,
+  // Ignore ambient HTTP(S)_PROXY env vars to avoid double-proxying through
+  // both the env proxy and our explicitly configured HttpsProxyAgent.
+  proxy: false,
 });
 
 export async function getPlaylist(url: string) {

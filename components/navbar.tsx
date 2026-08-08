@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
-import { Menu, X, Play, Youtube, Star, ChevronDown, Wrench, Shuffle } from "lucide-react"
+import { Menu, X, Play, Youtube, Star, ChevronDown, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
 import { LanguageSwitcher } from "@/components/language-switcher"
@@ -26,9 +26,6 @@ export default function Navbar() {
     }
     if (pathname === '/youtube-playlist-randomizer') {
       return 'YouTube Playlist Randomizer'
-    }
-    if (pathname === '/tools-you-may-also-like') {
-      return t("otherTools.toolsYouMayLike")
     }
     return t("nav.logo")
   }
@@ -77,24 +74,6 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
             
-            {/* Quick Access */}
-            <Link
-              href="/#quick-access"
-              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
-            >
-              {t("nav.playlists")}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-
-            {/* Testimonials */}
-            <Link
-              href="/#testimonials"
-              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
-            >
-              {t("nav.testimonials")}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-
             {/* FAQs */}
             <Link
               href="/#faq"
@@ -126,12 +105,6 @@ export default function Navbar() {
                     <span>YouTube Playlist Exporter</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/tools-you-may-also-like" className="flex items-center space-x-2">
-                    <Wrench className="h-4 w-4" />
-                    <span>{t("otherTools.toolsYouMayLike")}</span>
-                  </Link>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -141,6 +114,15 @@ export default function Navbar() {
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.blog")}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+
+            {/* Guides */}
+            <Link
+              href="/guides"
+              className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
+            >
+              Guides
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
@@ -195,24 +177,6 @@ export default function Navbar() {
                 {t("nav.faqs")}
               </Link>
 
-              {/* Quick Access */}
-              <Link
-                href="/#quick-access"
-                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t("nav.playlists")}
-              </Link>
-
-              {/* Testimonials */}
-              <Link
-                href="/#testimonials"
-                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t("nav.testimonials")}
-              </Link>
-
               {/* Blog */}
               <Link
                 href="/blog"
@@ -221,7 +185,16 @@ export default function Navbar() {
               >
                 {t("nav.blog")}
               </Link>
-              
+
+              {/* Guides */}
+              <Link
+                href="/guides"
+                className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Guides
+              </Link>
+
               {/* Other Tools Section for Mobile */}
               <div className="border-t border-border pt-2 mt-2">
                 <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
@@ -242,14 +215,6 @@ export default function Navbar() {
                 >
                   <Shuffle className="h-4 w-4" />
                   <span>YouTube Playlist Randomizer</span>
-                </Link>
-                <Link
-                  href="/tools-you-may-also-like"
-                  className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Wrench className="h-4 w-4" />
-                  <span>{t("otherTools.toolsYouMayLike")}</span>
                 </Link>
               </div>
               
