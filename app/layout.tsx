@@ -8,6 +8,7 @@ import { I18nProvider } from "@/lib/i18n";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 import { HreflangUpdater } from "@/components/hreflang-updater";
+import { GlobalStructuredData } from "@/components/global-structured-data";
 
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
@@ -55,8 +56,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    shortcut: '/favicon-32x32.png',
     apple: '/apple-touch-icon.png',
   },
 };
@@ -68,11 +72,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true} className="overflow-x-hidden">
-      <body className={`${inter.className} relative overflow-x-hidden`} suppressHydrationWarning={true}>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-W1834E98M7"
-          strategy="afterInteractive"
-        />
+    <body className={`${inter.className} relative overflow-x-hidden`} suppressHydrationWarning={true}>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(){var p=location.pathname;var m=p.match(/^\\/(hi|tr)(?:\\/|$)/);document.documentElement.lang=m?m[1]:'en';})();`,
+        }}
+      />
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-W1834E98M7"
+        strategy="afterInteractive"
+      />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -83,6 +92,7 @@ export default function RootLayout({
         </Script>
         <script
           type="application/ld+json"
+          data-global="true"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -99,6 +109,7 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
+          data-global="true"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -123,6 +134,7 @@ export default function RootLayout({
         >
           <I18nProvider>
             <HreflangUpdater />
+            <GlobalStructuredData />
             {children}
             <Toaster />
             <Analytics />

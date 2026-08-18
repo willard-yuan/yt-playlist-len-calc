@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -9,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useI18n, Locale, getLocalePath } from "@/lib/i18n"
+import { useI18n, Locale, DEFAULT_LOCALE } from "@/lib/i18n"
 
 const localeFlags: Record<Locale, string> = {
   en: "🇺🇸",
@@ -19,6 +20,17 @@ const localeFlags: Record<Locale, string> = {
 
 export function LanguageSwitcher() {
   const { locale, locales, getLocaleName } = useI18n()
+  const pathname = usePathname()
+
+  // Strip the leading locale segment (if present) so the rest of the path is
+  // preserved when switching languages: /hi/about → /tr/about, /about → /hi/about.
+  const subpath = pathname.replace(/^\/(en|hi|tr)(?=\/|$)/, "")
+
+  const buildHref = (l: Locale) => {
+    const prefix = l === DEFAULT_LOCALE ? "" : `/${l}`
+    if (subpath === "" || subpath === "/") return prefix === "" ? "/" : prefix
+    return `${prefix}${subpath}`
+  }
 
   return (
     <DropdownMenu>
@@ -40,7 +52,7 @@ export function LanguageSwitcher() {
             asChild
             className="flex items-center justify-between cursor-pointer"
           >
-            <Link href={getLocalePath(l)} className="flex items-center gap-2 w-full">
+            <Link href={buildHref(l)} className="flex items-center gap-2 w-full">
               <span className="text-base leading-none">{localeFlags[l]}</span>
               <span>{getLocaleName(l)}</span>
               {locale === l && <Check className="h-4 w-4 text-purple-500 ml-auto" />}

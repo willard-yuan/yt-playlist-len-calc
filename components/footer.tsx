@@ -9,7 +9,7 @@ export default function Footer() {
 
   const footerLinks = [
     { name: t("footer.about"), href: "/about" },
-    { name: "Guides", href: "/guides" },
+    { name: t("nav.guides"), href: "/guides" },
     { name: t("footer.contact"), href: "/contact" },
     { name: t("footer.privacy"), href: "/privacy" },
     { name: t("footer.terms"), href: "/terms" },

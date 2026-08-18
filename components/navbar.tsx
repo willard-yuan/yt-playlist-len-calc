@@ -122,7 +122,7 @@ export default function Navbar() {
               href="/guides"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
-              Guides
+              {t("nav.guides")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
 
@@ -192,7 +192,7 @@ export default function Navbar() {
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Guides
+                {t("nav.guides")}
               </Link>
 
               {/* Other Tools Section for Mobile */}

@@ -9,10 +9,28 @@ import LatestPosts from "@/components/latest-posts";
 import { OtherToolsSection } from "@/components/other-tools-section";
 import HomeRichSections from "@/components/home-rich-sections";
 import { useI18n } from "@/lib/i18n";
+import type { TranslationKey } from "@/lib/i18n/translations/en";
 import { Clock, Users, Zap, HelpCircle, CheckCircle2 } from "lucide-react";
 
 export default function HomeClient() {
   const { t } = useI18n();
+
+  // FAQ structured data — mirrors the visible FAQ section and is localized.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: Array.from({ length: 16 }, (_, i) => {
+      const n = i + 1;
+      return {
+        "@type": "Question",
+        name: t(`faq.q${n}` as TranslationKey),
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: t(`faq.a${n}` as TranslationKey),
+        },
+      };
+    }),
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-purple-500/30 selection:text-purple-900 dark:selection:text-purple-100 font-sans">
@@ -93,14 +111,14 @@ export default function HomeClient() {
                   <div className="relative rounded-2xl overflow-hidden shadow-lg group">
                     <img
                       src="/Active_Planning.webp"
-                      alt="Plan your YouTube playlist viewing schedule with our calculator — see total duration, playback speed estimates and daily watch goals"
+                      alt={t("hero.imageAlt")}
                       className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
                   </div>
                   <p className="text-center text-sm text-muted-foreground mt-5 leading-relaxed">
-                    Visualize your playlist timeline and plan every session with precision.
+                    {t("hero.imageCaption")}
                   </p>
                 </div>
               </div>
@@ -272,142 +290,7 @@ export default function HomeClient() {
       <Footer />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is the YouTube Playlist Length Calculator?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The YouTube Playlist Length Calculator is a free online tool that calculates the total duration of any YouTube playlist. Simply paste a playlist URL and get instant results with detailed analytics including total time, video count, and viewing estimates at different playback speeds."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What formats does the total duration display?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "The total duration is displayed in multiple formats for your convenience: hours, minutes, and seconds (HH:MM:SS), total minutes, total hours, and estimated viewing time in days, work days, and sessions. You can also see duration estimates at different playback speeds (0.25x to 2x)."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does the calculator work with individual video links?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No, this tool is specifically designed for YouTube playlists. For individual videos, you can see the duration directly on YouTube. However, you can create a playlist with a single video if you need to use our advanced analytics features."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is there a limit to the number of videos in a playlist?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "There's no limit imposed by our tool. We can calculate playlists with thousands of videos. However, very large playlists (1000+ videos) may take a few extra seconds to process as we fetch data for each video to ensure accuracy."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if the playlist is empty?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "If you submit an empty playlist or a playlist with no accessible videos, the tool will display a message indicating that no videos were found. Make sure the playlist is public and contains videos, or check if the playlist URL is correct."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is my data safe when using the tool?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Absolutely! We only process the playlist URL you provide and don't store any personal information. All calculations are performed in real-time, and we don't save your playlist data or viewing history. Your privacy is our priority."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if I encounter an error when calculating?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "If you encounter an error, first check that the playlist URL is correct and the playlist is public. Common issues include private playlists, deleted playlists, or invalid URLs. If the problem persists, try refreshing the page or contact us through the contact page."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I share the calculated duration?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes! Once the results are generated, you can easily copy the information and share it with others. The results include comprehensive details that you can screenshot or copy-paste to share the playlist duration and analytics with friends, colleagues, or students."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Why would I want to calculate playlist length?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Knowing the total length helps you plan your time effectively. Whether you're a student with a lecture playlist, a binge-watcher, or a creator analyzing competitors, our tool gives you the exact time commitment required so you can schedule your viewing sessions efficiently."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I exclude certain videos from the calculation?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes! Once the playlist is loaded, you'll see a list of all videos. You can simply uncheck any videos you've already watched or don't want to include, and the total duration will update instantly to reflect your selection."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does this work with private playlists?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No, due to YouTube's privacy policies, we cannot access private playlists. However, you can use it with 'Unlisted' playlists if you have the direct link. If you own the private playlist, you can temporarily set it to 'Unlisted' to calculate the length."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What if a playlist has unavailable videos?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Our tool automatically detects and flags unavailable (deleted or private) videos within a public playlist. While we can't get their exact duration, we alert you to their presence so you know the calculation only includes the currently playable content."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I use this for my own playlists?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Absolutely! As long as your playlist is set to 'Public' or 'Unlisted', you can use this tool to analyze your own content duration, which is great for planning course modules or video series length."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does this work with YouTube Music playlists?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, YouTube Music playlists work perfectly with our calculator since they share the same underlying infrastructure as regular YouTube playlists. Just paste the playlist URL to see the total listening time."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How often is the data updated?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "We fetch fresh data directly from YouTube every time you click 'Analyze'. This ensures you always get the most up-to-date information, including recent video additions or duration changes."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Who can benefit from using this tool?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "This tool is perfect for students planning study sessions, educators organizing course content, content creators managing video series, researchers analyzing video content, and anyone who wants to know how much time they'll need to watch a YouTube playlist before starting."
-                }
-              }
-            ]
-          })
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
     </div>
   );
