@@ -10,16 +10,11 @@ import {
   translations,
   getLocaleFromPath,
   getLocalePath,
+  LOCALE_META,
 } from "./dictionary"
 
 export type { Locale } from "./dictionary"
-export { DEFAULT_LOCALE, SUPPORTED_LOCALES, getLocaleFromPath, getLocalePath } from "./dictionary"
-
-const localeNames: Record<Locale, string> = {
-  en: "English",
-  hi: "हिन्दी",
-  tr: "Türkçe",
-}
+export { DEFAULT_LOCALE, SUPPORTED_LOCALES, getLocaleFromPath, getLocalePath, LOCALE_META } from "./dictionary"
 
 interface I18nContextType {
   locale: Locale
@@ -43,9 +38,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     setLocaleState(currentLocale)
   }, [currentLocale])
 
-  // Also update the <html lang="..."> attribute
+  // Also update the <html lang="..."> and direction attributes
   useEffect(() => {
     document.documentElement.lang = locale
+    document.documentElement.dir = LOCALE_META[locale]?.dir ?? "ltr"
   }, [locale])
 
   const setLocale = useCallback(
@@ -63,7 +59,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     [locale]
   )
 
-  const getLocaleName = useCallback((l: Locale) => localeNames[l], [])
+  const getLocaleName = useCallback(
+    (l: Locale) => LOCALE_META[l]?.nativeName ?? l,
+    []
+  )
 
   return (
     <I18nContext.Provider

@@ -2,13 +2,16 @@
 
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { getLocaleFromPath, SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/i18n"
+import { getLocaleFromPath, SUPPORTED_LOCALES, DEFAULT_LOCALE, LOCALE_META } from "@/lib/i18n"
 
 const SITE_URL = "https://ytplaylistlength.pro"
 
+/** Homepage = root ("/") or a locale homepage ("/hi", "/hi/", "/tr", "/tr/"). */
+const HOMEPAGE_RE = new RegExp(`^\\/(${SUPPORTED_LOCALES.join("|")})(?:\\/)?$`)
+
 /** Check if current path is a homepage (root or locale homepage like /hi, /tr) */
 function isHomepage(pathname: string): boolean {
-  return pathname === "/" || /^\/(hi|tr)\/?$/.test(pathname)
+  return pathname === "/" || HOMEPAGE_RE.test(pathname)
 }
 
 /** Dynamically injects hreflang link tags into <head> based on the current URL locale.
@@ -57,8 +60,7 @@ export function HreflangUpdater() {
     // Add og:locale meta
     const ogLocale = document.createElement("meta")
     ogLocale.setAttribute("property", "og:locale")
-    const ogLocaleMap: Record<string, string> = { en: "en_US", hi: "hi_IN", tr: "tr_TR" }
-    ogLocale.content = ogLocaleMap[locale] || "en_US"
+    ogLocale.content = LOCALE_META[locale]?.ogLocale || "en_US"
     ogLocale.dataset.hreflangDynamic = "true"
     fragment.appendChild(ogLocale)
 

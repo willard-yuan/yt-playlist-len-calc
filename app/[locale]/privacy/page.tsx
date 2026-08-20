@@ -3,11 +3,15 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { PrivacyContent } from "@/components/privacy-content";
-import { SUPPORTED_LOCALES, type Locale } from "@/lib/i18n/dictionary";
+import { SUPPORTED_LOCALES, LOCALE_META, type Locale } from "@/lib/i18n/dictionary";
 
 const SITE_URL = "https://ytplaylistlength.pro";
 
-const localeMetadata: Record<Exclude<Locale, "en">, { title: string; description: string }> = {
+// Hand-written hi/tr subpage SEO copy is preserved; all other locales fall back
+// to the translated homepage title/description from LOCALE_META.
+const localeMetadata: Partial<
+  Record<Exclude<Locale, "en">, { title: string; description: string }>
+> = {
   hi: {
     title: "गोपनीयता नीति - YouTube प्लेलिस्ट लंबाई कैलकुलेटर",
     description: "हमारी गोपनीयता नीति पढ़ें और जानें कि हम आपके डेटा को कैसे संभालते हैं। आपकी गोपनीयता हमारी प्राथमिकता है।",
@@ -17,6 +21,16 @@ const localeMetadata: Record<Exclude<Locale, "en">, { title: string; description
     description: "Verilerinizi nasıl işlediğimizi anlamak için Gizlilik Politikamızı okuyun. Gizliliğiniz bizim önceliğimizdir.",
   },
 };
+
+/** Build an hreflang `languages` map for a given sub-path (e.g. "/privacy"). */
+function buildLanguages(sub: string): Record<string, string> {
+  const languages: Record<string, string> = { en: `${SITE_URL}${sub}` };
+  SUPPORTED_LOCALES.forEach((l) => {
+    if (l !== "en") languages[l] = `${SITE_URL}/${l}${sub}`;
+  });
+  languages["x-default"] = `${SITE_URL}${sub}`;
+  return languages;
+}
 
 export async function generateStaticParams() {
   return SUPPORTED_LOCALES
@@ -35,7 +49,11 @@ export async function generateMetadata({
     notFound();
   }
 
-  const meta = localeMetadata[locale as Exclude<Locale, "en">];
+  const meta =
+    localeMetadata[locale as Exclude<Locale, "en">] ?? {
+      title: LOCALE_META[locale as Locale].title,
+      description: LOCALE_META[locale as Locale].description,
+    };
   const canonicalUrl = `${SITE_URL}/${locale}/privacy`;
 
   return {
@@ -43,18 +61,13 @@ export async function generateMetadata({
     description: meta.description,
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        en: `${SITE_URL}/privacy`,
-        hi: `${SITE_URL}/hi/privacy`,
-        tr: `${SITE_URL}/tr/privacy`,
-        "x-default": `${SITE_URL}/privacy`,
-      },
+      languages: buildLanguages("/privacy"),
     },
     openGraph: {
       title: meta.title,
       description: meta.description,
       url: canonicalUrl,
-      locale: locale === "hi" ? "hi_IN" : "tr_TR",
+      locale: LOCALE_META[locale as Locale].ogLocale,
     },
   };
 }

@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { I18nProvider } from "@/lib/i18n";
+import { SUPPORTED_LOCALES, LOCALE_META } from "@/lib/i18n/dictionary";
 
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
@@ -65,6 +66,13 @@ export const metadata: Metadata = {
   },
 };
 
+// Server-rendered inline script: set <html lang> + <html dir> from the URL
+// locale before paint, so RTL languages (ar/he) render correctly on first load.
+const LANG_RE = new RegExp(`^\\/(${SUPPORTED_LOCALES.join("|")})(?:\\/|$)`)
+const RTL_LOCALES = SUPPORTED_LOCALES.filter((l) => LOCALE_META[l]?.dir === "rtl")
+const RTL_RE = new RegExp(`^\\/(${RTL_LOCALES.join("|")})(?:\\/|$)`)
+const langDirScript = `(function(){var p=location.pathname;var m=p.match(${LANG_RE});document.documentElement.lang=m?m[1]:'en';var r=p.match(${RTL_RE});document.documentElement.dir=r?'rtl':'ltr';})();`
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -75,7 +83,7 @@ export default function RootLayout({
     <body className={`${inter.className} relative overflow-x-hidden`} suppressHydrationWarning={true}>
       <script
         dangerouslySetInnerHTML={{
-          __html: `(function(){var p=location.pathname;var m=p.match(/^\\/(hi|tr)(?:\\/|$)/);document.documentElement.lang=m?m[1]:'en';})();`,
+          __html: langDirScript,
         }}
       />
       <Script

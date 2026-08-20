@@ -10,13 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useI18n, Locale, DEFAULT_LOCALE } from "@/lib/i18n"
-
-const localeFlags: Record<Locale, string> = {
-  en: "🇺🇸",
-  hi: "🇮🇳",
-  tr: "🇹🇷",
-}
+import { useI18n, Locale, DEFAULT_LOCALE, LOCALE_META, LOCALE_PATH_RE } from "@/lib/i18n"
 
 export function LanguageSwitcher() {
   const { locale, locales, getLocaleName } = useI18n()
@@ -24,7 +18,7 @@ export function LanguageSwitcher() {
 
   // Strip the leading locale segment (if present) so the rest of the path is
   // preserved when switching languages: /hi/about → /tr/about, /about → /hi/about.
-  const subpath = pathname.replace(/^\/(en|hi|tr)(?=\/|$)/, "")
+  const subpath = pathname.replace(LOCALE_PATH_RE, "")
 
   const buildHref = (l: Locale) => {
     const prefix = l === DEFAULT_LOCALE ? "" : `/${l}`
@@ -41,7 +35,7 @@ export function LanguageSwitcher() {
           className="text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1.5 h-auto py-1 px-2"
           aria-label="Change language"
         >
-          <span className="text-base leading-none">{localeFlags[locale]}</span>
+          <span className="text-base leading-none">{LOCALE_META[locale]?.flag}</span>
           <span className="text-sm font-medium">{getLocaleName(locale)}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -53,7 +47,7 @@ export function LanguageSwitcher() {
             className="flex items-center justify-between cursor-pointer"
           >
             <Link href={buildHref(l)} className="flex items-center gap-2 w-full">
-              <span className="text-base leading-none">{localeFlags[l]}</span>
+              <span className="text-base leading-none">{LOCALE_META[l]?.flag}</span>
               <span>{getLocaleName(l)}</span>
               {locale === l && <Check className="h-4 w-4 text-purple-500 ml-auto" />}
             </Link>
