@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { LocaleLink } from "@/components/locale-link"
 import { Button } from '@/components/ui/button'
 import { Home, ArrowLeft } from 'lucide-react'
 import Navbar from '@/components/navbar'
@@ -28,16 +28,16 @@ export default function NotFound() {
         
         <div className="flex gap-4 animate-in slide-in-from-bottom-4 duration-500 delay-300">
           <Button asChild variant="default" size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-            <Link href="/" className="gap-2">
+            <LocaleLink href="/" className="gap-2">
               <Home className="w-4 h-4" />
               Back Home
-            </Link>
+            </LocaleLink>
           </Button>
           <Button asChild variant="outline" size="lg" className="rounded-full">
-            <Link href="/contact" className="gap-2">
+            <LocaleLink href="/contact" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
               Contact Support
-            </Link>
+            </LocaleLink>
           </Button>
         </div>
       </main>

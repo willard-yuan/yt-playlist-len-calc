@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocaleLink } from "@/components/locale-link";
 import { ArrowRight, Calendar, Star, Zap, Bug, Plus, Sparkles } from "lucide-react";
 import { changelogEntries } from "@/lib/changelog-data";
 import { useI18n } from "@/lib/i18n";
@@ -101,26 +101,26 @@ export function ChangelogPreview() {
 
             {/* Footer */}
             <div className="p-6 md:p-8 pt-0 mt-auto">
-              <Link 
+              <LocaleLink 
                 href="/changelog" 
                 className="inline-flex items-center text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors group"
               >
                 {t("changelog.readFull")}
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </LocaleLink>
             </div>
           </div>
         ))}
       </div>
 
       <div className="text-center mt-12">
-        <Link 
+        <LocaleLink 
           href="/changelog" 
           className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-secondary hover:bg-secondary/80 text-foreground font-medium transition-colors duration-200"
         >
           {t("changelog.viewAll")}
           <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
+        </LocaleLink>
       </div>
     </section>
   );

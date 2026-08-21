@@ -1,5 +1,5 @@
 import { PlaylistItemListResponse, videoFormat, videoSpeed } from '@/lib/types';
-import Link from 'next/link';
+import { LocaleLink } from "@/components/locale-link";
 import { calculateTotalDuration, parseDuration } from '@/lib/utils';
 import VideoCard from './video-card';
 import { useState, useMemo, useEffect } from 'react';
@@ -551,20 +551,20 @@ export default function PlaylistResult({ playlist, format = 'hrs' }: { playlist:
                             Showing {playlist.items.length} of {playlistStats.totalPlaylistSize}
                         </Badge>
                     )}
-                    <Link 
+                    <LocaleLink 
                         href="/youtube-playlist-randomizer"
                         className="ml-auto flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-blue-100 dark:hover:bg-blue-900/40"
                     >
                         <Shuffle className="h-4 w-4" />
                         Randomize Order
-                    </Link>
-                    <Link 
+                    </LocaleLink>
+                    <LocaleLink 
                         href={`/youtube-playlist-exporter${playlist.items[0]?.snippet?.playlistId ? `?list=${playlist.items[0].snippet.playlistId}` : ''}`}
                         className="flex items-center gap-2 text-sm font-medium text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 bg-purple-50 dark:bg-purple-900/20 px-3 py-1.5 rounded-full transition-all hover:bg-purple-100 dark:hover:bg-purple-900/40"
                     >
                         <Download className="h-4 w-4" />
                         Export Playlist Data
-                    </Link>
+                    </LocaleLink>
                 </h3>
 
                 <div className="relative mb-12 max-w-2xl mx-auto group">

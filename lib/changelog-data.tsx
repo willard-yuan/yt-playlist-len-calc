@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocaleLink } from "@/components/locale-link";
 
 export const changelogEntries = [
   {
@@ -7,7 +7,7 @@ export const changelogEntries = [
     type: "feature",
     title: "Guides Hub, Richer Homepage & Content Authenticity",
     changes: [
-      <span key="guides">📚 NEW: Launched the <Link href="/guides" className="text-purple-600 hover:underline">Guides</Link> hub with 8 in-depth articles on playlist length, playback speed, course planning, partial durations, music runtimes, reverse planning, and how the calculator works</span>,
+      <span key="guides">📚 NEW: Launched the <LocaleLink href="/guides" className="text-purple-600 hover:underline">Guides</LocaleLink> hub with 8 in-depth articles on playlist length, playback speed, course planning, partial durations, music runtimes, reverse planning, and how the calculator works</span>,
       "🖼 Each guide now has a unique, topic-themed cover illustration (no more repeated images across articles)",
       "❓ Expanded FAQ sections across all guides to 7–8 questions each for clearer, more complete answers",
       <span key="home">🎨 Added new homepage sections — Everything You Need, Speed Comparison, Common Use Cases, Who Uses, and Why Use — for clearer value communication</span>,
@@ -21,8 +21,8 @@ export const changelogEntries = [
     type: "feature",
     title: "Ecosystem Expansion & User Experience Polish",
     changes: [
-      <span key="new-section">🚀 NEW: Added <Link href="/#tools" className="text-purple-600 hover:underline">Other Playlist Tools</Link> section on homepage for better discovery</span>,
-      <span key="randomizer">🔀 NEW: Integrated quick access to <Link href="/youtube-playlist-randomizer" className="text-purple-600 hover:underline">Playlist Randomizer</Link> directly in video results</span>,
+      <span key="new-section">🚀 NEW: Added <LocaleLink href="/#tools" className="text-purple-600 hover:underline">Other Playlist Tools</LocaleLink> section on homepage for better discovery</span>,
+      <span key="randomizer">🔀 NEW: Integrated quick access to <LocaleLink href="/youtube-playlist-randomizer" className="text-purple-600 hover:underline">Playlist Randomizer</LocaleLink> directly in video results</span>,
       "✨ Enhanced SEO coverage for all tool pages in sitemap",
       "🐛 Fixed text escaping issues in SEO content components",
       "🎨 Improved visual consistency for action buttons across the platform"
@@ -38,8 +38,8 @@ export const changelogEntries = [
       "⚡️ Speed Slider: Interactive gradient slider for precise playback control (0.25x - 2x)",
       "🔍 Video Search: Real-time keyword filtering for playlist videos",
       "📚 FAQ Update: Added 8 new comprehensive questions to help users",
-      <span key="layout">Optimized homepage layout: Prioritized <Link href="/#quick-access" className="text-purple-600 hover:underline">Quick Access</Link> section for faster workflow</span>,
-      <span key="testimonials">✨ NEW: Added <Link href="/#testimonials" className="text-purple-600 hover:underline">Testimonials</Link> section featuring user success stories</span>,
+      <span key="layout">Optimized homepage layout: Prioritized <LocaleLink href="/#quick-access" className="text-purple-600 hover:underline">Quick Access</LocaleLink> section for faster workflow</span>,
+      <span key="testimonials">✨ NEW: Added <LocaleLink href="/#testimonials" className="text-purple-600 hover:underline">Testimonials</LocaleLink> section featuring user success stories</span>,
       "Expanded navigation menu with direct links to 'Playlists' and 'Testimonials'",
       "Improved mobile responsiveness for section ordering and navigation"
     ]
@@ -50,10 +50,10 @@ export const changelogEntries = [
     type: "feature",
     title: "UI Optimization & Performance Improvements",
     changes: [
-      <span key="faq">✨ NEW: Added <Link href="/#faq" className="text-purple-600 hover:underline">FAQs section</Link> to navigation bar with smooth scrolling support</span>,
+      <span key="faq">✨ NEW: Added <LocaleLink href="/#faq" className="text-purple-600 hover:underline">FAQs section</LocaleLink> to navigation bar with smooth scrolling support</span>,
       "Optimized 'Active Planning' and 'Playlist Analysis' sections with wider responsive layout",
       "Fixed 'Watch on YouTube' button text overflow on mobile devices",
-      <span key="nav">Reorganized navigation menu for better accessibility: <Link href="/" className="text-purple-600 hover:underline">Home</Link> {"->"} <Link href="/#faq" className="text-purple-600 hover:underline">FAQs</Link> {"->"} <Link href="/blog" className="text-purple-600 hover:underline">Blog</Link> {"->"} Other Tools {"->"} Changelog</span>,
+      <span key="nav">Reorganized navigation menu for better accessibility: <LocaleLink href="/" className="text-purple-600 hover:underline">Home</LocaleLink> {"->"} <LocaleLink href="/#faq" className="text-purple-600 hover:underline">FAQs</LocaleLink> {"->"} <LocaleLink href="/blog" className="text-purple-600 hover:underline">Blog</LocaleLink> {"->"} Other Tools {"->"} Changelog</span>,
       "Resolved hydration warnings and optimized font loading performance",
       "Fixed missing grid background asset to eliminate 404 errors"
     ]
@@ -64,7 +64,7 @@ export const changelogEntries = [
     type: "feature",
     title: "New Tools Page & UI Improvements",
     changes: [
-      <span key="tools">✨ NEW: Added <Link href="/tools-you-may-also-like" className="text-purple-600 hover:underline">Tools You May Also Like</Link> page featuring curated developer tools</span>,
+      <span key="tools">✨ NEW: Added <LocaleLink href="/tools-you-may-also-like" className="text-purple-600 hover:underline">Tools You May Also Like</LocaleLink> page featuring curated developer tools</span>,
       "Improved navigation structure by moving 'About Us' to footer",
       "Enhanced UI consistency for buttons and tool cards with refined styling",
       "Fixed text clipping issues in hero section gradients across all pages"
@@ -94,7 +94,7 @@ export const changelogEntries = [
     type: "feature",
     title: "YouTube Playlist Exporter & Blog Enhancement",
     changes: [
-      <span key="exporter">🎉 NEW: <Link href="/youtube-playlist-exporter" className="text-purple-600 hover:underline">YouTube Playlist Exporter</Link> - Export playlists to CSV, Excel, Text, and HTML bookmark formats</span>,
+      <span key="exporter">🎉 NEW: <LocaleLink href="/youtube-playlist-exporter" className="text-purple-600 hover:underline">YouTube Playlist Exporter</LocaleLink> - Export playlists to CSV, Excel, Text, and HTML bookmark formats</span>,
       "Added comprehensive playlist data export including video titles, descriptions, durations, and metadata",
       "Implemented smart URL history with dropdown interface for quick access to recent playlists",
       "Added multiple export format support: CSV for data analysis, Excel for spreadsheets, Text for simple lists, HTML bookmarks for browsers",

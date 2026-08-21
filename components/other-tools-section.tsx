@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link";
 import { Download, Shuffle, ArrowRight } from "lucide-react";
+import { LocaleLink } from "@/components/locale-link";
 import { useI18n } from "@/lib/i18n";
 
 export function OtherToolsSection() {
@@ -20,7 +20,7 @@ export function OtherToolsSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {/* Playlist Exporter Card */}
-        <Link 
+        <LocaleLink 
           href="/youtube-playlist-exporter"
           className="group relative overflow-hidden rounded-3xl bg-card border border-border/50 p-8 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1"
         >
@@ -43,10 +43,10 @@ export function OtherToolsSection() {
               {t("otherTools.tryNow")} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </div>
-        </Link>
+        </LocaleLink>
 
         {/* Playlist Randomizer Card */}
-        <Link 
+        <LocaleLink 
           href="/youtube-playlist-randomizer"
           className="group relative overflow-hidden rounded-3xl bg-card border border-border/50 p-8 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1"
         >
@@ -69,7 +69,7 @@ export function OtherToolsSection() {
               {t("otherTools.tryNow")} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </div>
-        </Link>
+        </LocaleLink>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 "use client"
 
-import Link from "next/link"
 import { Star, Twitter, Mail } from "lucide-react"
+import { LocaleLink } from "@/components/locale-link"
 import { useI18n } from "@/lib/i18n"
 
 export default function Footer() {
@@ -41,12 +41,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {footerLinks.map((link) => (
                 <li key={link.href}>
-                  <Link 
+                  <LocaleLink 
                     href={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   >
                     {link.name}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
             </ul>
@@ -58,22 +58,22 @@ export default function Footer() {
             <ul className="space-y-2">
               {toolLinks.map((link) => (
                 <li key={link.href}>
-                  <Link 
+                  <LocaleLink 
                     href={link.href}
                     className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   >
                     {link.name}
-                  </Link>
+                  </LocaleLink>
                 </li>
               ))}
               <li>
-                <Link
+                <LocaleLink
                   href="/llms.txt"
                   className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
                   target="_blank"
                 >
                   llms.txt
-                </Link>
+                </LocaleLink>
               </li>
             </ul>
           </div>
@@ -105,13 +105,13 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link 
+                <LocaleLink 
                   href="/contact"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
                 >
                   <Mail className="w-4 h-4 group-hover:text-purple-500 transition-colors" />
                   <span>{t("footer.contactSupport")}</span>
-                </Link>
+                </LocaleLink>
               </li>
             </ul>
           </div>

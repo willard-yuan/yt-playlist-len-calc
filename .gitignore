@@ -21,3 +21,8 @@ Thumbs.db
 # i18n generator artifacts
 scripts/.i18n-cache.json
 scripts/gen-i18n.log
+scripts/.subpage-i18n-cache.json
+scripts/gen-subpage-i18n.log
+
+# local project data (memory / session artifacts)
+.workbuddy/

@@ -1,12 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import { useState } from "react"
 import { usePathname } from "next/navigation"
 import { Menu, X, Play, Youtube, Star, ChevronDown, Shuffle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/model-toggle"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { LocaleLink } from "@/components/locale-link"
 import { useI18n } from "@/lib/i18n"
 import {
   DropdownMenu,
@@ -21,10 +21,10 @@ export default function Navbar() {
   const { t } = useI18n()
 
   const getLogoText = () => {
-    if (pathname === '/youtube-playlist-exporter') {
+    if (pathname === '/youtube-playlist-exporter' || pathname.endsWith('/youtube-playlist-exporter')) {
       return 'YouTube Playlist Exporter'
     }
-    if (pathname === '/youtube-playlist-randomizer') {
+    if (pathname === '/youtube-playlist-randomizer' || pathname.endsWith('/youtube-playlist-randomizer')) {
       return 'YouTube Playlist Randomizer'
     }
     return t("nav.logo")
@@ -51,7 +51,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2.5 group shrink-0 mr-4 lg:mr-6">
+          <LocaleLink href="/" className="flex items-center space-x-2.5 group shrink-0 mr-4 lg:mr-6">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-600 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative bg-gradient-to-r from-red-600 to-purple-700 p-1.5 rounded-full">
@@ -61,27 +61,27 @@ export default function Navbar() {
             <span className="font-bold text-xs lg:text-sm leading-tight bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent whitespace-nowrap">
                {getLogoText()}
              </span>
-          </Link>
+          </LocaleLink>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-3 lg:space-x-5">
             {/* Home */}
-            <Link
+            <LocaleLink
               href="/"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.home")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </LocaleLink>
             
             {/* FAQs */}
-            <Link
+            <LocaleLink
               href="/#faq"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.faqs")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </LocaleLink>
 
             {/* Other Tools Dropdown */}
             <DropdownMenu>
@@ -94,46 +94,46 @@ export default function Navbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[280px]">
                   <DropdownMenuItem asChild>
-                  <Link href="/youtube-playlist-randomizer" className="flex items-center space-x-2">
+                  <LocaleLink href="/youtube-playlist-randomizer" className="flex items-center space-x-2">
                     <Shuffle className="h-4 w-4" />
                     <span>YouTube Playlist Randomizer</span>
-                  </Link>
+                  </LocaleLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/youtube-playlist-exporter" className="flex items-center space-x-2">
+                  <LocaleLink href="/youtube-playlist-exporter" className="flex items-center space-x-2">
                     <Youtube className="h-4 w-4" />
                     <span>YouTube Playlist Exporter</span>
-                  </Link>
+                  </LocaleLink>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
             {/* Blog */}
-            <Link
+            <LocaleLink
               href="/blog"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.blog")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </LocaleLink>
 
             {/* Guides */}
-            <Link
+            <LocaleLink
               href="/guides"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.guides")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </LocaleLink>
 
             {/* Changelog */}
-            <Link
+            <LocaleLink
               href="/changelog"
               className="text-xs lg:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative group whitespace-nowrap"
             >
               {t("nav.changelog")}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+            </LocaleLink>
             
             <ModeToggle />
             <LanguageSwitcher />
@@ -160,72 +160,72 @@ export default function Navbar() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-background/90 backdrop-blur-md rounded-lg mt-2 border border-border">
               {/* Home */}
-              <Link
+              <LocaleLink
                 href="/"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.home")}
-              </Link>
+              </LocaleLink>
 
               {/* FAQs */}
-              <Link
+              <LocaleLink
                 href="/#faq"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.faqs")}
-              </Link>
+              </LocaleLink>
 
               {/* Blog */}
-              <Link
+              <LocaleLink
                 href="/blog"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.blog")}
-              </Link>
+              </LocaleLink>
 
               {/* Guides */}
-              <Link
+              <LocaleLink
                 href="/guides"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.guides")}
-              </Link>
+              </LocaleLink>
 
               {/* Other Tools Section for Mobile */}
               <div className="border-t border-border pt-2 mt-2">
                 <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {t("nav.otherTools")}
                 </div>
-                <Link
+                <LocaleLink
                   href="/youtube-playlist-exporter"
                   className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Youtube className="h-4 w-4" />
                   <span>YouTube Playlist Exporter</span>
-                </Link>
-                <Link
+                </LocaleLink>
+                <LocaleLink
                   href="/youtube-playlist-randomizer"
                   className="flex items-center space-x-2 px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Shuffle className="h-4 w-4" />
                   <span>YouTube Playlist Randomizer</span>
-                </Link>
+                </LocaleLink>
               </div>
               
               {/* Changelog */}
-              <Link
+              <LocaleLink
                 href="/changelog"
                 className="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t("nav.changelog")}
-              </Link>
+              </LocaleLink>
 
 
             </div>
