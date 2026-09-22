@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 import { HreflangUpdater } from "@/components/hreflang-updater";
 import { GlobalStructuredData } from "@/components/global-structured-data";
+import { AdsterraSocialBar } from "@/components/adsterra-social-bar";
 
 const inter = Inter({ subsets: ["latin"], display: 'swap' });
 
@@ -148,6 +149,8 @@ export default function RootLayout({
             <Analytics />
           </I18nProvider>
         </ThemeProvider>
+        {/* Adsterra Social Bar — must stay the last element inside <body> */}
+        <AdsterraSocialBar />
       </body>
     </html>
   );
