@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThumbnailImage } from "@/components/thumbnail-image"
 import { RandomizerSeoContent } from "@/components/randomizer-seo-content"
+import { AdsterraBanner } from "@/components/adsterra-banner"
 import { getLocaleFromPath, type Locale } from "@/lib/i18n/dictionary"
 import { getSubT, type SubpageKey } from "@/lib/i18n/subpages"
 
@@ -361,6 +362,15 @@ export function RandomizerContent() {
             </motion.div>
           )}
         </motion.div>
+
+        {/* Adsterra 300x250 — directly beneath the search box, ABOVE the result
+            list. This page renders the playlist without pagination
+            (`filteredVideos.map`), so a unit placed after the result would be
+            pushed arbitrarily far down as the playlist grows — a 200-video list
+            buries it thousands of pixels deep. Placing it before the result keeps
+            the position fixed. One unit per page — Adsterra's `atOptions` is a
+            single global. */}
+        <AdsterraBanner className="my-16" />
 
         {/* Player & Playlist Interface */}
         <AnimatePresence>

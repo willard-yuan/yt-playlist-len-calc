@@ -56,6 +56,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { parseDuration } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
+import { AdsterraBanner } from "@/components/adsterra-banner";
 
 const FormSchema = z.object({
   url: z.string().url({ message: "Please enter a valid YouTube playlist URL" }),
@@ -889,6 +890,12 @@ export default function SearchBar() {
         </div>
       {/* Results — with generous top spacing from card */}
       <div className="mt-12">
+      {/* Adsterra 300x250 — sits directly beneath the tool. Chosen over the
+          "below the result" slot because the result renders a very long video
+          list and the page auto-scrolls past it, which would bury the unit.
+          Renders on every visit, not only after a successful calculation.
+          One unit per page — Adsterra's `atOptions` is a single global. */}
+      <AdsterraBanner className="mb-12" />
       {isPending && loadingStep < 3 && (
         <LoadingMessage 
           step={loadingStep} 

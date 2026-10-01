@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Youtube, Download, FileText, FileSpreadsheet, Bookmark, Loader2, Clock, X, Search, Video as VideoIcon, ChevronDown } from "lucide-react"
 import VideoCard from "@/components/video-card"
 import { ExporterSeoContent } from "@/components/exporter-seo-content"
+import { AdsterraBanner } from "@/components/adsterra-banner"
 import { getLocaleFromPath, type Locale } from "@/lib/i18n/dictionary"
 import { getSubT, type SubpageKey } from "@/lib/i18n/subpages"
 
@@ -639,6 +640,14 @@ ${videos.map(video =>
               </div>
             </div>
           )}
+
+          {/* Adsterra 300x250 — directly beneath the result block, above the
+              feature grid. "Directly under the result" is the highest-intent
+              slot; sitting below the feature grid pushed it ~400px further down
+              for no benefit. Renders even before a URL is submitted, in which
+              case it simply follows the input. One unit per page — Adsterra's
+              `atOptions` is a single global. */}
+          <AdsterraBanner className="my-16" />
 
           {/* Features */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
